@@ -1,0 +1,121 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 14px;
+    position: relative;
+}
+
+ul,
+ol,
+li,
+b,
+h1,
+h2,
+h3,
+h4,
+h6,
+a,
+
+p {
+    text-decoration: none;
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+a {
+    color: unset;
+
+    &:hover {
+        color: unset;
+    }
+}
+
+select {
+    outline: none;
+    border: none;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: #323232;
+    color: #ffffff;
+}
+
+
+header {
+    display: flex;
+    flex-direction: column;
+
+    .header_seperator {
+        align-self: center;
+        width: 90%;
+        border-top: 1px solid #ffffff40;
+    }
+
+    .header_1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px;
+
+        .business_name {}
+
+        .account-cont {}
+    }
+
+    .header_2 {
+        display: flex;
+        flex-direction: row;
+        
+        .brand_name {}
+
+        nav {}
+    }
+
+    .header_3 {}
+}
+
+
+
+
+
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    header {
+        .header_seperator {
+            width: 94%;
+        }
+
+        .header_1 {
+            position: relative;
+            justify-content: center;
+            padding: 10px 8%;
+
+            .account-cont {
+                position: absolute;
+                right: 8%;
+                top: 0;
+                bottom: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}
