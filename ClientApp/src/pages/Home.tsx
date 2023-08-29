@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Template from '../template/Template';
 import { BoxArrowLeft, House, List, Telephone } from 'react-bootstrap-icons';
 
 export const Page_Home = () => {
+    // Refs of section for scrolling down with links
+    const gallerySection = useRef<HTMLDivElement>(null);
+    const aboutusSection = useRef<HTMLDivElement>(null);
+
+    const scrollToSection = (section: React.RefObject<HTMLDivElement>) => {
+        //section.current?.scrollIntoView({ behavior: 'smooth' }); //Work perfectly well aswell
+
+        // 50 pixel higher than the section for better UX
+        if (section.current) {
+            const yOffset = -50;
+            const y = section.current.getBoundingClientRect().top + yOffset;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+        }
+    };
+
     return (
         <div className="page_content">
             <header>
@@ -22,9 +37,19 @@ export const Page_Home = () => {
                 <div className='header_2'>
                     <h1 className='brand_name'>HARZEM Salon</h1>
                     <nav>
-                        <a>HİZMETLER</a>
-                        <a>GALERİ</a>
-                        <a>HAKKIMIZDA</a>
+                        <div className='srv_dd_menu'>
+                            <h5>HİZMETLER</h5>
+                            <ul>
+                                <li><a href='#'>Saç</a></li>
+                                <li><a href='#'>Tırnak</a></li>
+                                <li><a href='#'>Makyaj</a></li>
+                                <li><a href='#'>Kirpik</a></li>
+                                <li><a href='#'>Dudak</a></li>
+                                <li><a href='#'>Epilasyon & Depilasyon</a></li>
+                            </ul>
+                        </div>
+                        <a onClick={() => scrollToSection(gallerySection)}>GALERİ</a>
+                        <a onClick={() => scrollToSection(aboutusSection)}>HAKKIMIZDA</a>
                     </nav>
                 </div>
                 <div className='header_3'>
@@ -45,31 +70,31 @@ export const Page_Home = () => {
                 <section className='our_services-section'>
                     <div className='service_item'>
                         <img src={require('../assets/images/services/sac.png')} alt='Saç hizmetleri' />
-                        <h4>Saç hizmetleri</h4>
+                        <h4>Saç</h4>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo vero tempora unde aliquam ipsum eius assumenda harum autem, quae voluptates minima illum, necessitatibus alias suscipit, quisquam itaque facere modi nulla!</p>
                         <button type='button'>Detaylar</button>
                     </div>
                     <div className='service_item'>
                         <img src={require('../assets/images/services/tirnak.png')} alt='Tırnak hizmetleri' />
-                        <h4>Tırnak hizmetleri</h4>
+                        <h4>Tırnak</h4>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo vero tempora unde aliquam ipsum eius assumenda harum autem, quae voluptates minima illum, necessitatibus alias suscipit, quisquam itaque facere modi nulla!</p>
                         <button type='button'>Detaylar</button>
                     </div>
                     <div className='service_item'>
                         <img src={require('../assets/images/services/makyaj.jpg')} alt='Makyaj hizmetleri' />
-                        <h4>Makyaj hizmetleri</h4>
+                        <h4>Makyaj</h4>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo vero tempora unde aliquam ipsum eius assumenda harum autem, quae voluptates minima illum, necessitatibus alias suscipit, quisquam itaque facere modi nulla!</p>
                         <button type='button'>Detaylar</button>
                     </div>
                     <div className='service_item'>
                         <img src={require('../assets/images/services/kirpik.jpg')} alt='Kirpik hizmetleri' />
-                        <h4>Kirpik hizmetleri</h4>
+                        <h4>Kirpik</h4>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo vero tempora unde aliquam ipsum eius assumenda harum autem, quae voluptates minima illum, necessitatibus alias suscipit, quisquam itaque facere modi nulla!</p>
                         <button type='button'>Detaylar</button>
                     </div>
                     <div className='service_item'>
                         <img src={require('../assets/images/services/dudak.png')} alt='Dudak hizmetleri' />
-                        <h4>Dudak hizmetleri</h4>
+                        <h4>Dudak</h4>
                         <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo vero tempora unde aliquam ipsum eius assumenda harum autem, quae voluptates minima illum, necessitatibus alias suscipit, quisquam itaque facere modi nulla!</p>
                         <button type='button'>Detaylar</button>
                     </div>
@@ -80,7 +105,7 @@ export const Page_Home = () => {
                         <button type='button'>Detaylar</button>
                     </div>
                 </section>
-                <div className='section-header'>
+                <div className='section-header' ref={gallerySection}>
                     <div></div>
                     <h2>GALERİ</h2>
                     <div></div>
@@ -101,7 +126,7 @@ export const Page_Home = () => {
                     </div>
                 </section>
             </main>
-            <footer>
+            <footer ref={aboutusSection}>
                 <div className='about_us'>
                     <div className='contact-cont'>
                         <h5>Bize ulaş</h5>

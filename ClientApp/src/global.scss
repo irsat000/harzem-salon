@@ -1,3 +1,5 @@
+// GENERAL SETTINGS
+
 * {
     box-sizing: border-box;
 }
@@ -45,6 +47,16 @@ body {
     color: #ffffff;
 }
 
+
+
+// UTILITY
+
+
+
+
+
+
+// CONTENT
 
 header {
     display: flex;
@@ -144,7 +156,8 @@ header {
             flex-direction: row;
             gap: 20px;
 
-            a {
+            >a,
+            >.srv_dd_menu>h5 {
                 font-size: 1.1rem;
                 font-family: 'Mukta', sans-serif;
                 font-weight: 400;
@@ -155,6 +168,61 @@ header {
 
                 &:hover {
                     border-bottom: 1px solid #ffffff;
+                }
+            }
+
+            @keyframes fadeIn_dd_menu {
+                from {
+                    opacity: 0;
+                    transform: translateX(-10px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .srv_dd_menu {
+                position: relative;
+
+                >h5:hover~ul {
+                    display: flex;
+                }
+
+                >ul:hover {
+                    display: flex;
+                }
+
+                ul {
+                    position: absolute;
+                    top: 1.1rem;
+                    right: 0;
+                    display: none;
+                    flex-direction: column;
+                    padding-top: 10px;
+                    animation: fadeIn_dd_menu 0.3s ease-in-out;
+
+                    li {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        a {
+                            padding: 10px 10px 10px 20px;
+                            border-bottom: 1px solid #ffffff;
+                            transition: all 0.2s ease;
+                            white-space: nowrap;
+                            font-family: "McLaren", cursive;
+                            font-weight: 400;
+                            font-size: 0.9rem;
+                        }
+
+                        &:hover {
+                            >a {
+                                padding: 10px 30px 10px 30px;
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -218,7 +286,7 @@ main {
 
     .our_services-section {
         margin-top: 16px;
-        padding: 10px;
+        padding: 0 10px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
@@ -281,14 +349,13 @@ main {
     }
 
     .gallery-section {
-        padding: 10px;
+        padding: 0 10px;
         margin-top: 16px;
         display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         gap: 8px;
         justify-content: space-evenly;
-        //position: relative;
 
         .gallery-item {
             display: flex;
@@ -305,13 +372,6 @@ main {
         }
 
         .gallery_showmore {
-            /*position: absolute;
-            bottom: 10px;
-            right: 0;
-            left: 0;
-            background-color: rgb(50, 50, 50, 0.8);
-            backdrop-filter: blur(6px);
-            border-radius: 0 0 8px 8px;*/
             width: 100%;
             padding: 10px 0;
             display: flex;
@@ -346,31 +406,31 @@ footer {
     background-color: #262626;
     display: flex;
     flex-direction: column;
-    padding: 0 10px;
 
     .about_us {
-        padding: 20px 0 30px;
+        padding: 20px 10px 30px;
         display: flex;
         flex-direction: column;
         gap: 20px 10%;
+        font-size: 14px;
 
         .contact-cont {
             order: 2;
             display: flex;
             flex-direction: column;
-            gap: 10px;
 
             h5 {
-                font-size: 1.3rem;
-                font-family: 'Delius', cursive;
+                font-size: 1.3em;
+                font-family: "Della Respira", serif;
                 font-weight: 400;
+                margin-bottom: 14px;
             }
 
             .contact_details {
                 display: flex;
                 flex-direction: column;
                 padding-left: 8px;
-                gap: 8px;
+                gap: 12px;
 
                 .contact_item {
                     display: flex;
@@ -380,36 +440,37 @@ footer {
 
                     .contact_icon {
                         display: flex;
-                        font-size: 1rem;
+                        font-size: 1.1em;
                     }
 
                     span {
-                        font-size: 0.9rem;
+                        font-size: 1em;
                         font-family: 'Della Respira', serif;
                     }
                 }
             }
         }
 
-        .workplace-cont{
+        .workplace-cont {
             order: 1;
             display: flex;
             flex-direction: column;
             gap: 10px;
-            
-            .workplace_on_map{
-                img{
+
+            .workplace_on_map {
+                img {
                     width: 100%;
                     height: auto;
                     border-radius: 8px;
                 }
             }
-            .workplace_photos{
+
+            .workplace_photos {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                
-                img{
+
+                img {
                     width: 48%;
                     height: auto;
                     border-radius: 8px;
@@ -419,7 +480,7 @@ footer {
     }
 
     .copyright {
-        padding: 10px 0;
+        padding: 10px 10px;
         text-align: center;
         background-color: #323232;
         font-family: 'Della Respira', serif;
@@ -502,7 +563,7 @@ footer {
     main {
 
         .appointment_contact_info {
-            margin-top: 40px;
+            margin-top: 50px;
             font-size: 1.2rem;
         }
 
@@ -517,7 +578,7 @@ footer {
 
         .our_services-section {
             margin-top: 25px;
-            padding: 10px 4%;
+            padding: 0 4%;
             gap: 24px 0;
 
             .service_item {
@@ -542,7 +603,7 @@ footer {
         }
 
         .gallery-section {
-            padding: 10px 4%;
+            padding: 0 4%;
             margin-top: 25px;
             gap: 14px 20px;
 
@@ -566,39 +627,30 @@ footer {
     }
 
     footer {
-        padding: 0 4%;
 
         .about_us {
-            padding: 40px 0 50px;
+            padding: 40px 4% 50px;
+            font-size: 18px;
 
             .contact-cont {
-                gap: 16px;
 
                 h5 {
-                    font-size: 1.5rem;
+                    margin-bottom: 18px;
                 }
 
                 .contact_details {
                     padding-left: 12px;
-                    gap: 12px;
+                    gap: 16px;
 
                     .contact_item {
                         gap: 12px;
-
-                        .contact_icon {
-                            font-size: 1.3rem;
-                        }
-
-                        span {
-                            font-size: 1.1rem;
-                        }
                     }
                 }
             }
         }
 
         .copyright {
-            padding: 20px 0;
+            padding: 20px 4%;
             font-size: 1.1rem;
         }
     }
@@ -619,14 +671,24 @@ footer {
         }
     }
 
-    footer{
-        .about_us{
+    footer {
+        .about_us {
             flex-direction: row;
+            font-size: 20px;
 
-            .contact-cont{
+            .contact-cont {
                 order: 1;
+
+                h5 {
+                    margin-bottom: 24px;
+                }
+
+                .contact_details {
+                    gap: 20px;
+                }
             }
-            .workplace-cont{
+
+            .workplace-cont {
                 order: 2;
                 gap: 20px;
             }
