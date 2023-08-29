@@ -1,6 +1,6 @@
 import React from 'react';
 import Template from '../template/Template';
-import { BoxArrowLeft, List } from 'react-bootstrap-icons';
+import { BoxArrowLeft, House, List, Telephone } from 'react-bootstrap-icons';
 
 export const Page_Home = () => {
     return (
@@ -97,12 +97,42 @@ export const Page_Home = () => {
                     <div className='gallery-item'><img src={require('../assets/images/gallery_temp/9.jpg')} alt='Gallery image' /></div>
                     <div className='gallery-item'><img src={require('../assets/images/gallery_temp/10.jpg')} alt='Gallery image' /></div>
                     <div className='gallery_showmore'>
-                        <button type='button' className='gallery_showmore-btn'>Daha fazla göster</button>
+                        <button type='button'>Daha fazla göster</button>
                     </div>
                 </section>
             </main>
             <footer>
-
+                <div className='about_us'>
+                    <div className='contact-cont'>
+                        <h5>Bize ulaş</h5>
+                        <div className='contact_details'>
+                            <div className='contact_item'>
+                                <div className='contact_icon'><Telephone /></div>
+                                <span>0 (539) 359 73 13 - Harzem Akdeniz</span>
+                            </div>
+                            <div className='contact_item'>
+                                <div className='contact_icon'><Telephone /></div>
+                                <span>0 (543) 819 20 19 - Songül Akdeniz</span>
+                            </div>
+                            <div className='contact_item'>
+                                <div className='contact_icon'><House /></div>
+                                <span>Siteler Mahallesi, Kanuni Cad Yuvacık Sitesi, Daire No 78/A, 16330 Yıldırım/Bursa</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='workplace-cont'>
+                        <div className='workplace_on_map'>
+                            <img src={require('../assets/images/workplace/workplace_map.png')} alt='Workplace on map' />
+                        </div>
+                        <div className='workplace_photos'>
+                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='Workplace photo from outside' />
+                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='Workplace photo from outside' />
+                        </div>
+                    </div>
+                </div>
+                <div className='copyright'>
+                    <span>Telif Hakkı © 2023 - Tüm haklar saklıdır.</span>
+                </div>
             </footer>
         </div>
     )

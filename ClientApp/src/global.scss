@@ -15,9 +15,9 @@ h1,
 h2,
 h3,
 h4,
+h5,
 h6,
 a,
-
 p {
     text-decoration: none;
     padding: 0;
@@ -259,6 +259,7 @@ main {
             }
 
             button {
+                outline: transparent;
                 margin-top: auto;
                 padding: 4px 16px;
                 font-size: 0.8rem;
@@ -316,7 +317,8 @@ main {
             display: flex;
             justify-content: center;
 
-            .gallery_showmore-btn {
+            button {
+                outline: transparent;
                 font-family: 'Delius', cursive;
                 padding: 10px 30px;
                 font-size: 1rem;
@@ -341,8 +343,87 @@ main {
 
 footer {
     margin-top: 20px;
-    height: 400px;
     background-color: #262626;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+
+    .about_us {
+        padding: 20px 0 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px 10%;
+
+        .contact-cont {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            h5 {
+                font-size: 1.3rem;
+                font-family: 'Delius', cursive;
+                font-weight: 400;
+            }
+
+            .contact_details {
+                display: flex;
+                flex-direction: column;
+                padding-left: 8px;
+                gap: 8px;
+
+                .contact_item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    gap: 8px;
+
+                    .contact_icon {
+                        display: flex;
+                        font-size: 1rem;
+                    }
+
+                    span {
+                        font-size: 0.9rem;
+                        font-family: 'Della Respira', serif;
+                    }
+                }
+            }
+        }
+
+        .workplace-cont{
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            
+            .workplace_on_map{
+                img{
+                    width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                }
+            }
+            .workplace_photos{
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                
+                img{
+                    width: 48%;
+                    height: auto;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+
+    .copyright {
+        padding: 10px 0;
+        text-align: center;
+        background-color: #323232;
+        font-family: 'Della Respira', serif;
+    }
 }
 
 
@@ -476,11 +557,49 @@ footer {
 
             .gallery_showmore {
 
-                .gallery_showmore-btn {
+                button {
                     padding: 12px 40px;
                     font-size: 1.4rem;
                 }
             }
+        }
+    }
+
+    footer {
+        padding: 0 4%;
+
+        .about_us {
+            padding: 40px 0 50px;
+
+            .contact-cont {
+                gap: 16px;
+
+                h5 {
+                    font-size: 1.5rem;
+                }
+
+                .contact_details {
+                    padding-left: 12px;
+                    gap: 12px;
+
+                    .contact_item {
+                        gap: 12px;
+
+                        .contact_icon {
+                            font-size: 1.3rem;
+                        }
+
+                        span {
+                            font-size: 1.1rem;
+                        }
+                    }
+                }
+            }
+        }
+
+        .copyright {
+            padding: 20px 0;
+            font-size: 1.1rem;
         }
     }
 }
@@ -496,6 +615,20 @@ footer {
 
             .service_item {
                 width: calc(33.3% - 40px);
+            }
+        }
+    }
+
+    footer{
+        .about_us{
+            flex-direction: row;
+
+            .contact-cont{
+                order: 1;
+            }
+            .workplace-cont{
+                order: 2;
+                gap: 20px;
             }
         }
     }
