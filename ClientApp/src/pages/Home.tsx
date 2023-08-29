@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
-import Template from '../template/Template';
 import { BoxArrowLeft, House, List, Telephone } from 'react-bootstrap-icons';
+import { TestimonialCarousel } from '../components/TestimonialCarousel';
+
+
 
 export const Page_Home = () => {
     // Refs of section for scrolling down with links
@@ -105,22 +107,23 @@ export const Page_Home = () => {
                         <button type='button'>Detaylar</button>
                     </div>
                 </section>
+                <TestimonialCarousel />
                 <div className='section-header' ref={gallerySection}>
                     <div></div>
                     <h2>GALERİ</h2>
                     <div></div>
                 </div>
                 <section className='gallery-section'>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/1.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/2.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/3.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/4.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/5.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/6.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/7.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/8.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/9.jpg')} alt='Gallery image' /></div>
-                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/10.jpg')} alt='Gallery image' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/1.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/2.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/3.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/4.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/5.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/6.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/7.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/8.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/9.jpg')} alt='Galeri fotoğrafı' /></div>
+                    <div className='gallery-item'><img src={require('../assets/images/gallery_temp/10.jpg')} alt='Galeri fotoğrafı' /></div>
                     <div className='gallery_showmore'>
                         <button type='button'>Daha fazla göster</button>
                     </div>
@@ -147,11 +150,11 @@ export const Page_Home = () => {
                     </div>
                     <div className='workplace-cont'>
                         <div className='workplace_on_map'>
-                            <img src={require('../assets/images/workplace/workplace_map.png')} alt='Workplace on map' />
+                            <img src={require('../assets/images/workplace/workplace_map.png')} alt='Harita üzerinde İşyeri adresi' />
                         </div>
                         <div className='workplace_photos'>
-                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='Workplace photo from outside' />
-                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='Workplace photo from outside' />
+                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='İşyeri fotoğrafı 1' />
+                            <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} alt='İşyeri fotoğrafı 2' />
                         </div>
                     </div>
                 </div>

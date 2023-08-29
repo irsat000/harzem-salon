@@ -288,6 +288,66 @@ main .our_services-section .service_item button:hover {
   border: 2px solid #b430a0;
   box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
 }
+main .testimonial-section {
+  margin-top: 16px;
+  padding: 10px 10px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  overflow: hidden;
+}
+main .testimonial-section .testimonial-carousel {
+  display: flex;
+  align-items: center;
+}
+@keyframes fadeIn_testimonial {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+main .testimonial-section .testimonial-carousel .testimonial {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  visibility: hidden;
+}
+main .testimonial-section .testimonial-carousel .testimonial .customerComment {
+  font-size: 1.1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+main .testimonial-section .testimonial-carousel .testimonial .customerFullname {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-family: "Bhavuka", sans-serif;
+}
+main .testimonial-section .testimonial-carousel .testimonial.active {
+  visibility: visible;
+  animation: fadeIn_testimonial 0.6s ease-in-out;
+}
+main .testimonial-section .testimonial-slider {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+main .testimonial-section .testimonial-slider .dot {
+  background-color: #6e6e6e;
+  border-radius: 4px;
+  width: 20px;
+  height: 5px;
+  cursor: pointer;
+}
+main .testimonial-section .testimonial-slider .dot.active {
+  background-color: #ffffff;
+  height: 6px;
+}
 main .gallery-section {
   padding: 0 10px;
   margin-top: 16px;
@@ -487,9 +547,13 @@ footer .copyright {
     font-size: 1.1rem;
     border-radius: 8px;
   }
-  main .gallery-section {
-    padding: 0 4%;
+  main .testimonial-section {
     margin-top: 25px;
+    padding: 10px 4% 0;
+  }
+  main .gallery-section {
+    margin-top: 25px;
+    padding: 0 4%;
     gap: 14px 20px;
   }
   main .gallery-section .gallery-item {
