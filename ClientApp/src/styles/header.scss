@@ -1,0 +1,295 @@
+// UTILITY
+
+
+
+
+
+
+// CONTENT
+
+header.extended {
+    height: 160px;
+    background-color: unset;
+
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: url('../assets/images/banner2.png');
+        background-position: center center;
+        background-size: cover;
+        opacity: 0.7;
+        z-index: -1;
+    }
+
+    .header_3 {
+        display: flex;
+    }
+}
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background-color: #262626;
+
+    .header_seperator {
+        align-self: center;
+        width: 94%;
+        border-top: 1px solid #ffffff40;
+    }
+
+    .header_1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 6px 10px;
+        gap: 10px;
+
+        .business_name {
+            font-size: 1rem;
+            font-family: 'Bhavuka', sans-serif;
+        }
+
+        // Mobile only
+        .drawer_btn {
+            display: flex;
+            font-size: 1.7rem;
+        }
+
+        // Desktop only
+        .balance-cont {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: nowrap;
+            gap: 8px;
+
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 4%;
+
+            .account-logout {
+                display: flex;
+                font-size: 1.4rem;
+                padding: 6px 9px 6px 6px;
+                border-radius: 6px;
+                transition: background-color 0.1s ease;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.2);
+                }
+            }
+
+            span {
+                font-size: 1rem;
+                font-family: 'Mukta', sans-serif;
+                font-weight: 300;
+            }
+        }
+    }
+
+    .header_2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px;
+
+        .brand_name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            font-family: 'Calligraffitti', cursive;
+            padding-top: 8px;
+        }
+
+        nav {
+            display: none;
+            flex-direction: row;
+            gap: 20px;
+
+            >a,
+            >.srv_dd_menu>a {
+                font-size: 1.1rem;
+                font-family: 'Mukta', sans-serif;
+                font-weight: 400;
+                cursor: pointer;
+                padding: 0 10px;
+            }
+
+            >a,
+            >.srv_dd_menu {
+                border-bottom: 1px solid #ffffff00;
+                transition: border-bottom 0.1s ease;
+
+                &:hover {
+                    border-bottom: 1px solid #ffffff;
+                }
+            }
+
+            @keyframes fadeIn_dd_menu {
+                from {
+                    opacity: 0;
+                    transform: translateX(-20px);
+                }
+
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+
+            .srv_dd_menu {
+                position: relative;
+
+                >a:hover~ul {
+                    display: flex;
+                }
+
+                >ul:hover {
+                    display: flex;
+                }
+
+                ul {
+                    position: absolute;
+                    top: 1.1rem;
+                    right: -40px;
+                    display: none;
+                    flex-direction: column;
+                    padding: 10px 40px 10px;
+                    animation: fadeIn_dd_menu 0.3s ease-in-out;
+
+                    li {
+                        display: flex;
+                        justify-content: flex-end;
+
+                        a {
+                            padding: 10px 10px 10px 20px;
+                            border-bottom: 1px solid #ffffff;
+                            transition: all 0.2s ease;
+                            white-space: nowrap;
+                            font-family: "McLaren", cursive;
+                            font-weight: 400;
+                            font-size: 0.9rem;
+                        }
+
+                        &:hover {
+                            >a {
+                                padding: 10px 30px 10px 30px;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .header_3 {
+        display: none;
+        margin-top: auto;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 10px;
+
+        button {
+            outline: transparent;
+            padding: 6px 12px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.40);
+            background-color: rgba(0, 0, 0, 0.14);
+            color: rgba(255, 255, 255, 0.85);
+            font-family: 'Molengo', sans-serif;
+            border-radius: 30px;
+        }
+    }
+}
+
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+    header.extended {
+        height: 380px;
+
+        &::before {
+            background-position: right center;
+        }
+
+        .header_3 {
+            padding: 30px 4%;
+
+            button {
+                padding: 16px 26px;
+                font-size: 1.3rem;
+                border: 2px solid rgba(255, 255, 255, 0.40);
+                background-color: rgba(0, 0, 0, 0.14);
+                color: rgba(255, 255, 255, 0.7);
+                border-radius: 14px;
+                cursor: pointer;
+                transition: all 0.1s ease;
+
+                &:hover {
+                    border: 2px solid rgba(255, 255, 255, 0.60);
+                    background-color: rgba(0, 0, 0, 0.2);
+                    color: rgba(255, 255, 255, 0.9);
+                }
+            }
+        }
+    }
+
+    header {
+        .header_1 {
+            position: relative;
+            justify-content: center;
+            padding: 10px 4%;
+            height: 50px;
+
+            .business_name {
+                font-size: 1.2rem;
+            }
+
+            .drawer_btn {
+                display: none;
+            }
+
+            .balance-cont {
+                display: flex;
+            }
+        }
+
+        .header_2 {
+            padding: 16px 4%;
+
+            .brand_name {
+                font-size: 1.6rem;
+            }
+
+            nav {
+                display: flex;
+            }
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+    header.extended {
+        height: 450px;
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

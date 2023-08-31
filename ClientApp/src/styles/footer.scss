@@ -1,0 +1,159 @@
+
+
+
+footer {
+    margin-top: 20px;
+    background-color: #262626;
+    display: flex;
+    flex-direction: column;
+
+    .about_us {
+        padding: 20px 10px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 20px 10%;
+        font-size: 14px;
+
+        .contact-cont {
+            order: 2;
+            display: flex;
+            flex-direction: column;
+
+            h5 {
+                font-size: 1.3em;
+                font-family: "Della Respira", serif;
+                font-weight: 400;
+                margin-bottom: 14px;
+            }
+
+            .contact_details {
+                display: flex;
+                flex-direction: column;
+                padding-left: 8px;
+                gap: 12px;
+
+                .contact_item {
+                    display: flex;
+                    flex-direction: row;
+                    align-items: flex-start;
+                    gap: 8px;
+
+                    .contact_icon {
+                        display: flex;
+                        font-size: 1.1em;
+                    }
+
+                    span {
+                        font-size: 1em;
+                        font-family: 'Della Respira', serif;
+                    }
+                }
+            }
+        }
+
+        .workplace-cont {
+            order: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            .workplace_on_map {
+                img {
+                    width: 100%;
+                    height: auto;
+                    border-radius: 8px;
+                }
+            }
+
+            .workplace_photos {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                img {
+                    width: 48%;
+                    height: auto;
+                    border-radius: 8px;
+                }
+            }
+        }
+    }
+
+    .copyright {
+        padding: 10px 10px;
+        text-align: center;
+        background-color: #323232;
+        font-family: 'Della Respira', serif;
+    }
+}
+
+
+
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) {}
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) {
+
+    footer {
+
+        .about_us {
+            padding: 40px 4% 50px;
+            font-size: 18px;
+
+            .contact-cont {
+
+                h5 {
+                    margin-bottom: 18px;
+                }
+
+                .contact_details {
+                    padding-left: 12px;
+                    gap: 16px;
+
+                    .contact_item {
+                        gap: 12px;
+                    }
+                }
+            }
+        }
+
+        .copyright {
+            padding: 20px 4%;
+            font-size: 1.1rem;
+        }
+    }
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+
+
+    footer {
+        .about_us {
+            flex-direction: row;
+            font-size: 20px;
+
+            .contact-cont {
+                order: 1;
+
+                h5 {
+                    margin-bottom: 24px;
+                }
+
+                .contact_details {
+                    gap: 20px;
+                }
+            }
+
+            .workplace-cont {
+                order: 2;
+                gap: 20px;
+            }
+        }
+    }
+}
+
+// Extra large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) {}

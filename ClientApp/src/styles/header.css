@@ -1,0 +1,229 @@
+header.extended {
+  height: 160px;
+  background-color: unset;
+}
+header.extended::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url("../assets/images/banner2.png");
+  background-position: center center;
+  background-size: cover;
+  opacity: 0.7;
+  z-index: -1;
+}
+header.extended .header_3 {
+  display: flex;
+}
+
+header {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background-color: #262626;
+}
+header .header_seperator {
+  align-self: center;
+  width: 94%;
+  border-top: 1px solid rgba(255, 255, 255, 0.2509803922);
+}
+header .header_1 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 10px;
+  gap: 10px;
+}
+header .header_1 .business_name {
+  font-size: 1rem;
+  font-family: "Bhavuka", sans-serif;
+}
+header .header_1 .drawer_btn {
+  display: flex;
+  font-size: 1.7rem;
+}
+header .header_1 .balance-cont {
+  display: none;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 8px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 4%;
+}
+header .header_1 .balance-cont .account-logout {
+  display: flex;
+  font-size: 1.4rem;
+  padding: 6px 9px 6px 6px;
+  border-radius: 6px;
+  transition: background-color 0.1s ease;
+  cursor: pointer;
+}
+header .header_1 .balance-cont .account-logout:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+header .header_1 .balance-cont span {
+  font-size: 1rem;
+  font-family: "Mukta", sans-serif;
+  font-weight: 300;
+}
+header .header_2 {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+header .header_2 .brand_name {
+  font-size: 1.2rem;
+  font-weight: 400;
+  font-family: "Calligraffitti", cursive;
+  padding-top: 8px;
+}
+header .header_2 nav {
+  display: none;
+  flex-direction: row;
+  gap: 20px;
+}
+header .header_2 nav > a,
+header .header_2 nav > .srv_dd_menu > a {
+  font-size: 1.1rem;
+  font-family: "Mukta", sans-serif;
+  font-weight: 400;
+  cursor: pointer;
+  padding: 0 10px;
+}
+header .header_2 nav > a,
+header .header_2 nav > .srv_dd_menu {
+  border-bottom: 1px solid rgba(255, 255, 255, 0);
+  transition: border-bottom 0.1s ease;
+}
+header .header_2 nav > a:hover,
+header .header_2 nav > .srv_dd_menu:hover {
+  border-bottom: 1px solid #ffffff;
+}
+@keyframes fadeIn_dd_menu {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+header .header_2 nav .srv_dd_menu {
+  position: relative;
+}
+header .header_2 nav .srv_dd_menu > a:hover ~ ul {
+  display: flex;
+}
+header .header_2 nav .srv_dd_menu > ul:hover {
+  display: flex;
+}
+header .header_2 nav .srv_dd_menu ul {
+  position: absolute;
+  top: 1.1rem;
+  right: -40px;
+  display: none;
+  flex-direction: column;
+  padding: 10px 40px 10px;
+  animation: fadeIn_dd_menu 0.3s ease-in-out;
+}
+header .header_2 nav .srv_dd_menu ul li {
+  display: flex;
+  justify-content: flex-end;
+}
+header .header_2 nav .srv_dd_menu ul li a {
+  padding: 10px 10px 10px 20px;
+  border-bottom: 1px solid #ffffff;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  font-family: "McLaren", cursive;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+header .header_2 nav .srv_dd_menu ul li:hover > a {
+  padding: 10px 30px 10px 30px;
+}
+header .header_3 {
+  display: none;
+  margin-top: auto;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 10px;
+}
+header .header_3 button {
+  outline: transparent;
+  padding: 6px 12px;
+  font-size: 0.9rem;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background-color: rgba(0, 0, 0, 0.14);
+  color: rgba(255, 255, 255, 0.85);
+  font-family: "Molengo", sans-serif;
+  border-radius: 30px;
+}
+
+@media (min-width: 768px) {
+  header.extended {
+    height: 380px;
+  }
+  header.extended::before {
+    background-position: right center;
+  }
+  header.extended .header_3 {
+    padding: 30px 4%;
+  }
+  header.extended .header_3 button {
+    padding: 16px 26px;
+    font-size: 1.3rem;
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.14);
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+  }
+  header.extended .header_3 button:hover {
+    border: 2px solid rgba(255, 255, 255, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+  }
+  header .header_1 {
+    position: relative;
+    justify-content: center;
+    padding: 10px 4%;
+    height: 50px;
+  }
+  header .header_1 .business_name {
+    font-size: 1.2rem;
+  }
+  header .header_1 .drawer_btn {
+    display: none;
+  }
+  header .header_1 .balance-cont {
+    display: flex;
+  }
+  header .header_2 {
+    padding: 16px 4%;
+  }
+  header .header_2 .brand_name {
+    font-size: 1.6rem;
+  }
+  header .header_2 nav {
+    display: flex;
+  }
+}
+@media (min-width: 992px) {
+  header.extended {
+    height: 450px;
+  }
+}/*# sourceMappingURL=header.css.map */

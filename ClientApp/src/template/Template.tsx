@@ -1,45 +1,22 @@
-import React from 'react';
-import { BoxArrowLeft, List } from 'react-bootstrap-icons';
+import React, { useRef } from 'react';
+import Footer from './Footer';
+import Header from './Header';
 
 const Template: React.FC<{
-  children: any
-}> = ({ children }) => {
+  children: any,
+  isHomepage: boolean,
+  gallerySection?: React.RefObject<HTMLDivElement>
+}> = ({ children, isHomepage, gallerySection }) => {
+  // Refs of section for scrolling down with links
+  const aboutusSection = useRef<HTMLDivElement>(null);
+
   return (
     <div className="page_content">
-      <header>
-        <div className='header_1'>
-          <span className='business_name'>Siteler Kuaför & Güzellik Salonu</span>
-          <div className='drawer_btn'>
-            <List />
-          </div>
-          <div className='balance-cont'>
-            <div className='account-logout'>
-              <BoxArrowLeft />
-            </div>
-            <span>BAKİYE: 0,00 TL</span>
-          </div>
-        </div>
-        <div className='header_seperator'></div>
-        <div className='header_2'>
-          <h1 className='brand_name'>HARZEM Salon</h1>
-          <nav>
-            <a>HİZMETLER</a>
-            <a>GALERİ</a>
-            <a>HAKKIMIZDA</a>
-          </nav>
-        </div>
-        <div className='header_3'>
-          <button type='button'>
-            Kampanyalar
-          </button>
-        </div>
-      </header>
+      <Header isHomepage={isHomepage} aboutusSection={aboutusSection} gallerySection={gallerySection} />
       <main>
-        {children} {/* This is where the content from the Page component will go */}
+        {children}
       </main>
-      <footer>
-        {/* Footer content */}
-      </footer>
+      <Footer aboutusSection={aboutusSection} />
     </div>
   );
 };
