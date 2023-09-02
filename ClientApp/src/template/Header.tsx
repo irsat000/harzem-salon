@@ -1,13 +1,15 @@
 import React from 'react';
 import { BoxArrowLeft, List } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 const Header: React.FC<{
     isHomepage: boolean,
     aboutusSection: React.RefObject<HTMLDivElement>,
-    gallerySection?: React.RefObject<HTMLDivElement>
-}> = ({ isHomepage, aboutusSection, gallerySection }) => {
+    gallerySection?: React.RefObject<HTMLDivElement>,
+    ourservicesSection?: React.RefObject<HTMLDivElement>
+}> = ({ isHomepage, aboutusSection, gallerySection, ourservicesSection }) => {
+    const navigate = useNavigate();
 
     const scrollToSection = (section: React.RefObject<HTMLDivElement>) => {
         //section.current?.scrollIntoView({ behavior: 'smooth' }); //Work perfectly well aswell
@@ -31,14 +33,14 @@ const Header: React.FC<{
                     <div className='account-logout'>
                         <BoxArrowLeft />
                     </div>
-                    <span>BAKİYE: 0,00 TL</span>
+                    <span>Fatma Sönmez - Bakiye: 0,00 TL</span>
                 </div>
             </div>
             <div className='header_seperator'></div>
             <div className='header_2'>
                 <Link to='/' className='brand_name'>HARZEM Salon</Link>
                 <nav>
-                    <div className='srv_dd_menu'>
+                    {/*<div className='srv_dd_menu'>
                         <Link to='/hizmetlerimiz'>HİZMETLER</Link>
                         <ul>
                             <li><Link to='/hizmetlerimiz?hizmet=sac'>Saç</Link></li>
@@ -48,9 +50,12 @@ const Header: React.FC<{
                             <li><Link to='/hizmetlerimiz?hizmet=dudak'>Dudak</Link></li>
                             <li><Link to='/hizmetlerimiz?hizmet=epilasyon'>Epilasyon & Depilasyon</Link></li>
                         </ul>
-                    </div>
-                    {isHomepage && gallerySection ?
-                        <a onClick={() => scrollToSection(gallerySection)}>GALERİ</a>
+                    </div>*/}
+                    {isHomepage && gallerySection && ourservicesSection ?
+                        <>
+                            <a onClick={() => scrollToSection(ourservicesSection)}>HİZMETLER</a>
+                            <a onClick={() => scrollToSection(gallerySection)}>GALERİ</a>
+                        </>
                         :
                         <Link to='/galeri'>GALERİ</Link>
                     }
@@ -58,7 +63,7 @@ const Header: React.FC<{
                 </nav>
             </div>
             <div className='header_3'>
-                <button type='button'>
+                <button type='button' onClick={() => navigate('/kampanyalar')}>
                     Kampanyalar
                 </button>
             </div>

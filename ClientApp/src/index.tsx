@@ -2,8 +2,6 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import './styles/global.css';
-import './styles/header.css';
-import './styles/footer.css';
 import App from './App';
 import ScrollToTop from './components/ScrollToTop';
 

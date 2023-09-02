@@ -253,7 +253,6 @@ header {
     header {
         .header_1 {
             position: relative;
-            justify-content: center;
             padding: 10px 4%;
             height: 50px;
 
@@ -288,6 +287,12 @@ header {
 @media (min-width: 992px) {
     header.extended {
         height: 450px;
+    }
+
+    header {
+        .header_1 {
+            justify-content: center;
+        }
     }
 }
 

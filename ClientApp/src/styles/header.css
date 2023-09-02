@@ -199,7 +199,6 @@ header .header_3 button {
   }
   header .header_1 {
     position: relative;
-    justify-content: center;
     padding: 10px 4%;
     height: 50px;
   }
@@ -225,5 +224,8 @@ header .header_3 button {
 @media (min-width: 992px) {
   header.extended {
     height: 450px;
+  }
+  header .header_1 {
+    justify-content: center;
   }
 }/*# sourceMappingURL=header.css.map */
