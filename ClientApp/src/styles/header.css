@@ -86,6 +86,7 @@ header .header_2 .brand_name {
   font-weight: 400;
   font-family: "Calligraffitti", cursive;
   padding-top: 8px;
+  outline: transparent;
 }
 header .header_2 nav {
   display: none;

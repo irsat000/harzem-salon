@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 
 
-export const TestimonialCarousel = () => {
+const TestimonialCarousel = () => {
 
     const testimonials = [
         {
@@ -72,3 +72,5 @@ export const TestimonialCarousel = () => {
         </>
     )
 }
+
+export default TestimonialCarousel;

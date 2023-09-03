@@ -1,3 +1,11 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .appointment_contact_info {
   margin-top: 20px;
   padding: 0 10px;
@@ -104,21 +112,15 @@
   display: flex;
   align-items: center;
   width: 100%;
-}
-@keyframes fadeIn_testimonial {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  transition: transform 0.5s ease-in-out;
 }
 .testimonial-section .testimonial-carousel .testimonial {
   flex: 0 0 100%;
   display: flex;
   flex-direction: column;
   text-align: center;
-  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
 }
 .testimonial-section .testimonial-carousel .testimonial .customerComment {
   font-size: 1.1rem;
@@ -131,8 +133,7 @@
   font-family: "Bhavuka", sans-serif;
 }
 .testimonial-section .testimonial-carousel .testimonial.active {
-  visibility: visible;
-  animation: fadeIn_testimonial 0.6s ease-in-out;
+  opacity: 1;
 }
 .testimonial-section .testimonial-slider {
   display: flex;
@@ -196,6 +197,171 @@
   box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
 }
 
+.minigallery-cont.active {
+  display: flex;
+}
+
+.minigallery-cont {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.minigallery-cont .mg-close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  z-index: 206;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.6rem;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  transition: background-color 0.1s ease-in-out;
+}
+.minigallery-cont .mg-close:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.minigallery-cont .mg-carousel {
+  height: calc(100% - 180px);
+  align-self: center;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.minigallery-cont .mg-carousel img {
+  display: none;
+}
+.minigallery-cont .mg-carousel img.active {
+  display: block;
+  max-height: 90%;
+  max-width: 100%;
+  border-radius: 14px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  animation: fadeIn 0.2s ease-in-out;
+}
+.minigallery-cont .mg-carousel .mg-prev,
+.minigallery-cont .mg-carousel .mg-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 205;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.6rem;
+  padding: 10px;
+  border-radius: 50%;
+  border: 1px solid #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(1px);
+          backdrop-filter: blur(1px);
+  transition: background-color 0.1s ease-in-out;
+}
+.minigallery-cont .mg-carousel .mg-prev:hover,
+.minigallery-cont .mg-carousel .mg-next:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.minigallery-cont .mg-carousel .mg-prev {
+  padding-right: 12px;
+  left: 0;
+}
+.minigallery-cont .mg-carousel .mg-next {
+  padding-left: 12px;
+  right: 0;
+}
+.minigallery-cont .mg-slider {
+  height: 100px;
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #323232;
+  padding: 10px 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.minigallery-cont .mg-slider :first-child {
+  margin-left: auto !important;
+}
+.minigallery-cont .mg-slider :last-child {
+  margin-right: auto !important;
+}
+.minigallery-cont .mg-slider img {
+  height: 80%;
+  opacity: 0.6;
+  width: auto;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.minigallery-cont .mg-slider img.active {
+  height: 100%;
+  opacity: 1;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.minigallery-cont .mg-seperator {
+  background-color: #323232;
+  padding: 0 3%;
+}
+.minigallery-cont .mg-seperator div {
+  width: 100%;
+  border-top: 1px solid rgba(255, 255, 255, 0.2509803922);
+}
+.minigallery-cont .mg-nav {
+  height: 80px;
+  flex-shrink: 0;
+  width: 100%;
+  background-color: #323232;
+  padding: 10px 4%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  overflow-y: hidden;
+  overflow-x: auto;
+}
+.minigallery-cont .mg-nav :first-child {
+  margin-left: auto;
+}
+.minigallery-cont .mg-nav :last-child {
+  margin-right: auto;
+}
+.minigallery-cont .mg-nav span {
+  font-size: 1.1rem;
+  padding: 4px 20px;
+  cursor: pointer;
+  font-family: "Gowun Batang", serif;
+}
+.minigallery-cont .mg-nav span:hover {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2509803922);
+}
+.minigallery-cont .mg-nav span.active {
+  border-bottom: 1px solid #ffffff;
+}
+
 @media (min-width: 768px) {
   html {
     font-size: 16px;
@@ -256,4 +422,4 @@
   .our_services-section .service_item {
     width: calc(33.3% - 40px);
   }
-}/*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=home.css.map */

@@ -10,8 +10,12 @@ const Footer: React.FC<{
         <footer ref={aboutusSection}>
             <div className='about_us'>
                 <div className='contact-cont'>
-                    <h5>Bize ulaş</h5>
+                    <h5>Bize ulaşın</h5>
                     <div className='contact_details'>
+                        <div className='contact_item'>
+                            <div className='contact_icon'><Telephone /></div>
+                            <span>0 (224) 368 22 53 - İşyeri Telefonu</span>
+                        </div>
                         <div className='contact_item'>
                             <div className='contact_icon'><Telephone /></div>
                             <span>0 (539) 359 73 13 - Harzem Akdeniz</span>

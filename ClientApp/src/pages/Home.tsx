@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
-import { TestimonialCarousel } from '../components/TestimonialCarousel';
+import React, { useRef, useState } from 'react';
+import TestimonialCarousel from '../components/TestimonialCarousel';
+import MiniGallery from '../components/MiniGallery';
 import Template from '../template/Template';
 import { Link, useNavigate } from 'react-router-dom';
-import '../styles/index.css'
+import '../styles/home.css'
 
 
 
@@ -10,12 +11,20 @@ const Page_Home = () => {
     // Refs of section for scrolling down with links
     const gallerySection = useRef<HTMLDivElement>(null);
     const ourservicesSection = useRef<HTMLDivElement>(null);
+
+    const miniGallery = useRef<HTMLDivElement>(null);
+    const [miniGalleryActive, setMiniGalleryActive] = useState(false);
     const navigate = useNavigate();
+
+    const handleMiniGallery = () => {
+        setMiniGalleryActive(true);
+    }
 
     return (
         <Template isHomepage={true} gallerySection={gallerySection} ourservicesSection={ourservicesSection}>
+            <MiniGallery miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
             <p className='appointment_contact_info'>
-                Randevu almak için arayabilirsiniz - <span>0 (543) 819 20 19</span>
+                Randevu için arayınız - <span>0 (543) 819 20 19</span>
             </p>
             <div className='section-header' ref={ourservicesSection}>
                 <div></div>
@@ -32,8 +41,8 @@ const Page_Home = () => {
                         <li>- Fön</li>
                         <li>- Topuz</li>
                     </ul>
-                    <span>Songül - 05438192019</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05438192019</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/tirnak.png')} alt='Tırnak hizmetleri' />
@@ -43,8 +52,8 @@ const Page_Home = () => {
                         <li>- Protez tırnak</li>
                         <li>- Kalıcı oje</li>
                     </ul>
-                    <span>Harzem - 05393597313</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05393597313</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/makyaj.jpg')} alt='Makyaj hizmetleri' />
@@ -54,8 +63,8 @@ const Page_Home = () => {
                         <li>- Makyaj</li>
                         <li>- BB Glow</li>
                     </ul>
-                    <span>Harzem - 05393597313</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05393597313</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/kirpik.jpg')} alt='Kirpik hizmetleri' />
@@ -64,8 +73,8 @@ const Page_Home = () => {
                         <li>- İpek kirpik</li>
                         <li>- Kirpik lifting</li>
                     </ul>
-                    <span>Harzem - 05393597313</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05393597313</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/dudak.png')} alt='Dudak hizmetleri' />
@@ -73,8 +82,8 @@ const Page_Home = () => {
                     <ul>
                         <li>- İğnesiz dudak dolgusu</li>
                     </ul>
-                    <span>Harzem - 05393597313</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05393597313</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/epilasyon.jpg')} alt='Epilasyon ve Depilasyon hizmetleri' />
@@ -85,8 +94,8 @@ const Page_Home = () => {
                         <li>- Kaş & Bıyık</li>
                         <li>- Ağda</li>
                     </ul>
-                    <span>Songül - 05438192019</span>
-                    <button type='button'>Mini Galeri</button>
+                    <span>05438192019</span>
+                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
             </section>
             <TestimonialCarousel />
