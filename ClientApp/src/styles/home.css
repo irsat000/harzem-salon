@@ -166,8 +166,6 @@
 .gallery-section .gallery-item {
   display: flex;
   align-items: center;
-  justify-content: center;
-  border-radius: 8px;
   width: 90px;
 }
 .gallery-section .gallery-item img {
@@ -409,9 +407,6 @@
   }
   .gallery-section .gallery-item {
     width: 200px;
-  }
-  .gallery-section .gallery-item img {
-    border-radius: 8px;
   }
   .gallery-section .gallery_showmore a {
     padding: 12px 40px;

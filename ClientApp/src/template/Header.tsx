@@ -51,14 +51,9 @@ const Header: React.FC<{
                             <li><Link to='/hizmetlerimiz?hizmet=epilasyon'>Epilasyon & Depilasyon</Link></li>
                         </ul>
                     </div>*/}
-                    {isHomepage && gallerySection && ourservicesSection ?
-                        <>
-                            <a onClick={() => scrollToSection(ourservicesSection)}>HİZMETLER</a>
-                            <a onClick={() => scrollToSection(gallerySection)}>GALERİ</a>
-                        </>
-                        :
-                        <Link to='/galeri'>GALERİ</Link>
-                    }
+                    <Link to='/'>ANASAYFA</Link>
+                    {isHomepage && ourservicesSection && <a onClick={() => scrollToSection(ourservicesSection)}>HİZMETLER</a>}
+                    <Link to='/galeri'>GALERİ</Link>
                     <a onClick={() => scrollToSection(aboutusSection)}>HAKKIMIZDA</a>
                 </nav>
             </div>

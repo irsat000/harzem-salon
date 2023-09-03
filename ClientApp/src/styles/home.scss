@@ -197,8 +197,6 @@
     .gallery-item {
         display: flex;
         align-items: center;
-        justify-content: center;
-        border-radius: 8px;
         width: 90px;
 
         img {
@@ -491,10 +489,6 @@
 
         .gallery-item {
             width: 200px;
-
-            img {
-                border-radius: 8px;
-            }
         }
 
         .gallery_showmore {
