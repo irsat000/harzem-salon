@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Template from '../template/Template';
+import Template from '../components/Template';
 import '../styles/gallery.css';
 import { XLg } from 'react-bootstrap-icons';
 

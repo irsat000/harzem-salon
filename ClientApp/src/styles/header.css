@@ -9,7 +9,7 @@ header.extended::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/images/banner2.png");
+  background-image: url("../assets/images/banner.png");
   background-position: center center;
   background-size: cover;
   opacity: 0.7;
@@ -28,7 +28,7 @@ header {
 header .header_seperator {
   align-self: center;
   width: 94%;
-  border-top: 1px solid rgba(255, 255, 255, 0.2509803922);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
 header .header_1 {
   display: flex;
@@ -57,22 +57,40 @@ header .header_1 .balance-cont {
   top: 0;
   bottom: 0;
   right: 4%;
+  /*.account-logout {
+      display: flex;
+      font-size: 1.4rem;
+      padding: 6px 9px 6px 6px;
+      border-radius: 6px;
+      transition: background-color 0.1s ease;
+      cursor: pointer;
+
+      &:hover {
+          background-color: rgba(0, 0, 0, 0.2);
+      }
+  }
+
+  span {
+      font-size: 1rem;
+      font-family: 'Mukta', sans-serif;
+      font-weight: 300;
+  }*/
 }
-header .header_1 .balance-cont .account-logout {
-  display: flex;
-  font-size: 1.4rem;
-  padding: 6px 9px 6px 6px;
-  border-radius: 6px;
-  transition: background-color 0.1s ease;
+header .header_1 .balance-cont button {
   cursor: pointer;
-}
-header .header_1 .balance-cont .account-logout:hover {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-header .header_1 .balance-cont span {
+  outline: transparent;
+  color: #ffffff;
   font-size: 1rem;
   font-family: "Mukta", sans-serif;
   font-weight: 300;
+  border-radius: 6px;
+  padding: 3px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: background-color 0.1s ease-in-out;
+}
+header .header_1 .balance-cont button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 header .header_2 {
   display: flex;
@@ -170,14 +188,19 @@ header .header_3 {
   padding: 10px 10px;
 }
 header .header_3 button {
+  font-size: 0.9rem;
+  font-family: "Molengo", sans-serif;
+  cursor: pointer;
   outline: transparent;
   padding: 6px 12px;
-  font-size: 0.9rem;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(0, 0, 0, 0.14);
-  color: rgba(255, 255, 255, 0.85);
-  font-family: "Molengo", sans-serif;
+  color: #ffffff;
   border-radius: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.25);
+  background-color: rgba(255, 255, 255, 0.03);
+  transition: all 0.1s ease-in-out;
+}
+header .header_3 button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 @media (min-width: 768px) {
@@ -193,17 +216,7 @@ header .header_3 button {
   header.extended .header_3 button {
     padding: 16px 26px;
     font-size: 1.3rem;
-    border: 2px solid rgba(255, 255, 255, 0.4);
-    background-color: rgba(0, 0, 0, 0.14);
-    color: rgba(255, 255, 255, 0.7);
     border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.1s ease;
-  }
-  header.extended .header_3 button:hover {
-    border: 2px solid rgba(255, 255, 255, 0.6);
-    background-color: rgba(0, 0, 0, 0.2);
-    color: rgba(255, 255, 255, 0.9);
   }
   header .header_1 {
     position: relative;

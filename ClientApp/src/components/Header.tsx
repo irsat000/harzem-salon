@@ -5,10 +5,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Header: React.FC<{
     isHomepage: boolean,
+    setBalanceCheckActive: (e: boolean) => void,
     aboutusSection: React.RefObject<HTMLDivElement>,
     gallerySection?: React.RefObject<HTMLDivElement>,
     ourservicesSection?: React.RefObject<HTMLDivElement>
-}> = ({ isHomepage, aboutusSection, gallerySection, ourservicesSection }) => {
+}> = ({ isHomepage, setBalanceCheckActive, aboutusSection, gallerySection, ourservicesSection }) => {
     const navigate = useNavigate();
 
     const scrollToSection = (section: React.RefObject<HTMLDivElement>) => {
@@ -30,10 +31,11 @@ const Header: React.FC<{
                     <List />
                 </div>
                 <div className='balance-cont'>
-                    <div className='account-logout'>
+                    {/*<div className='account-logout'>
                         <BoxArrowLeft />
                     </div>
-                    <span>Fatma Sönmez - Bakiye: 0,00 TL</span>
+                    <span>Fatma Sönmez - Bakiye: 0,00 TL</span>*/}
+                    <button onClick={() => setBalanceCheckActive(true)}>Kupon Sorgula</button>
                 </div>
             </div>
             <div className='header_seperator'></div>

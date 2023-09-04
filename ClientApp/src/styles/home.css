@@ -307,7 +307,7 @@
   margin-right: auto !important;
 }
 .minigallery-cont .mg-slider img {
-  height: 80%;
+  height: 75%;
   opacity: 0.6;
   width: auto;
   transition: all 0.3s ease-in-out;
@@ -315,7 +315,7 @@
   border-radius: 6px;
 }
 .minigallery-cont .mg-slider img.active {
-  height: 100%;
+  height: 90%;
   opacity: 1;
   margin-left: 10px;
   margin-right: 10px;
@@ -333,11 +333,11 @@
   flex-shrink: 0;
   width: 100%;
   background-color: #323232;
-  padding: 10px 4%;
+  padding: 0 4%;
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
+  gap: 15px;
   overflow-y: hidden;
   overflow-x: auto;
 }
@@ -348,8 +348,8 @@
   margin-right: auto;
 }
 .minigallery-cont .mg-nav span {
-  font-size: 1.1rem;
-  padding: 4px 20px;
+  font-size: 1rem;
+  padding: 4px 14px;
   cursor: pointer;
   font-family: "Gowun Batang", serif;
 }
@@ -395,6 +395,13 @@
     padding: 8px 28px;
     font-size: 1.1rem;
     border-radius: 8px;
+  }
+  .minigallery-cont .mg-nav {
+    gap: 20px;
+  }
+  .minigallery-cont .mg-nav span {
+    font-size: 1.1rem;
+    padding: 4px 20px;
   }
   .testimonial-section {
     margin-top: 25px;

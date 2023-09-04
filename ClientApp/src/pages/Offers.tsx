@@ -1,5 +1,5 @@
 import React from 'react';
-import Template from '../template/Template';
+import Template from '../components/Template';
 import '../styles/offers.css';
 
 

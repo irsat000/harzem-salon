@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import MiniGallery from '../components/MiniGallery';
-import Template from '../template/Template';
+import Template from '../components/Template';
 import { Link } from 'react-router-dom';
 import '../styles/home.css'
 
