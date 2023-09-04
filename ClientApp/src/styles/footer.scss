@@ -1,8 +1,5 @@
-
-
-
 footer {
-    margin-top: 20px;
+    margin-top: 30px;
     background-color: #262626;
     display: flex;
     flex-direction: column;
@@ -97,6 +94,7 @@ footer {
 @media (min-width: 768px) {
 
     footer {
+        margin-top: 50px;
 
         .about_us {
             padding: 40px 4% 50px;
