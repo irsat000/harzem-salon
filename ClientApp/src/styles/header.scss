@@ -118,15 +118,21 @@ header {
             gap: 20px;
 
             >a,
+            >button,
             >.srv_dd_menu>a {
                 font-size: 1.1rem;
                 font-family: 'Mukta', sans-serif;
                 font-weight: 400;
                 cursor: pointer;
                 padding: 0 10px;
+                color: #ffffff;
+                background-color: transparent;
+                border: none;
+                outline: transparent;
             }
 
             >a,
+            >button,
             >.srv_dd_menu {
                 border-bottom: 1px solid #ffffff00;
                 transition: border-bottom 0.1s ease;

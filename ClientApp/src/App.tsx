@@ -1,15 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Page_Home from './pages/Home';
-import Page_Offers from './pages/Offers';
-import Page_Galeri from './pages/Galeri';
+import PAGE_HOME from './pages/Home';
+import PAGE_OFFERS from './pages/Offers';
+import PAGE_GALLERY from './pages/Gallery';
 
 const App = () => {
   return (
     <Routes>
-      <Route path="/" element={<Page_Home />} />
-      <Route path="/kampanyalar" element={<Page_Offers />} />
-      <Route path="/galeri" element={<Page_Galeri />} />
+      <Route path="/" element={<PAGE_HOME />} />
+      <Route path="/kampanyalar" element={<PAGE_OFFERS />} />
+      <Route path="/galeri" element={<PAGE_GALLERY />} />
     </Routes>
   );
 }

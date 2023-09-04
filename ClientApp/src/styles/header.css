@@ -94,19 +94,26 @@ header .header_2 nav {
   gap: 20px;
 }
 header .header_2 nav > a,
+header .header_2 nav > button,
 header .header_2 nav > .srv_dd_menu > a {
   font-size: 1.1rem;
   font-family: "Mukta", sans-serif;
   font-weight: 400;
   cursor: pointer;
   padding: 0 10px;
+  color: #ffffff;
+  background-color: transparent;
+  border: none;
+  outline: transparent;
 }
 header .header_2 nav > a,
+header .header_2 nav > button,
 header .header_2 nav > .srv_dd_menu {
   border-bottom: 1px solid rgba(255, 255, 255, 0);
   transition: border-bottom 0.1s ease;
 }
 header .header_2 nav > a:hover,
+header .header_2 nav > button:hover,
 header .header_2 nav > .srv_dd_menu:hover {
   border-bottom: 1px solid #ffffff;
 }

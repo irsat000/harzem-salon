@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, XLg } from 'react-bootstrap-icons';
 
 
@@ -31,7 +31,7 @@ const MiniGallery: React.FC<{
                     <ChevronLeft />
                 </div>
                 {gallery.map((image, index) => (
-                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} />
+                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} alt={`Fotoğraf ${index}`} />
                 ))}
                 <div className='mg-next' onClick={() => setActiveIndex((prevIndex) => (prevIndex + 1) % gallery.length)}>
                     <ChevronRight />
@@ -39,7 +39,7 @@ const MiniGallery: React.FC<{
             </div>
             <div className="mg-slider">
                 {gallery.map((image, index) => (
-                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} onClick={() => setActiveIndex(index)} />
+                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} onClick={() => setActiveIndex(index)} alt={`Küçük fotoğraf ${index}`} />
                 ))}
             </div>
             <div className="mg-seperator">

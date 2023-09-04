@@ -2,19 +2,19 @@ import React, { useRef, useState } from 'react';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import MiniGallery from '../components/MiniGallery';
 import Template from '../template/Template';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import '../styles/home.css'
 
 
 
-const Page_Home = () => {
+const PAGE_HOME = () => {
     // Refs of section for scrolling down with links
     const gallerySection = useRef<HTMLDivElement>(null);
     const ourservicesSection = useRef<HTMLDivElement>(null);
 
     const miniGallery = useRef<HTMLDivElement>(null);
     const [miniGalleryActive, setMiniGalleryActive] = useState(false);
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     const handleMiniGallery = () => {
         setMiniGalleryActive(true);
@@ -123,4 +123,4 @@ const Page_Home = () => {
     )
 };
 
-export default Page_Home;
+export default PAGE_HOME;

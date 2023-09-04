@@ -5,7 +5,7 @@ import '../styles/offers.css';
 
 
 
-const Page_Offers = () => {
+const PAGE_OFFERS = () => {
 
     return (
         <Template isHomepage={false}>
@@ -42,4 +42,4 @@ const Page_Offers = () => {
     )
 }
 
-export default Page_Offers;
+export default PAGE_OFFERS;

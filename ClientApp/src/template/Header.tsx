@@ -52,11 +52,11 @@ const Header: React.FC<{
                         </ul>
                     </div>*/}
                     {isHomepage && ourservicesSection
-                        ? <a onClick={() => scrollToSection(ourservicesSection)}>HİZMETLER</a>
+                        ? <button onClick={() => scrollToSection(ourservicesSection)}>HİZMETLER</button>
                         : <Link to='/'>ANASAYFA</Link>
                     }
                     <Link to='/galeri'>GALERİ</Link>
-                    <a onClick={() => scrollToSection(aboutusSection)}>HAKKIMIZDA</a>
+                    <button onClick={() => scrollToSection(aboutusSection)}>HAKKIMIZDA</button>
                 </nav>
             </div>
             <div className='header_3'>

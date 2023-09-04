@@ -32,7 +32,7 @@ const ScaleUpImage: React.FC<{
 }
 
 
-const Page_Galeri = () => {
+const PAGE_GALLERY = () => {
 
     const gallery = [
         require('../assets/images/gallery_temp/1.jpg'),
@@ -80,4 +80,4 @@ const Page_Galeri = () => {
     )
 }
 
-export default Page_Galeri;
+export default PAGE_GALLERY;

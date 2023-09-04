@@ -1,23 +1,27 @@
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 
 
 const TestimonialCarousel = () => {
 
-    const testimonials = [
-        {
-            comment: "Çalışanlar işlerini özenle yapıyor, Songül hanım işinin çok ehli. 3 yıldır devamlı müşterisiyim.",
-            fullname: "Sümbül Güneş"
-        },
-        {
-            comment: "Hayatımda gördüğüm en iyi hizmeti burada aldım. Kullanılan ürünler gayet kaliteli.",
-            fullname: "Fatma Sönmez"
-        },
-        {
-            comment: "Özgü tam bir kıro, odası gibi dükkanı da temizlemiyor.",
-            fullname: "İrşat Akdeniz"
-        }
-    ];
+    // useMemo here prevents unnecessary re-renders
+    const testimonials = useMemo(() => {
+        const fetchedTestimonials = [
+            {
+                comment: "Çalışanlar işlerini özenle yapıyor, Songül hanım işinin çok ehli. 3 yıldır devamlı müşterisiyim.",
+                fullname: "Sümbül Güneş"
+            },
+            {
+                comment: "Hayatımda gördüğüm en iyi hizmeti burada aldım. Kullanılan ürünler gayet kaliteli.",
+                fullname: "Fatma Sönmez"
+            },
+            {
+                comment: "Özgü tam bir kıro, odası gibi dükkanı da temizlemiyor.",
+                fullname: "İrşat Akdeniz"
+            }
+        ];
+        return fetchedTestimonials;
+    }, []);
 
     // Testomonial Carousel index and stop sign
     const [activeIndex, setActiveIndex] = useState(0);
@@ -26,7 +30,7 @@ const TestimonialCarousel = () => {
     // If intervalPaused is not true, this changes the shown testomonial every 5 seconds
     useEffect(() => {
         const carouselInterval = setInterval(() => {
-            if (intervalPaused == false) {
+            if (intervalPaused === false) {
                 setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
             }
         }, 5000);
@@ -39,7 +43,7 @@ const TestimonialCarousel = () => {
     // intervalPaused == false condition makes sure there won't be multiple waiting setTimeout
     const handleDotClick = (index: number) => {
         setActiveIndex(index);
-        if (intervalPaused == false) {
+        if (intervalPaused === false) {
             setIntervalPaused(true);
             setTimeout(() => {
                 setIntervalPaused(false);
