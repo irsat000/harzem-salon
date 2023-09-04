@@ -32,7 +32,7 @@ const TestimonialCarousel = () => {
         }, 5000);
 
         return () => clearInterval(carouselInterval);
-    }, [intervalPaused]);
+    }, [intervalPaused, testimonials]);
 
     // Allows buttons to switch between testomonials.
     // Stops the automatic change for 10 seconds, good for UX

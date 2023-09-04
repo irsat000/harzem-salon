@@ -55,10 +55,11 @@ footer {
             gap: 10px;
 
             .workplace_on_map {
-                img {
-                    width: 100%;
-                    height: auto;
+                iframe {
+                    border: none;
                     border-radius: 8px;
+                    width: 100%;
+                    height: 300px;
                 }
             }
 
@@ -112,6 +113,13 @@ footer {
 
                     .contact_item {
                         gap: 12px;
+                    }
+                }
+            }
+            .workplace-cont {
+                .workplace_on_map {
+                    iframe {
+                        height: 450px;
                     }
                 }
             }
