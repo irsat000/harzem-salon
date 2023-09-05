@@ -6,28 +6,19 @@ import { Link, useNavigate } from 'react-router-dom';
 const Header: React.FC<{
     isHomepage: boolean,
     setBalanceCheckActive: (e: boolean) => void,
+    setDrawerActive: (e: boolean) => void,
+    scrollToSection: (section: React.RefObject<HTMLDivElement>) => void,
     aboutusSection: React.RefObject<HTMLDivElement>,
     gallerySection?: React.RefObject<HTMLDivElement>,
     ourservicesSection?: React.RefObject<HTMLDivElement>
-}> = ({ isHomepage, setBalanceCheckActive, aboutusSection, gallerySection, ourservicesSection }) => {
+}> = ({ isHomepage, setBalanceCheckActive, setDrawerActive, scrollToSection, aboutusSection, gallerySection, ourservicesSection }) => {
     const navigate = useNavigate();
-
-    const scrollToSection = (section: React.RefObject<HTMLDivElement>) => {
-        //section.current?.scrollIntoView({ behavior: 'smooth' }); //Work perfectly well aswell
-
-        // 50 pixel higher than the section for better UX
-        if (section.current) {
-            const yOffset = -50;
-            const y = section.current.getBoundingClientRect().top + yOffset;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-        }
-    };
 
     return (
         <header className={isHomepage ? 'extended' : ''}>
             <div className='header_1'>
                 <span className='business_name'>Siteler Kuaför & Güzellik Salonu</span>
-                <div className='drawer_btn'>
+                <div className='drawer_btn' onClick={() => setDrawerActive(true)}>
                     <List />
                 </div>
                 <div className='balance-cont'>
@@ -35,7 +26,7 @@ const Header: React.FC<{
                         <BoxArrowLeft />
                     </div>
                     <span>Fatma Sönmez - Bakiye: 0,00 TL</span>*/}
-                    <button onClick={() => setBalanceCheckActive(true)}>Kupon Sorgula</button>
+                    <button type='button' onClick={() => setBalanceCheckActive(true)}>Kupon Sorgula</button>
                 </div>
             </div>
             <div className='header_seperator'></div>
