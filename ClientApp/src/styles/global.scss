@@ -144,7 +144,12 @@ main {
             }
         }
 
-        span {
+        >span.active {
+            display: block;
+        }
+
+        >span {
+            display: none;
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             text-align: center;
@@ -185,6 +190,19 @@ main {
     z-index: 100;
     background-color: rgba(0, 0, 0, 0.8);
 
+
+    @keyframes slideIn {
+        from {
+            right: -60%;
+            opacity: 0;
+        }
+
+        to {
+            right: 0;
+            opacity: 1;
+        }
+    }
+
     .drawer {
         position: absolute;
         top: 0;
@@ -196,11 +214,16 @@ main {
         background-color: #323232;
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 20px 16px;
+        align-items: flex-end;
+        padding: 0 16px 20px;
         overflow-y: auto;
         gap: 20px;
+        animation: slideIn 0.3s ease-in-out;
+
+        .drawer-header {
+            margin-right: -16px;
+            width: 120%;
+        }
 
         .d-check_balance-btn {
             outline: transparent;

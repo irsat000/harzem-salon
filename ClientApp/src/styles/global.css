@@ -127,22 +127,26 @@ main {
 .balance_check-cont .balance_check button:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.balance_check-cont .balance_check span {
+.balance_check-cont .balance_check > span.active {
+  display: block;
+}
+.balance_check-cont .balance_check > span {
+  display: none;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
   text-align: center;
   line-height: 22px;
 }
-.balance_check-cont .balance_check span .positive,
-.balance_check-cont .balance_check span .debt {
+.balance_check-cont .balance_check > span .positive,
+.balance_check-cont .balance_check > span .debt {
   font-size: 1.2rem;
   font-weight: bold;
   white-space: nowrap;
 }
-.balance_check-cont .balance_check span .positive {
+.balance_check-cont .balance_check > span .positive {
   color: #5bb13f;
 }
-.balance_check-cont .balance_check span .debt {
+.balance_check-cont .balance_check > span .debt {
   color: #a93939;
 }
 
@@ -163,6 +167,16 @@ main {
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.8);
 }
+@keyframes slideIn {
+  from {
+    right: -60%;
+    opacity: 0;
+  }
+  to {
+    right: 0;
+    opacity: 1;
+  }
+}
 .drawer-cont .drawer {
   position: absolute;
   top: 0;
@@ -174,11 +188,15 @@ main {
   background-color: #323232;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 16px;
+  align-items: flex-end;
+  padding: 0 16px 20px;
   overflow-y: auto;
   gap: 20px;
+  animation: slideIn 0.3s ease-in-out;
+}
+.drawer-cont .drawer .drawer-header {
+  margin-right: -16px;
+  width: 120%;
 }
 .drawer-cont .drawer .d-check_balance-btn {
   outline: transparent;
