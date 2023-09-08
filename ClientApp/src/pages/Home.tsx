@@ -94,7 +94,7 @@ const PAGE_HOME = () => {
                         <li>- Kaş & Bıyık</li>
                         <li>- Ağda</li>
                     </ul>
-                    <span>05438192019</span>
+                    <span><span>05393597313</span>-<span>05438192019</span></span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
             </section>

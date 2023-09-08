@@ -81,6 +81,7 @@
   padding: 0 8px;
   font-size: 0.9rem;
   font-family: "Gowun Batang", serif;
+  display: inline-block;
 }
 .our_services-section .service_item button {
   margin-top: 6px;
