@@ -28,7 +28,7 @@ CREATE TABLE Gallery(
 );
 
 CREATE TABLE ServiceCategories(
-	id INT PRIMARY KEY IDENTITY(1, 1),
+	id INT PRIMARY KEY,
 	cateCode NVARCHAR(100) NOT NULL
 );
 

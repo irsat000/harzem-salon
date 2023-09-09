@@ -9,7 +9,7 @@
     <SpaRoot>ClientApp\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
     <SpaProxyServerUrl>https://localhost:44442</SpaProxyServerUrl>
-    <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+    <!-- PREVENT AUTO START OF SPA <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>-->
     <RootNamespace>harzem_salon</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>

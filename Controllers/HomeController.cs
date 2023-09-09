@@ -54,19 +54,34 @@ public class HomeController : ControllerBase
     [HttpGet("our_services")]
     public async Task<IActionResult> OurServices()
     {
-        var ourServices = await _db.ServiceCategories
+        var categories = await _db.ServiceCategories
             .Include(category => category.OurServices)
+            .Select(sc => new
+            {
+                sc.cateCode,
+                ourServices = sc.OurServices.Select(os => new
+                {
+                    os.serviceName,
+                    os.serviceCode,
+                })
+            })
             .ToListAsync();
-        return Ok(new { ourServices });
+        return Ok(new { categories });
     }
 
     [HttpGet("mini_gallery")]
     public async Task<IActionResult> MiniGallery([FromQuery] string cateCode)
     {
-        var miniGallery = await _db.OurServices
-                .Include(s => s.MiniGalleryImages)
-                .Where(s => s.cate.cateCode == cateCode)
+        var ourServices = await _db.OurServices
+                .Include(os => os.MiniGalleryImages)
+                .Where(os => os.cate.cateCode == cateCode)
+                .Select(os => new
+                {
+                    os.serviceName,
+                    os.serviceCode,
+                    miniGalleryImages = os.MiniGalleryImages.Select(mgi => mgi.imageLink)
+                })
                 .ToListAsync();
-        return Ok(new { miniGallery });
+        return Ok(new { ourServices });
     }
 }

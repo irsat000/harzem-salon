@@ -1,10 +1,16 @@
+using System.Text.Json.Serialization;
 using harzem_salon.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+        {
+            // Prevents cycles and "Possible object cycle detected" error
+            options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
+        });
 builder.Services.AddDbContext<HarzemSalonContext>();
 
 var app = builder.Build();
