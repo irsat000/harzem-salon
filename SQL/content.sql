@@ -12,13 +12,16 @@ INSERT INTO DiscountCombinations VALUES ('Saç + Boya')
 INSERT INTO DiscountCombinations VALUES ('Protez týrnak + Kalýcý oje')
 INSERT INTO DiscountCombinations VALUES ('Kaþ & Býyýk + Aðda')
 
+
+
 INSERT INTO ServiceCategories VALUES (1, 'sac')
 INSERT INTO ServiceCategories VALUES (2, 'tirnak')
 INSERT INTO ServiceCategories VALUES (3, 'makyaj')
 INSERT INTO ServiceCategories VALUES (4, 'kirpik')
 INSERT INTO ServiceCategories VALUES (5, 'dudak')
 INSERT INTO ServiceCategories VALUES (6, 'epilasyon_depilasyon')
-
+GO
+DBCC CHECKIDENT ('OurServices', RESEED, 0);
 INSERT INTO OurServices VALUES ('Kesim', 'kesim', 1)
 INSERT INTO OurServices VALUES ('Boya', 'boya', 1)
 INSERT INTO OurServices VALUES ('Fön', 'fon', 1)
@@ -36,4 +39,39 @@ INSERT INTO OurServices VALUES ('Lazer epilasyon', 'lazer_epilasyon', 6)
 INSERT INTO OurServices VALUES ('Ýðneli epilasyon', 'igneli_epilasyon', 6)
 INSERT INTO OurServices VALUES ('Kaþ & Býyýk', 'kas_&_biyik', 6)
 INSERT INTO OurServices VALUES ('Aðda', 'agda', 6)
+GO
+DBCC CHECKIDENT ('MiniGalleryImages', RESEED, 0);
+INSERT INTO MiniGalleryImages VALUES ('1.jpg', 1)
+INSERT INTO MiniGalleryImages VALUES ('2.jpg', 1)
+INSERT INTO MiniGalleryImages VALUES ('3.jpg', 1)
+INSERT INTO MiniGalleryImages VALUES ('4.jpg', 2)
+INSERT INTO MiniGalleryImages VALUES ('5.jpg', 3)
+INSERT INTO MiniGalleryImages VALUES ('6.jpg', 4)
+
+
+
+INSERT INTO Gallery VALUES ('1.jpg', 'Bugün de böyle bir þey yaptýk. 1', GETDATE())
+INSERT INTO Gallery VALUES ('2.jpg', 'Bugün de böyle bir þey yaptýk. 2', GETDATE())
+INSERT INTO Gallery VALUES ('3.jpg', 'Bugün de böyle bir þey yaptýk. 3', GETDATE())
+INSERT INTO Gallery VALUES ('4.jpg', 'Bugün de böyle bir þey yaptýk. 4', GETDATE())
+INSERT INTO Gallery VALUES ('5.jpg', 'Bugün de böyle bir þey yaptýk. 5', GETDATE())
+INSERT INTO Gallery VALUES ('6.jpg', 'Bugün de böyle bir þey yaptýk. 6', GETDATE())
+INSERT INTO Gallery VALUES ('7.jpg', 'Bugün de böyle bir þey yaptýk. 7', GETDATE())
+INSERT INTO Gallery VALUES ('8.jpg', 'Bugün de böyle bir þey yaptýk. 8', GETDATE())
+INSERT INTO Gallery VALUES ('9.jpg', 'Bugün de böyle bir þey yaptýk. 9', GETDATE())
+INSERT INTO Gallery VALUES ('10.jpg', 'Bugün de böyle bir þey yaptýk. 10', GETDATE())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

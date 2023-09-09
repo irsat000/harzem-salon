@@ -1,9 +1,25 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import MiniGallery from '../components/MiniGallery';
 import Template from '../components/Template';
 import { Link } from 'react-router-dom';
 import '../styles/home.css'
+import { defaultFetchGet } from '../utility/fetchUtils';
+
+
+type OurService = {
+    serviceName: string;
+    serviceCode: string;
+};
+
+type ServiceCategory = {
+    cateCode: string;
+    ourServices: OurService[];
+};
+
+type OurServicesModel = ServiceCategory[];
+
+
 
 
 
@@ -18,6 +34,45 @@ const PAGE_HOME = () => {
 
     const handleMiniGallery = () => {
         setMiniGalleryActive(true);
+    }
+
+    const [ourServicesData, setOurServicesData] = useState<OurServicesModel | null>(null);
+
+    useEffect(() => {
+        const cachedOurServicesData = localStorage.getItem(`ourServicesData`);
+
+        if (cachedOurServicesData) {
+            setOurServicesData(JSON.parse(cachedOurServicesData));
+        } else {
+            fetch(`https://localhost:7173/api/content/our_services`, defaultFetchGet())
+                .then((res) => {
+                    switch (res.status) {
+                        case 404:
+                            throw new Error(`Category or our services are empty!`);
+                        case 200:
+                            return res.json();
+                        default:
+                            throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                })
+                .then((data) => {
+                    setOurServicesData(data.categories);
+                    localStorage.setItem(`ourServicesData`, JSON.stringify(data.categories));
+                })
+                .catch((err) => console.error('Error fetching data:', err));
+        }
+    }, []);
+
+    const ListOurServices: React.FC<{
+        cateCode: string;
+    }> = ({ cateCode }) => {
+        return (ourServicesData ?
+            <ul>
+                {ourServicesData.find(c => c.cateCode === cateCode)!.ourServices.map((service: OurService) => (
+                    <li key={service.serviceCode}>- {service.serviceName}</li>
+                ))}
+            </ul> : <></>
+        )
     }
 
     return (
@@ -35,65 +90,42 @@ const PAGE_HOME = () => {
                 <div className='service_item'>
                     <img src={require('../assets/images/services/sac.png')} alt='Saç hizmetleri' />
                     <h4>Saç</h4>
-                    <ul>
-                        <li>- Kesim</li>
-                        <li>- Boya</li>
-                        <li>- Fön</li>
-                        <li>- Topuz</li>
-                    </ul>
+                    <ListOurServices cateCode='sac' />
                     <span>05438192019</span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/tirnak.png')} alt='Tırnak hizmetleri' />
                     <h4>Tırnak</h4>
-                    <ul>
-                        <li>- Manikür</li>
-                        <li>- Protez tırnak</li>
-                        <li>- Kalıcı oje</li>
-                    </ul>
+                    <ListOurServices cateCode='tirnak' />
                     <span>05393597313</span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/makyaj.jpg')} alt='Makyaj hizmetleri' />
                     <h4>Makyaj</h4>
-                    <ul>
-                        <li>- Kalıcı makyaj</li>
-                        <li>- Makyaj</li>
-                        <li>- BB Glow</li>
-                    </ul>
+                    <ListOurServices cateCode='makyaj' />
                     <span>05393597313</span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/kirpik.jpg')} alt='Kirpik hizmetleri' />
                     <h4>Kirpik</h4>
-                    <ul>
-                        <li>- İpek kirpik</li>
-                        <li>- Kirpik lifting</li>
-                    </ul>
+                    <ListOurServices cateCode='kirpik' />
                     <span>05393597313</span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/dudak.png')} alt='Dudak hizmetleri' />
                     <h4>Dudak</h4>
-                    <ul>
-                        <li>- İğnesiz dudak dolgusu</li>
-                    </ul>
+                    <ListOurServices cateCode='dudak' />
                     <span>05393597313</span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/epilasyon.jpg')} alt='Epilasyon ve Depilasyon hizmetleri' />
                     <h4>Epilasyon & Depilasyon</h4>
-                    <ul>
-                        <li>- Lazer epilasyon</li>
-                        <li>- İğneli epilasyon</li>
-                        <li>- Kaş & Bıyık</li>
-                        <li>- Ağda</li>
-                    </ul>
+                    <ListOurServices cateCode='epilasyon_depilasyon' />
                     <span><span>05393597313</span>-<span>05438192019</span></span>
                     <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
                 </div>

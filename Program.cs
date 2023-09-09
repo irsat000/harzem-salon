@@ -2,6 +2,7 @@ using System.Text.Json.Serialization;
 using harzem_salon.Entities;
 
 var builder = WebApplication.CreateBuilder(args);
+var config = builder.Configuration;
 
 // Add services to the container.
 
@@ -12,6 +13,18 @@ builder.Services.AddControllersWithViews()
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
 builder.Services.AddDbContext<HarzemSalonContext>();
+builder.Services.AddCors(options =>
+    {
+        options.AddPolicy("AllowHarzemSalon", builder =>
+        {
+            builder.WithOrigins("https://localhost:44442")
+                .AllowAnyHeader()
+                .AllowAnyMethod();
+        });
+    });
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 var app = builder.Build();
 
@@ -22,6 +35,7 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("AllowHarzemSalon");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

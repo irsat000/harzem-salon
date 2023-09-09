@@ -1,6 +1,7 @@
 ﻿using harzem_salon.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 
 namespace harzem_salon.Controllers;
 
@@ -21,6 +22,11 @@ public class HomeController : ControllerBase
     public async Task<IActionResult> Testimonials()
     {
         var testimonials = await _db.Testimonials.ToListAsync();
+
+        if (testimonials.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(new { testimonials });
     }
 
@@ -28,6 +34,11 @@ public class HomeController : ControllerBase
     public async Task<IActionResult> DiscountCombinations()
     {
         var discountCombinations = await _db.DiscountCombinations.ToListAsync();
+
+        if (discountCombinations.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(new { discountCombinations });
     }
 
@@ -39,6 +50,11 @@ public class HomeController : ControllerBase
             .Take(10)
             .Select(g => g.imageLink)
             .ToListAsync();
+
+        if (gallery.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(new { gallery });
     }
 
@@ -48,6 +64,11 @@ public class HomeController : ControllerBase
         var gallery = await _db.Galleries
             .OrderByDescending(g => g.uploadDate)
             .ToListAsync();
+
+        if (gallery.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(new { gallery });
     }
 
@@ -66,6 +87,19 @@ public class HomeController : ControllerBase
                 })
             })
             .ToListAsync();
+
+        bool anyOurServicesEmpty = categories.Any(category => category.ourServices.IsNullOrEmpty());
+
+        if (categories.IsNullOrEmpty())
+        {
+            _logger.LogCritical("Categories are empty!", DateTime.UtcNow.ToLongTimeString());
+            return NotFound();
+        }
+        else if (anyOurServicesEmpty)
+        {
+            _logger.LogCritical("One or multiple ourServices list is empty!", DateTime.UtcNow.ToLongTimeString());
+            return NotFound();
+        }
         return Ok(new { categories });
     }
 
@@ -82,6 +116,11 @@ public class HomeController : ControllerBase
                     miniGalleryImages = os.MiniGalleryImages.Select(mgi => mgi.imageLink)
                 })
                 .ToListAsync();
+
+        if (ourServices.IsNullOrEmpty())
+        {
+            return NotFound();
+        }
         return Ok(new { ourServices });
     }
 }
