@@ -1,8 +1,11 @@
+using harzem_salon.Entities;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<HarzemSalonContext>();
 
 var app = builder.Build();
 
