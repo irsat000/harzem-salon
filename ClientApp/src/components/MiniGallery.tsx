@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight, XLg } from 'react-bootstrap-icons';
+import { OurService } from '../pages/Home';
 
 
 
@@ -7,10 +8,12 @@ import { ChevronLeft, ChevronRight, XLg } from 'react-bootstrap-icons';
 
 
 const MiniGallery: React.FC<{
+    miniGalleryData: OurService[] | null,
     miniGallery: React.RefObject<HTMLDivElement>,
     miniGalleryActive: boolean,
     setMiniGalleryActive: (e: boolean) => void
-}> = ({ miniGallery, miniGalleryActive, setMiniGalleryActive }) => {
+}> = ({ miniGalleryData, miniGallery, miniGalleryActive, setMiniGalleryActive }) => {
+
     const gallery = [
         require('../assets/images/gallery_temp/1.jpg'),
         require('../assets/images/gallery_temp/2.jpg'),
@@ -21,7 +24,7 @@ const MiniGallery: React.FC<{
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeCategory, setActiveCategory] = useState('Hepsi');
 
-    return (
+    return miniGalleryData ? (
         <div className={`minigallery-cont ${miniGalleryActive ? 'active' : ''}`} ref={miniGallery}>
             <div className='mg-close' onClick={() => setMiniGalleryActive(false)}>
                 <XLg />
@@ -53,7 +56,7 @@ const MiniGallery: React.FC<{
                 <span className={activeCategory === 'Topuz' ? 'active' : ''} onClick={() => setActiveCategory('Topuz')}>Topuz</span>
             </div>
         </div>
-    )
+    ) : <></>
 }
 
 export default MiniGallery;

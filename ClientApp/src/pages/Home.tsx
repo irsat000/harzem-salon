@@ -7,9 +7,10 @@ import '../styles/home.css'
 import { defaultFetchGet } from '../utility/fetchUtils';
 
 
-type OurService = {
+export type OurService = {
     serviceName: string;
     serviceCode: string;
+    miniGalleryImages: string[];
 };
 
 type ServiceCategory = {
@@ -30,13 +31,22 @@ const PAGE_HOME = () => {
 
     const miniGallery = useRef<HTMLDivElement>(null);
     const [miniGalleryActive, setMiniGalleryActive] = useState(false);
+
+    const [miniGalleryData, setMiniGalleryData] = useState<OurService[] | null>(null);
+    const [ourServicesData, setOurServicesData] = useState<OurServicesModel | null>(null);
     //const navigate = useNavigate();
 
-    const handleMiniGallery = () => {
+    const handleMiniGallery = (cateCode: string) => {
+        // Get one category using cateCode
+        // It has service and image list, required for mini gallery.
+        const miniGallery = ourServicesData?.find(sc => sc.cateCode === cateCode)?.ourServices;
+        if (!miniGallery) {
+            return;
+        }
+        setMiniGalleryData(miniGallery);
         setMiniGalleryActive(true);
     }
 
-    const [ourServicesData, setOurServicesData] = useState<OurServicesModel | null>(null);
 
     useEffect(() => {
         const cachedOurServicesData = localStorage.getItem(`ourServicesData`);
@@ -77,7 +87,7 @@ const PAGE_HOME = () => {
 
     return (
         <Template isHomepage={true} gallerySection={gallerySection} ourservicesSection={ourservicesSection}>
-            <MiniGallery miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
+            <MiniGallery miniGalleryData={miniGalleryData} miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
             <p className='appointment_contact_info'>
                 Randevu için arayınız - <span>0 (543) 819 20 19</span>
             </p>
@@ -92,42 +102,42 @@ const PAGE_HOME = () => {
                     <h4>Saç</h4>
                     <ListOurServices cateCode='sac' />
                     <span>05438192019</span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('sac')}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/tirnak.png')} alt='Tırnak hizmetleri' />
                     <h4>Tırnak</h4>
                     <ListOurServices cateCode='tirnak' />
                     <span>05393597313</span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('tirnak')}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/makyaj.jpg')} alt='Makyaj hizmetleri' />
                     <h4>Makyaj</h4>
                     <ListOurServices cateCode='makyaj' />
                     <span>05393597313</span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('makyaj')}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/kirpik.jpg')} alt='Kirpik hizmetleri' />
                     <h4>Kirpik</h4>
                     <ListOurServices cateCode='kirpik' />
                     <span>05393597313</span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('kirpik')}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/dudak.png')} alt='Dudak hizmetleri' />
                     <h4>Dudak</h4>
                     <ListOurServices cateCode='dudak' />
                     <span>05393597313</span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('dudak')}>Mini Galeri</button>
                 </div>
                 <div className='service_item'>
                     <img src={require('../assets/images/services/epilasyon.jpg')} alt='Epilasyon ve Depilasyon hizmetleri' />
                     <h4>Epilasyon & Depilasyon</h4>
                     <ListOurServices cateCode='epilasyon_depilasyon' />
                     <span><span>05393597313</span>-<span>05438192019</span></span>
-                    <button type='button' onClick={handleMiniGallery}>Mini Galeri</button>
+                    <button type='button' onClick={() => handleMiniGallery('epilasyon_depilasyon')}>Mini Galeri</button>
                 </div>
             </section>
             <TestimonialCarousel />

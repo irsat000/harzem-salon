@@ -76,7 +76,8 @@ public class HomeController : ControllerBase
     public async Task<IActionResult> OurServices()
     {
         var categories = await _db.ServiceCategories
-            .Include(category => category.OurServices)
+            .Include(sc => sc.OurServices)
+            .ThenInclude(os => os.MiniGalleryImages)
             .Select(sc => new
             {
                 sc.cateCode,
@@ -84,6 +85,7 @@ public class HomeController : ControllerBase
                 {
                     os.serviceName,
                     os.serviceCode,
+                    miniGalleryImages = os.MiniGalleryImages.Select(mgi => mgi.imageLink)
                 })
             })
             .ToListAsync();
@@ -101,26 +103,5 @@ public class HomeController : ControllerBase
             return NotFound();
         }
         return Ok(new { categories });
-    }
-
-    [HttpGet("mini_gallery")]
-    public async Task<IActionResult> MiniGallery([FromQuery] string cateCode)
-    {
-        var ourServices = await _db.OurServices
-                .Include(os => os.MiniGalleryImages)
-                .Where(os => os.cate.cateCode == cateCode)
-                .Select(os => new
-                {
-                    os.serviceName,
-                    os.serviceCode,
-                    miniGalleryImages = os.MiniGalleryImages.Select(mgi => mgi.imageLink)
-                })
-                .ToListAsync();
-
-        if (ourServices.IsNullOrEmpty())
-        {
-            return NotFound();
-        }
-        return Ok(new { ourServices });
     }
 }
