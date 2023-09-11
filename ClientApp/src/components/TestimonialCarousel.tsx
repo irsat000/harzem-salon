@@ -1,42 +1,58 @@
 
 import React, { useEffect, useMemo, useState } from 'react';
+import { defaultFetchGet } from '../utility/fetchUtils';
 
+type Testimonial = {
+    id: number;
+    fullName: string;
+    content: string;
+}
 
 const TestimonialCarousel = () => {
-
-    // useMemo here prevents unnecessary re-renders
-    const testimonials = useMemo(() => {
-        const fetchedTestimonials = [
-            {
-                comment: "Çalışanlar işlerini özenle yapıyor, Songül hanım işinin çok ehli. 3 yıldır devamlı müşterisiyim.",
-                fullname: "Sümbül Güneş"
-            },
-            {
-                comment: "Hayatımda gördüğüm en iyi hizmeti burada aldım. Kullanılan ürünler gayet kaliteli.",
-                fullname: "Fatma Sönmez"
-            },
-            {
-                comment: "Özgü tam bir kıro, odası gibi dükkanı da temizlemiyor.",
-                fullname: "İrşat Akdeniz"
-            }
-        ];
-        return fetchedTestimonials;
-    }, []);
-
-    // Testomonial Carousel index and stop sign
+    
+    const [testimonialsData, setTestimonialsData] = useState<Testimonial[] | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
+    // Stop sign
     const [intervalPaused, setIntervalPaused] = useState(false);
 
+    useEffect(() => {
+        const cachedTestimonialsData = localStorage.getItem(`cachedTestimonialsData`);
+
+        if (cachedTestimonialsData) {
+            setTestimonialsData(JSON.parse(cachedTestimonialsData));
+        } else {
+            fetch(`https://localhost:7173/api/content/testimonials`, defaultFetchGet())
+                .then((res) => {
+                    switch (res.status) {
+                        case 404:
+                            throw new Error(`Testimonial list is empty!`);
+                        case 200:
+                            return res.json();
+                        default:
+                            throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                })
+                .then((data) => {
+                    setTestimonialsData(data.testimonials);
+                    localStorage.setItem(`cachedTestimonialsData`, JSON.stringify(data.testimonials));
+                })
+                .catch((err) => console.error('Error fetching data:', err));
+        }
+    }, []);
+
+    // Seperate than data fetching logic to prevent infinite loop
     // If intervalPaused is not true, this changes the shown testomonial every 5 seconds
     useEffect(() => {
-        const carouselInterval = setInterval(() => {
-            if (intervalPaused === false) {
-                setActiveIndex((prevIndex) => (prevIndex + 1) % testimonials.length);
-            }
-        }, 5000);
-
-        return () => clearInterval(carouselInterval);
-    }, [intervalPaused, testimonials]);
+        if (testimonialsData) {
+            const carouselInterval = setInterval(() => {
+                if (!intervalPaused) {
+                    setActiveIndex((prevIndex) => (prevIndex + 1) % testimonialsData.length);
+                }
+            }, 5000);
+    
+            return () => clearInterval(carouselInterval);
+        }
+    }, [testimonialsData, intervalPaused]);
 
     // Allows buttons to switch between testomonials.
     // Stops the automatic change for 10 seconds, good for UX
@@ -51,30 +67,28 @@ const TestimonialCarousel = () => {
         }
     };
 
-    return (
-        <>
-            <div className='section-header'>
-                <div></div>
-                <h2>REFERANSLAR</h2>
-                <div></div>
+    return testimonialsData ? <>
+        <div className='section-header'>
+            <div></div>
+            <h2>REFERANSLAR</h2>
+            <div></div>
+        </div>
+        <section className='testimonial-section'>
+            <div className='testimonial-carousel' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
+                {testimonialsData.map((testimonial, index) => (
+                    <div key={index} className={`testimonial ${index === activeIndex ? 'active' : ''}`} >
+                        <p className="customerComment">"{testimonial.content}"</p>
+                        <p className="customerFullname">- {testimonial.fullName}</p>
+                    </div>
+                ))}
             </div>
-            <section className='testimonial-section'>
-                <div className='testimonial-carousel' style={{ transform: `translateX(-${activeIndex * 100}%)` }}>
-                    {testimonials.map((testimonial, index) => (
-                        <div key={index} className={`testimonial ${index === activeIndex ? 'active' : ''}`} >
-                            <p className="customerComment">"{testimonial.comment}"</p>
-                            <p className="customerFullname">- {testimonial.fullname}</p>
-                        </div>
-                    ))}
-                </div>
-                <div className="testimonial-slider">
-                    {testimonials.map((_, index) => (
-                        <div key={index} className={`dot ${index === activeIndex ? 'active' : ''}`} onClick={() => handleDotClick(index)} />
-                    ))}
-                </div>
-            </section>
-        </>
-    )
+            <div className="testimonial-slider">
+                {testimonialsData.map((_, index) => (
+                    <div key={index} className={`dot ${index === activeIndex ? 'active' : ''}`} onClick={() => handleDotClick(index)} />
+                ))}
+            </div>
+        </section>
+    </> : <></>;
 }
 
 export default TestimonialCarousel;

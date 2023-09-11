@@ -7,11 +7,6 @@ import { OurService } from '../pages/Home';
 // Thumbnail Carousel for Our Services
 
 
-/*gallery.map((image, index) => (
-    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} alt={`Fotoğraf ${index}`} onClick={(e) => e.stopPropagation()} />
-))*/
-
-
 const MiniGallery: React.FC<{
     miniGalleryData: OurService[] | null,
     miniGallery: React.RefObject<HTMLDivElement>,
