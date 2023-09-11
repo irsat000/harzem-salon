@@ -33,12 +33,17 @@ const MiniGallery: React.FC<{
             const importMiniGalleryImages = async () => {
                 const updatedMiniGalleryData = await Promise.all(
                     miniGalleryData.map(async (s) => {
-                        return await Promise.all(
-                            s.miniGalleryImages.map(async (image) => {
-                                const importedImage = await import(`../assets/images/mini_gallery/${image}`);
-                                return importedImage.default;
-                            })
-                        );
+                        if (activeCategory === "Hepsi" || activeCategory === s.serviceName) {
+                            return await Promise.all(
+                                s.miniGalleryImages.map(async (image) => {
+                                    const importedImage = await import(`../assets/images/mini_gallery/${image}`);
+                                    return importedImage.default;
+                                })
+                            );
+                        } else {
+                            // Return an empty array so it doesn't register as undefined
+                            return [];
+                        }
                     })
                 );
                 // Flatten the array of arrays of image URLs
@@ -46,33 +51,30 @@ const MiniGallery: React.FC<{
             };
             importMiniGalleryImages();
         }
-    }, [miniGalleryData]);
+    }, [miniGalleryData, activeCategory]);
 
-    return miniGalleryImgList ? (
+    return miniGalleryImgList && miniGalleryImgList.length > 0 ? (
         <div className={`minigallery-cont ${miniGalleryActive ? 'active' : ''}`} ref={miniGallery}>
             <div className='mg-close' onClick={() => setMiniGalleryActive(false)}>
                 <XLg />
             </div>
             <div className="mg-carousel-cont" onClick={() => handleMinigalleryClose()}>
-                <div className='mg-carousel' onClick={(e) => e.stopPropagation()}>
+                <div className='mg-carousel'>
                     <div className='mg-prev' onClick={(e) => {
                         setActiveIndex((prevIndex) => (prevIndex - 1 + miniGalleryImgList.length) % miniGalleryImgList.length);
                         e.stopPropagation();
                     }}>
                         <ChevronLeft />
                     </div>
-                    {miniGalleryImgList.map((image, index) => {
-                        console.log(image);
-                        return (
-                            <img
-                                className={`${index === activeIndex ? 'active' : ''}`}
-                                key={index}
-                                src={image}
-                                alt={`Fotoğraf ${index}`}
-                                onClick={(e) => e.stopPropagation()}
-                            />
-                        )
-                    })}
+                    {miniGalleryImgList.map((image, index) => (
+                        <img
+                            className={`${index === activeIndex ? 'active' : ''}`}
+                            key={index}
+                            src={image}
+                            alt={`Fotoğraf ${index}`}
+                            onClick={(e) => e.stopPropagation()}
+                        />
+                    ))}
                     <div className='mg-next' onClick={(e) => {
                         setActiveIndex((prevIndex) => (prevIndex + 1) % miniGalleryImgList.length);
                         e.stopPropagation();
@@ -96,11 +98,16 @@ const MiniGallery: React.FC<{
                 <div></div>
             </div>
             <div className="mg-nav">
-                <span className={activeCategory === 'Hepsi' ? 'active' : ''} onClick={() => setActiveCategory('Hepsi')}>Hepsi</span>
-                <span className={activeCategory === 'Kesim' ? 'active' : ''} onClick={() => setActiveCategory('Kesim')}>Kesim</span>
-                <span className={activeCategory === 'Boya' ? 'active' : ''} onClick={() => setActiveCategory('Boya')}>Boya</span>
-                <span className={activeCategory === 'Fön' ? 'active' : ''} onClick={() => setActiveCategory('Fön')}>Fön</span>
-                <span className={activeCategory === 'Topuz' ? 'active' : ''} onClick={() => setActiveCategory('Topuz')}>Topuz</span>
+                <span className={activeCategory === 'Hepsi' ? 'active' : ''} onClick={() => {
+                    setActiveCategory('Hepsi');
+                    setActiveIndex(0);
+                }}>Hepsi</span>
+                {miniGalleryData ? miniGalleryData.map((s, index) => (
+                    <span key={index} className={activeCategory === s.serviceName ? 'active' : ''} onClick={() => {
+                        setActiveCategory(s.serviceName);
+                        setActiveIndex(0);
+                    }}>{s.serviceName}</span>
+                )) : <></>}
             </div>
         </div>
     ) : <></>
