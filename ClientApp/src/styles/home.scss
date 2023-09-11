@@ -252,7 +252,6 @@
     height: 100%;
     max-height: 100vh;
     z-index: 100;
-    background-color: rgba(0, 0, 0, 0.8);
     user-select: none;
 
     .mg-close {
@@ -275,60 +274,65 @@
         }
     }
 
-
-    .mg-carousel {
-        height: calc(100% - 180px);
-        align-self: center;
-        width: 90%;
+    .mg-carousel-cont{
+        height: calc(100% - 181px);
+        background-color: rgba(0, 0, 0, 0.8);
         display: flex;
-        flex-direction: row;
-        align-items: center;
         justify-content: center;
-        overflow: hidden;
-        position: relative;
 
-        img {
-            display: none;
-        }
-
-        img.active {
-            display: block;
-            max-height: 90%;
-            max-width: 100%;
-            border-radius: 14px;
-            object-fit: contain;
-            animation: fadeIn 0.2s ease-in-out;
-        }
-
-        .mg-prev,
-        .mg-next {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 205;
-            cursor: pointer;
+        .mg-carousel {
+            width: 90%;
+            height: 100%;
             display: flex;
-            font-size: 1.6rem;
-            padding: 10px;
-            border-radius: 50%;
-            border: 1px solid #ffffff;
-            background-color: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(1px);
-            transition: background-color 0.1s ease-in-out;
-
-            &:hover {
-                background-color: rgba(255, 255, 255, 0.2);
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+    
+            img {
+                display: none;
             }
-        }
-
-        .mg-prev {
-            padding-right: 12px;
-            left: 0;
-        }
-
-        .mg-next {
-            padding-left: 12px;
-            right: 0;
+    
+            img.active {
+                display: block;
+                max-height: 90%;
+                max-width: 100%;
+                border-radius: 14px;
+                object-fit: contain;
+                animation: fadeIn 0.2s ease-in-out;
+            }
+    
+            .mg-prev,
+            .mg-next {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                z-index: 205;
+                cursor: pointer;
+                display: flex;
+                font-size: 1.6rem;
+                padding: 10px;
+                border-radius: 50%;
+                border: 1px solid #ffffff;
+                background-color: rgba(255, 255, 255, 0.1);
+                backdrop-filter: blur(1px);
+                transition: background-color 0.1s ease-in-out;
+    
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+            }
+    
+            .mg-prev {
+                padding-right: 12px;
+                left: 0;
+            }
+    
+            .mg-next {
+                padding-left: 12px;
+                right: 0;
+            }
         }
     }
 
@@ -376,6 +380,7 @@
 
         div {
             width: 100%;
+            height: 1px;
             border-top: 1px solid #ffffff40;
         }
     }

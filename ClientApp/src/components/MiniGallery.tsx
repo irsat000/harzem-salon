@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, XLg } from 'react-bootstrap-icons';
 import { OurService } from '../pages/Home';
 
 
 
 // Thumbnail Carousel for Our Services
+
+
+/*gallery.map((image, index) => (
+    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} alt={`Fotoğraf ${index}`} onClick={(e) => e.stopPropagation()} />
+))*/
 
 
 const MiniGallery: React.FC<{
@@ -14,35 +19,77 @@ const MiniGallery: React.FC<{
     setMiniGalleryActive: (e: boolean) => void
 }> = ({ miniGalleryData, miniGallery, miniGalleryActive, setMiniGalleryActive }) => {
 
-    const gallery = [
-        require('../assets/images/gallery_temp/1.jpg'),
-        require('../assets/images/gallery_temp/2.jpg'),
-        require('../assets/images/gallery_temp/3.jpg'),
-        require('../assets/images/gallery_temp/4.jpg')
-    ];
-
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeCategory, setActiveCategory] = useState('Hepsi');
 
-    return miniGalleryData ? (
+    const handleMinigalleryClose = () => {
+        setMiniGalleryActive(false);
+    }
+
+    const [miniGalleryImgList, setMiniGalleryImgList] = useState<string[] | null>(null);
+
+    useEffect(() => {
+        if (miniGalleryData) {
+            const importMiniGalleryImages = async () => {
+                const updatedMiniGalleryData = await Promise.all(
+                    miniGalleryData.map(async (s) => {
+                        return await Promise.all(
+                            s.miniGalleryImages.map(async (image) => {
+                                const importedImage = await import(`../assets/images/mini_gallery/${image}`);
+                                return importedImage.default;
+                            })
+                        );
+                    })
+                );
+                // Flatten the array of arrays of image URLs
+                setMiniGalleryImgList(updatedMiniGalleryData.flat());
+            };
+            importMiniGalleryImages();
+        }
+    }, [miniGalleryData]);
+
+    return miniGalleryImgList ? (
         <div className={`minigallery-cont ${miniGalleryActive ? 'active' : ''}`} ref={miniGallery}>
             <div className='mg-close' onClick={() => setMiniGalleryActive(false)}>
                 <XLg />
             </div>
-            <div className='mg-carousel'>
-                <div className='mg-prev' onClick={() => setActiveIndex((prevIndex) => (prevIndex - 1 + gallery.length) % gallery.length)}>
-                    <ChevronLeft />
-                </div>
-                {gallery.map((image, index) => (
-                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} alt={`Fotoğraf ${index}`} />
-                ))}
-                <div className='mg-next' onClick={() => setActiveIndex((prevIndex) => (prevIndex + 1) % gallery.length)}>
-                    <ChevronRight />
+            <div className="mg-carousel-cont" onClick={() => handleMinigalleryClose()}>
+                <div className='mg-carousel' onClick={(e) => e.stopPropagation()}>
+                    <div className='mg-prev' onClick={(e) => {
+                        setActiveIndex((prevIndex) => (prevIndex - 1 + miniGalleryImgList.length) % miniGalleryImgList.length);
+                        e.stopPropagation();
+                    }}>
+                        <ChevronLeft />
+                    </div>
+                    {miniGalleryImgList.map((image, index) => {
+                        console.log(image);
+                        return (
+                            <img
+                                className={`${index === activeIndex ? 'active' : ''}`}
+                                key={index}
+                                src={image}
+                                alt={`Fotoğraf ${index}`}
+                                onClick={(e) => e.stopPropagation()}
+                            />
+                        )
+                    })}
+                    <div className='mg-next' onClick={(e) => {
+                        setActiveIndex((prevIndex) => (prevIndex + 1) % miniGalleryImgList.length);
+                        e.stopPropagation();
+                    }}>
+                        <ChevronRight />
+                    </div>
                 </div>
             </div>
             <div className="mg-slider">
-                {gallery.map((image, index) => (
-                    <img key={index} src={image} className={`${index === activeIndex ? 'active' : ''}`} onClick={() => setActiveIndex(index)} alt={`Küçük fotoğraf ${index}`} />
+                {miniGalleryImgList.map((image, index) => (
+                    <img
+                        className={`${index === activeIndex ? 'active' : ''}`}
+                        key={index}
+                        src={image}
+                        alt={`Küçük fotoğraf ${index}`}
+                        onClick={() => setActiveIndex(index)}
+                    />
                 ))}
             </div>
             <div className="mg-seperator">

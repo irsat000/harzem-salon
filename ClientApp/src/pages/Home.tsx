@@ -41,6 +41,8 @@ const PAGE_HOME = () => {
         // It has service and image list, required for mini gallery.
         const miniGallery = ourServicesData?.find(sc => sc.cateCode === cateCode)?.ourServices;
         if (!miniGallery) {
+            // Reset mini gallery for new category
+            setMiniGalleryData(null);
             return;
         }
         setMiniGalleryData(miniGallery);
