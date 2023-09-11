@@ -55,6 +55,9 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .our_services-section .service_item h4 {
   margin-top: 6px;
@@ -83,6 +86,10 @@
   font-family: "Gowun Batang", serif;
   display: inline-block;
 }
+.our_services-section .service_item button.unavailable {
+  cursor: default;
+  opacity: 0.5;
+}
 .our_services-section .service_item button {
   margin-top: 6px;
   outline: transparent;
@@ -94,8 +101,11 @@
   font-family: "Mukta", sans-serif;
   color: #ffffff;
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
-.our_services-section .service_item button:hover {
+.our_services-section .service_item button:not(.unavailable):hover {
   border: 2px solid #b430a0;
   box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
 }
@@ -173,12 +183,18 @@
   width: 100%;
   height: auto;
   border-radius: 8px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .gallery-section .gallery_showmore {
   width: 100%;
   padding: 10px 0;
   display: flex;
   justify-content: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 .gallery-section .gallery_showmore a {
   outline: transparent;

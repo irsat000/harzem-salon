@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Template from '../components/Template';
 import '../styles/gallery.css';
 import { XLg } from 'react-bootstrap-icons';
+import { defaultFetchGet } from '../utility/fetchUtils';
 
+
+export type GalleryImage = {
+    id: number;
+    imageLink: string;
+    title: string;
+    uploadDate: string;
+}
 
 
 const ScaleUpImage: React.FC<{
@@ -33,60 +41,6 @@ const ScaleUpImage: React.FC<{
 
 
 const PAGE_GALLERY = () => {
-    const date = new Date();
-
-    const gallery = [
-        {
-            image: require('../assets/images/gallery_temp/1.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 1 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/2.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 2 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/3.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 3 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/4.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 4 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/5.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 5 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/6.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 6 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/7.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 7 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/8.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 8 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/9.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 9 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-        {
-            image: require('../assets/images/gallery_temp/10.jpg'),
-            description: "Bugün de böyle bir şeyler yaptık 10 :)",
-            uploadDate: date.toLocaleDateString()
-        },
-    ];
 
     const [scaleUpActive, setScaleUpActive] = useState(false);
     const [sclupImage, setSclupImage] = useState<undefined | string>(undefined);
@@ -95,6 +49,46 @@ const PAGE_GALLERY = () => {
         setSclupImage(imageUrl);
         setScaleUpActive(true);
     }
+
+
+    const [galleryData, setGalleryData] = useState<GalleryImage[] | null>(null);
+
+    useEffect(() => {
+        const cachedGalleryData = localStorage.getItem(`cachedGalleryData`);
+
+        if (cachedGalleryData) {
+            setGalleryData(JSON.parse(cachedGalleryData));
+        } else {
+            fetch(`https://localhost:7173/api/content/gallery`, defaultFetchGet())
+                .then((res) => {
+                    switch (res.status) {
+                        case 404:
+                            throw new Error(`Testimonial list is empty!`);
+                        case 200:
+                            return res.json();
+                        default:
+                            throw new Error(`HTTP error! status: ${res.status}`);
+                    }
+                })
+                .then(async (data) => {
+                    data.gallery = await Promise.all(
+                        data.gallery.map(async (image: GalleryImage) => {
+                            const importedImage = await import(`../assets/images/gallery/${image.imageLink}`);
+                            const newDate = new Date(image.uploadDate);
+                            return {
+                                id: image.id,
+                                imageLink: importedImage.default,
+                                title: image.title,
+                                uploadDate: newDate.toLocaleDateString()
+                            };
+                        })
+                    );
+                    setGalleryData(data.gallery);
+                    localStorage.setItem(`cachedGalleryData`, JSON.stringify(data.gallery));
+                })
+                .catch((err) => console.error('Error fetching data:', err));
+        }
+    }, []);
 
     return (
         <Template isHomepage={false}>
@@ -106,15 +100,17 @@ const PAGE_GALLERY = () => {
                     <div></div>
                 </div>
                 <div className='gallery-cont'>
-                    {gallery.map((item, index) => (
+                    {galleryData ? galleryData.map((item, index) => (
                         <div key={index} className='gallery-item'>
-                            <img src={item.image} alt='Galeri fotoğrafı' onClick={() => handleScaleUp(item.image)} />
+                            <div className="image-wrap">
+                                <img src={item.imageLink} alt='Galeri fotoğrafı' onClick={() => handleScaleUp(item.imageLink)} />
+                            </div>
                             <div className='gallery_item_details'>
-                                <p>{item.description}</p>
+                                <p>{item.title}</p>
                                 <span>Tarih - {item.uploadDate}</span>
                             </div>
                         </div>
-                    ))}
+                    )) : <></>}
                 </div>
             </>
         </Template>

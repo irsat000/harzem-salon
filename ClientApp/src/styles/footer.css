@@ -47,6 +47,9 @@ footer .about_us .workplace-cont {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
 }
 footer .about_us .workplace-cont .workplace_on_map iframe {
   border: none;

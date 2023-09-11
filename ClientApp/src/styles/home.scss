@@ -65,6 +65,7 @@
             width: 100%;
             height: auto;
             border-radius: 8px;
+            user-select: none;
         }
 
         h4 {
@@ -98,6 +99,12 @@
             display: inline-block;
         }
 
+
+        button.unavailable {
+            cursor: default;
+            opacity: 0.5;
+        }
+
         button {
             margin-top: 6px;
             outline: transparent;
@@ -109,13 +116,14 @@
             font-family: "Mukta", sans-serif;
             color: #ffffff;
             cursor: pointer;
+            user-select: none;
+        }
 
-            &:hover {
-                border: 2px solid #b430a0;
-                -webkit-box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
-                -moz-box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
-                box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
-            }
+        button:not(.unavailable):hover {
+            border: 2px solid #b430a0;
+            -webkit-box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
+            -moz-box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
+            box-shadow: 0px 0px 10px 3px rgba(180, 48, 160, 0.2);
         }
     }
 }
@@ -204,6 +212,7 @@
             width: 100%;
             height: auto;
             border-radius: 8px;
+            user-select: none;
         }
     }
 
@@ -212,6 +221,7 @@
         padding: 10px 0;
         display: flex;
         justify-content: center;
+        user-select: none;
 
         a {
             outline: transparent;
@@ -274,7 +284,7 @@
         }
     }
 
-    .mg-carousel-cont{
+    .mg-carousel-cont {
         height: calc(100% - 181px);
         background-color: rgba(0, 0, 0, 0.8);
         display: flex;
@@ -289,11 +299,11 @@
             justify-content: center;
             overflow: hidden;
             position: relative;
-    
+
             img {
                 display: none;
             }
-    
+
             img.active {
                 display: block;
                 max-height: 90%;
@@ -302,7 +312,7 @@
                 object-fit: contain;
                 animation: fadeIn 0.2s ease-in-out;
             }
-    
+
             .mg-prev,
             .mg-next {
                 position: absolute;
@@ -318,17 +328,17 @@
                 background-color: rgba(255, 255, 255, 0.1);
                 backdrop-filter: blur(1px);
                 transition: background-color 0.1s ease-in-out;
-    
+
                 &:hover {
                     background-color: rgba(255, 255, 255, 0.2);
                 }
             }
-    
+
             .mg-prev {
                 padding-right: 12px;
                 left: 0;
             }
-    
+
             .mg-next {
                 padding-left: 12px;
                 right: 0;
