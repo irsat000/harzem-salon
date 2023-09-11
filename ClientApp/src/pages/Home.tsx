@@ -54,7 +54,7 @@ const PAGE_HOME = () => {
     useEffect(() => {
 
         // Our services data
-        const cachedOurServicesData = localStorage.getItem(`ourServicesData`);
+        const cachedOurServicesData = sessionStorage.getItem(`ourServicesData`);
 
         if (cachedOurServicesData) {
             setOurServicesData(JSON.parse(cachedOurServicesData));
@@ -72,13 +72,13 @@ const PAGE_HOME = () => {
                 })
                 .then((data) => {
                     setOurServicesData(data.categories);
-                    localStorage.setItem(`ourServicesData`, JSON.stringify(data.categories));
+                    sessionStorage.setItem(`ourServicesData`, JSON.stringify(data.categories));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }
 
         // Home gallery data
-        const cachedHomeGalleryData = localStorage.getItem(`cachedHomeGalleryData`);
+        const cachedHomeGalleryData = sessionStorage.getItem(`cachedHomeGalleryData`);
 
         if (cachedHomeGalleryData) {
             setHomeGalleryData(JSON.parse(cachedHomeGalleryData));
@@ -102,7 +102,7 @@ const PAGE_HOME = () => {
                         })
                     );
                     setHomeGalleryData(data.gallery);
-                    localStorage.setItem(`cachedHomeGalleryData`, JSON.stringify(data.gallery));
+                    sessionStorage.setItem(`cachedHomeGalleryData`, JSON.stringify(data.gallery));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }

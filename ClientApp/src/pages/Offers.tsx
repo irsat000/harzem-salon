@@ -18,10 +18,10 @@ const PAGE_OFFERS = () => {
     const [discountCombinationsData, setDiscountCombinationsData] = useState<DiscountCombinationsModel | null>(null);
 
     useEffect(() => {
-        const cachedDiscountCombinationsData = localStorage.getItem(`cachedDiscountCombinationsData`);
+        const cachedDiscountCombinationsData = JSON.parse(localStorage.getItem(`cachedDiscountCombinationsData`) || 'null');
 
-        if (cachedDiscountCombinationsData) {
-            setDiscountCombinationsData(JSON.parse(cachedDiscountCombinationsData));
+        if (cachedDiscountCombinationsData && new Date() < new Date(cachedDiscountCombinationsData.expire)) {
+            setDiscountCombinationsData(cachedDiscountCombinationsData.discountCombinations);
         } else {
             fetch(`https://localhost:7173/api/content/discount_combinations`, defaultFetchGet())
                 .then((res) => {
@@ -35,8 +35,16 @@ const PAGE_OFFERS = () => {
                     }
                 })
                 .then((data) => {
+                    // Create expiration date
+                    const expirationDate = new Date();
+                    expirationDate.setDate(expirationDate.getDate() + 2);
+                    
+                    // Assign data and cache it
                     setDiscountCombinationsData(data.discountCombinations);
-                    localStorage.setItem(`cachedDiscountCombinationsData`, JSON.stringify(data.discountCombinations));
+                    localStorage.setItem(`cachedDiscountCombinationsData`, JSON.stringify({
+                        discountCombinations: data.discountCombinations,
+                        expire: expirationDate
+                    }));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }

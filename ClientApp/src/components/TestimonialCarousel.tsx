@@ -9,17 +9,17 @@ type Testimonial = {
 }
 
 const TestimonialCarousel = () => {
-    
+
     const [testimonialsData, setTestimonialsData] = useState<Testimonial[] | null>(null);
     const [activeIndex, setActiveIndex] = useState(0);
     // Stop sign
     const [intervalPaused, setIntervalPaused] = useState(false);
 
     useEffect(() => {
-        const cachedTestimonialsData = localStorage.getItem(`cachedTestimonialsData`);
+        const cachedTestimonialsData = JSON.parse(localStorage.getItem(`cachedTestimonialsData`) || 'null');
 
-        if (cachedTestimonialsData) {
-            setTestimonialsData(JSON.parse(cachedTestimonialsData));
+        if (cachedTestimonialsData && new Date() < new Date(cachedTestimonialsData.expire)) {
+            setTestimonialsData(cachedTestimonialsData.testimonials);
         } else {
             fetch(`https://localhost:7173/api/content/testimonials`, defaultFetchGet())
                 .then((res) => {
@@ -33,8 +33,16 @@ const TestimonialCarousel = () => {
                     }
                 })
                 .then((data) => {
+                    // Create expiration date
+                    const expirationDate = new Date();
+                    expirationDate.setDate(expirationDate.getDate() + 2);
+
+                    // Assign data and cache it
                     setTestimonialsData(data.testimonials);
-                    localStorage.setItem(`cachedTestimonialsData`, JSON.stringify(data.testimonials));
+                    localStorage.setItem(`cachedTestimonialsData`, JSON.stringify({
+                        testimonials: data.testimonials,
+                        expire: expirationDate
+                    }));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }
@@ -49,7 +57,7 @@ const TestimonialCarousel = () => {
                     setActiveIndex((prevIndex) => (prevIndex + 1) % testimonialsData.length);
                 }
             }, 5000);
-    
+
             return () => clearInterval(carouselInterval);
         }
     }, [testimonialsData, intervalPaused]);

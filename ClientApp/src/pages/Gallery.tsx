@@ -54,7 +54,7 @@ const PAGE_GALLERY = () => {
     const [galleryData, setGalleryData] = useState<GalleryImage[] | null>(null);
 
     useEffect(() => {
-        const cachedGalleryData = localStorage.getItem(`cachedGalleryData`);
+        const cachedGalleryData = sessionStorage.getItem(`cachedGalleryData`);
 
         if (cachedGalleryData) {
             setGalleryData(JSON.parse(cachedGalleryData));
@@ -84,7 +84,7 @@ const PAGE_GALLERY = () => {
                         })
                     );
                     setGalleryData(data.gallery);
-                    localStorage.setItem(`cachedGalleryData`, JSON.stringify(data.gallery));
+                    sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(data.gallery));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }
