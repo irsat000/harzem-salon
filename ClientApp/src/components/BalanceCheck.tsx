@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { XLg } from 'react-bootstrap-icons';
+import '../styles/balance_check.css'
 
 
 type CustomerInfo = {

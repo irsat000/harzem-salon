@@ -1,0 +1,101 @@
+.balance_check-cont.active {
+  display: flex;
+}
+
+.balance_check-cont {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+}
+.balance_check-cont .balance_check {
+  max-width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #323232;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+  border-radius: 12px;
+  gap: 20px;
+  padding: 30px 4%;
+  position: relative;
+}
+.balance_check-cont .balance_check .bc-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  display: flex;
+  font-size: 1.3rem;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background-color 0.1s ease-in-out;
+}
+.balance_check-cont .balance_check .bc-close:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+.balance_check-cont .balance_check h3 {
+  font-size: 1.4rem;
+  font-family: "Delius", cursive;
+  font-weight: 400;
+}
+.balance_check-cont .balance_check input {
+  width: 200px;
+  outline: transparent;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.3rem;
+  color: #ffffff;
+  text-align: center;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+.balance_check-cont .balance_check button {
+  padding: 7px 16px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.1);
+  font-size: 1.3rem;
+  color: #ffffff;
+  transition: background-color 0.1s ease-in-out;
+  cursor: pointer;
+  font-family: "Bhavuka", sans-serif;
+}
+.balance_check-cont .balance_check button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.balance_check-cont .balance_check > span.active {
+  display: block;
+}
+.balance_check-cont .balance_check > span {
+  display: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  text-align: center;
+  line-height: 22px;
+}
+.balance_check-cont .balance_check > span .positive,
+.balance_check-cont .balance_check > span .debt {
+  font-size: 1.2rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+.balance_check-cont .balance_check > span .positive {
+  color: #5bb13f;
+}
+.balance_check-cont .balance_check > span .debt {
+  color: #a93939;
+}/*# sourceMappingURL=balance_check.css.map */
