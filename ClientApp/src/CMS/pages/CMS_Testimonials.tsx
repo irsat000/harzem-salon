@@ -1,45 +1,46 @@
 import React, { useEffect, useState } from 'react';
 import CMS_Template from '../components/CMS_Template';
+import { defaultFetchGet } from '../../utility/fetchUtils';
+import { Testimonial } from '../../components/TestimonialCarousel';
 
 
 const CMS_TESTIMONIALS = () => {
     // Use useEffect here and fetch from database
-    const [testimonials, setTestimonials] = useState([
-        {
-            "id": 1,
-            "fullName": "Sümbül Güneş",
-            "content": "Çalışanlar işlerini özenle yapıyor, Songül hanım işinin çok ehli. 3 yıldır devamlı müşterisiyim."
-        },
-        {
-            "id": 2,
-            "fullName": "Fatma Sönmez",
-            "content": "Hayatımda gördüğüm en iyi hizmeti burada aldım. Kullanılan ürünler gayet kaliteli."
-        },
-        {
-            "id": 3,
-            "fullName": "Suzan Söke",
-            "content": "Sırada beklerken diğer müşterilerle bol bol sohbet ettik. Sadece çalışanlar değil, müşteriler de kaliteli insanlar."
-        },
-        {
-            "id": 4,
-            "fullName": "Ayşe Gümüş",
-            "content": "Songül hanımla çok eskiden beri arkadaşız. Yine de müşterilerin hakkına girip sırada beni öne geçirmiyor. Dürüst insanlar her zaman hak ettiğine sahip olur."
-        }
-    ]);
+    const [testimonialsData, setTestimonialsData] = useState<Testimonial[]>([]);
+
+    useEffect(() => {
+        fetch(`https://localhost:7173/api/content/testimonials`, defaultFetchGet())
+            .then((res) => {
+                switch (res.status) {
+                    case 404:
+                        // List is empty, it's ok for cms
+                        break;
+                    case 200:
+                        return res.json();
+                    default:
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                }
+            })
+            .then((data) => {
+                // Assign data
+                setTestimonialsData(data.testimonials);
+            })
+            .catch((err) => console.error('Error fetching data:', err));
+    }, []);
 
     // Deletes from the testomonials which then will replace the database records when saved
     const handleDelete = (indexToDelete: number) => {
-        const updatedTestimonials = testimonials.filter((_, index) => index !== indexToDelete);
-        setTestimonials(updatedTestimonials);
+        const updatedTestimonials = testimonialsData.filter((_, index) => index !== indexToDelete);
+        setTestimonialsData(updatedTestimonials);
     };
 
     // New testimonial form data
     const [tFormData, setTFormData] = useState({
         fullName: '',
-        content: '',
+        content: ''
     });
 
-    // Generic state change handling
+    // New testimonial handle inputs
     const handleTFormChange = (e: any) => {
         const { name, value } = e.target;
         setTFormData({
@@ -48,25 +49,81 @@ const CMS_TESTIMONIALS = () => {
         });
     };
 
+    // Add new record to testimonials
     const handleNewTestimonial = (e: any) => {
         e.preventDefault();
 
+        if (tFormData.fullName.trim().length < 3) {
+            alert('Ad soyad en az 3 karakter olmalı');
+            return;
+        }
+        else if (tFormData.content.trim().length < 10) {
+            alert('Yorum en az 10 karakter olmalı');
+            return;
+        }
+
         // New object
         const newTestimonial = {
-            id: 0,
             fullName: tFormData.fullName,
-            content: tFormData.content,
+            content: tFormData.content
         };
 
         // Update the testimonials using spread operator
-        const updatedTestimonials = [...testimonials, newTestimonial];
-        setTestimonials(updatedTestimonials);
+        const updatedTestimonials = [...testimonialsData, newTestimonial];
+        setTestimonialsData(updatedTestimonials);
 
         // Clear the form data after adding the testimonial
         setTFormData({
             fullName: '',
             content: '',
         });
+    }
+
+
+    // TESTIMONIAL UPDATES
+
+    // To switch between edit modes (one item at a time)
+    const [editMode, setEditMode] = useState<number | null>(null);
+
+    // Temp values for the real update
+    const [tempValues, setTempValues] = useState<Testimonial | null>(null);
+    const handleUpdateInputChange = (e: any) => {
+        const { name, value } = e.target;
+        setTempValues({
+            ...tempValues!,
+            [name]: value,
+        });
+    };
+
+    // Update the testimonialsData
+    const handleUpdate = (index: number, updated: Testimonial) => {
+        // Create a copy of the current testimonialsData array
+        const updatedTestimonialsData = [...testimonialsData];
+
+        // Update the testimonial at the specified index
+        updatedTestimonialsData[index] = {
+            ...updatedTestimonialsData[index],
+            fullName: updated.fullName,
+            content: updated.content,
+        };
+
+        // Update the state with the new array
+        setTestimonialsData(updatedTestimonialsData);
+
+        // Exit edit mode
+        setEditMode(null);
+    };
+
+    // Cancel edit mode entirely
+    const handleUpdateCancel = () => {
+        setEditMode(null);
+        setTempValues(null);
+    }
+
+    // Switch to edit mode and initialize inputs for easier update
+    const handleEditMode = (index: number) => {
+        setEditMode(index);
+        setTempValues(testimonialsData[index]);
     }
 
     return (
@@ -89,18 +146,47 @@ const CMS_TESTIMONIALS = () => {
                         <button type='submit'>Yeni Ekle</button>
                     </form>
                 </div>
-                {testimonials && testimonials.length > 0 ?
+                {testimonialsData.length > 0 ?
                     <div className="testimonial_list">
-                        {testimonials.map((t, index) => (
-                            <div className="testimonial-item" key={index}>
-                                <span className='fullName'>{t.fullName}</span>
-                                <p className='content'>{t.content}</p>
-                                <div className="options">
-                                    <span className='delete' onClick={() => handleDelete(index)}>Sil</span>
-                                    <span className='update'>Güncelle</span>
+                        {testimonialsData.map((t, index) => {
+                            const isEditMode = editMode === index;
+                            return (
+                                <div className="testimonial-item" key={index}>
+                                    {isEditMode && tempValues ?
+                                        <div className='update_testimonial'>
+                                            <input
+                                                type='text'
+                                                placeholder='AD SOYAD'
+                                                className='fullName'
+                                                name='fullName'
+                                                value={tempValues.fullName}
+                                                onChange={handleUpdateInputChange} />
+                                            <textarea
+                                                placeholder='Yorum yaz'
+                                                className='content'
+                                                name='content'
+                                                value={tempValues.content}
+                                                onChange={handleUpdateInputChange}></textarea>
+                                            <div className='update_testimonial_options'>
+                                                <button type="reset" onClick={() => handleUpdateCancel()}>Vazgeç</button>
+                                                <button type="button" onClick={() => handleUpdate(index, {
+                                                    fullName: tempValues.fullName,
+                                                    content: tempValues.content
+                                                })}>Kaydet</button>
+                                            </div>
+                                        </div>
+                                        : <>
+                                            <span className='fullName'>{t.fullName}</span>
+                                            <p className='content'>{t.content}</p>
+                                            <div className="options">
+                                                <span className='delete' onClick={() => handleDelete(index)}>Sil</span>
+                                                <span className='update' onClick={() => handleEditMode(index)}>Güncelle</span>
+                                            </div>
+                                        </>
+                                    }
                                 </div>
-                            </div>
-                        ))}
+                            )
+                        })}
                     </div>
                     : <h3>Hiç yorum yok!</h3>}
                 <div className="save-cont">

@@ -2,8 +2,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { defaultFetchGet } from '../utility/fetchUtils';
 
-type Testimonial = {
-    id: number;
+export type Testimonial = {
     fullName: string;
     content: string;
 }

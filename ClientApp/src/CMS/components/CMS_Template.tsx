@@ -17,7 +17,7 @@ const CMS_Template: React.FC<{
     useEffect(() => {
         // will send to login if the user doesn't have any login credentials
 
-    }, [])
+    }, []);
 
     const [cmsDrawerActive, setCmsDrawerActive] = useState(false);
 

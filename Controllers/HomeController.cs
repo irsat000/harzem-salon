@@ -21,7 +21,11 @@ public class HomeController : ControllerBase
     [HttpGet("testimonials")]
     public async Task<IActionResult> Testimonials()
     {
-        var testimonials = await _db.Testimonials.ToListAsync();
+        var testimonials = await _db.Testimonials.Select(t => new
+        {
+            t.fullName,
+            t.content
+        }).ToListAsync();
 
         if (testimonials.IsNullOrEmpty())
         {

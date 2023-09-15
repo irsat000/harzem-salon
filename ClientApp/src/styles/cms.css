@@ -205,6 +205,11 @@
   flex-direction: column;
   gap: 40px;
 }
+.csm_main-testimonials input,
+.csm_main-testimonials textarea {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
 .csm_main-testimonials .new_testimonial {
   display: flex;
   flex-direction: column;
@@ -229,15 +234,12 @@
   max-width: 400px;
   padding: 10px;
   font-size: 1.3rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
 }
 .csm_main-testimonials .new_testimonial .inputs .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
-  font-size: 1.3rem;
-  font-family: "Bhavuka", sans-serif;
+  font-size: 1.1rem;
 }
 .csm_main-testimonials .new_testimonial .inputs button {
   padding: 6px 16px;
@@ -261,8 +263,6 @@
   padding: 40px 0;
   text-align: center;
   font-size: 1.4rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
 }
 .csm_main-testimonials .testimonial_list {
   display: flex;
@@ -276,15 +276,73 @@
   gap: 10px;
   padding: 10px;
   border-bottom: 1px solid #444444;
+  /*.fullName.inactive,
+  .content.inactive {
+      display: none;
+  }*/
+  /*.update_testimonial.active {
+      display: flex;
+  }*/
 }
 .csm_main-testimonials .testimonial_list .testimonial-item .fullName {
   font-size: 1.4rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
 }
 .csm_main-testimonials .testimonial_list .testimonial-item .content {
-  font-size: 1.4rem;
-  font-family: "Bhavuka", sans-serif;
+  font-size: 1.2rem;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial input,
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial textarea {
+  outline: transparent;
+  border: none;
+  background-color: #444444;
+  border-radius: 6px;
+  color: #ffffff;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .fullName {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 1.3rem;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .content {
+  width: 100%;
+  min-height: 70px;
+  padding: 10px;
+  font-size: 1.1rem;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options {
+  display: inline;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button {
+  padding: 4px 10px;
+  outline: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: #ffffff;
+  font-family: "Mukta", sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.1s ease;
+  background-color: #3d8a3a;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button:hover {
+  background-color: #55a553;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset] {
+  margin-right: 30px;
+  background-color: #a82b2b;
+}
+.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset]:hover {
+  background-color: #af4949;
 }
 .csm_main-testimonials .testimonial_list .testimonial-item .options {
   margin-top: 6px;
@@ -304,7 +362,7 @@
 }
 .csm_main-testimonials .testimonial_list .testimonial-item .options .delete {
   color: #f62424;
-  margin-right: 30px;
+  margin-right: 40px;
 }
 .csm_main-testimonials .testimonial_list .testimonial-item .options .update {
   color: #38bf4e;
