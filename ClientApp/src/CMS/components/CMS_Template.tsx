@@ -9,8 +9,9 @@ import { useNavigate } from 'react-router-dom';
 
 
 const CMS_Template: React.FC<{
-    children: any
-}> = ({ children }) => {
+    children: any,
+    panelTitle: string
+}> = ({ children, panelTitle }) => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -64,6 +65,7 @@ const CMS_Template: React.FC<{
                     </div>
                 </header>
                 <main>
+                    <h3 className='cms_main-title'>{panelTitle}</h3>
                     {children}
                 </main>
             </div>

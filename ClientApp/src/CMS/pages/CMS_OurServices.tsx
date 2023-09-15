@@ -5,7 +5,7 @@ import CMS_Template from '../components/CMS_Template';
 const CMS_OUR_SERVICES = () => {
 
     return (
-        <CMS_Template>
+        <CMS_Template panelTitle='HİZMETLERİMİZ'>
 
         </CMS_Template>
     )

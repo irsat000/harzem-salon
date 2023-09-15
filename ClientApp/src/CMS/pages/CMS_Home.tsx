@@ -13,7 +13,7 @@ const CMS_HOME = () => {
     }, [])
     
     return (
-        <CMS_Template>
+        <CMS_Template panelTitle=''>
 
         </CMS_Template>
     )
