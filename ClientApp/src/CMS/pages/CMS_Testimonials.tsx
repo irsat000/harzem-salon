@@ -126,6 +126,32 @@ const CMS_TESTIMONIALS = () => {
         setTempValues(testimonialsData[index]);
     }
 
+
+    // Update database
+    const handleSaveAll = () => {
+        fetch(`https://localhost:7173/cms/update-testimonials`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json; charset=utf-8'
+            },
+            body: JSON.stringify(testimonialsData)
+        })
+            .then((res) => {
+                switch (res.status) {
+                    case 200:
+                        alert("Yorumlar kaydedildi.");
+                        break;
+                    default:
+                        alert("HATA!");
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                }
+            })
+            .catch((err) => {
+                alert("HATA!");
+                console.error('Fetch error:', err)
+            });
+    }
+
     return (
         <CMS_Template panelTitle='YORUMLAR'>
             <div className="csm_main-testimonials">
@@ -190,7 +216,7 @@ const CMS_TESTIMONIALS = () => {
                     </div>
                     : <h3>Hiç yorum yok!</h3>}
                 <div className="save-cont">
-                    <button type='button'>Değişiklikleri Kaydet</button>
+                    <button type='button' onClick={handleSaveAll}>Değişiklikleri Kaydet</button>
                 </div>
             </div>
         </CMS_Template>
