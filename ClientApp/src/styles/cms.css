@@ -1,3 +1,142 @@
+.cms_container {
+  display: flex;
+  flex-direction: row;
+  overflow: hidden;
+  width: 100%;
+  height: 100vh;
+}
+.cms_container .cms_drawer-cont.active {
+  display: block;
+}
+.cms_container .cms_drawer-cont {
+  display: none;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  max-height: 100vh;
+  z-index: 100;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+@keyframes slideIn {
+  from {
+    left: -30%;
+    opacity: 0;
+  }
+  to {
+    left: 0;
+    opacity: 1;
+  }
+}
+.cms_container .cms_drawer-cont .cms_drawer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  max-width: 80%;
+  background-color: #323232;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  overflow-y: auto;
+  gap: 10px;
+  animation: slideIn 0.1s ease-in-out;
+}
+.cms_container .cms_drawer-cont .cms_drawer .close-cms_drawer-btn {
+  padding: 14px;
+  align-self: flex-end;
+  font-size: 2rem;
+}
+.cms_container .cms_drawer-cont .cms_drawer h3 {
+  font-size: 1.6rem;
+  padding: 0 40px 0 20px;
+  font-family: "McLaren", cursive;
+  font-weight: 400;
+}
+.cms_container .cms_drawer-cont .cms_drawer .panel_list {
+  margin-bottom: 10px;
+}
+.cms_container .cms_drawer-cont .cms_drawer .panel_list li a {
+  cursor: pointer;
+  padding: 10px 40px 10px 20px;
+  transition: background-color 0.1s ease;
+  font-size: 1.4rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_container .cms_drawer-cont .cms_drawer .panel_list li a:hover {
+  background-color: #444444;
+}
+.cms_container .cms_drawer-cont .cms_drawer .option_list li {
+  cursor: pointer;
+  padding: 10px 40px 10px 20px;
+  transition: background-color 0.1s ease;
+  font-size: 1.4rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_container .cms_drawer-cont .cms_drawer .option_list li:hover {
+  background-color: #444444;
+}
+.cms_container nav {
+  display: none;
+  flex-shrink: 0;
+  border-right: 2px solid #444444;
+  flex-direction: column;
+  justify-content: center;
+  gap: 16px;
+  overflow-y: auto;
+}
+.cms_container nav h3 {
+  font-size: 1.6rem;
+  padding: 0 40px 0 20px;
+  font-family: "McLaren", cursive;
+  font-weight: 400;
+}
+.cms_container nav .panel_list {
+  margin-bottom: 10px;
+}
+.cms_container nav .panel_list li a {
+  cursor: pointer;
+  padding: 10px 40px 10px 20px;
+  transition: background-color 0.1s ease;
+  font-size: 1.4rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_container nav .panel_list li a:hover {
+  background-color: #444444;
+}
+.cms_container nav .option_list li {
+  cursor: pointer;
+  padding: 10px 40px 10px 20px;
+  transition: background-color 0.1s ease;
+  font-size: 1.4rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_container nav .option_list li:hover {
+  background-color: #444444;
+}
+.cms_container .cms_panel-cont {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.cms_container .cms_panel-cont header {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  padding: 8px 2%;
+}
+.cms_container .cms_panel-cont header .cms_drawer-btn {
+  display: flex;
+  font-size: 3rem;
+}
+.cms_container .cms_panel-cont main {
+  padding: 10px 2%;
+}
+
 .cms-login-cont {
   width: 100%;
   min-height: 100vh;
@@ -52,4 +191,13 @@
 }
 .cms-login-cont form button:hover {
   background-color: #50a55e;
+}
+
+@media (min-width: 768px) {
+  .cms_container nav {
+    display: flex;
+  }
+  .cms_container .cms_panel-cont header {
+    display: none;
+  }
 }/*# sourceMappingURL=cms.css.map */

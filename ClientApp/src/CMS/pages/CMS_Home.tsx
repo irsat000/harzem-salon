@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 
 const CMS_HOME = () => {
     const navigate = useNavigate();
-    
+
     useEffect(() => {
-        //navigate('/panel/giris'); // will send to login if the user doesn't have any login credentials
+        // will send to login if the user doesn't have any login credentials, otherwise musteriler
+        navigate('/panel/musteriler');
 
     }, [])
-
+    
     return (
         <CMS_Template>
 

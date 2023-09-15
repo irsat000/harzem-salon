@@ -44,6 +44,11 @@ body {
   color: #ffffff;
 }
 
+.page_content {
+  display: flex;
+  flex-direction: column;
+}
+
 main {
   min-height: 500px;
 }
