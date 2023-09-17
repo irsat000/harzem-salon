@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import CMS_Template from '../components/CMS_Template';
+import React from 'react';
+import CMS_TEMPLATE from '../components/CMS_Template';
 
 
 const CMS_CUSTOMERS = () => {
 
     return (
-        <CMS_Template panelTitle='MÜŞTERİLER'>
+        <CMS_TEMPLATE panelTitle='MÜŞTERİLER'>
 
-        </CMS_Template>
+        </CMS_TEMPLATE>
     )
 }
 

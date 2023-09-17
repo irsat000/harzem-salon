@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import CMS_Template from '../components/CMS_Template';
+import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
 
@@ -31,7 +31,7 @@ const CMS_OFFERS = () => {
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
 
-    // Deletes from the testomonials which then will replace the database records when saved
+    // Deletes from the combos which then will replace the database records when saved
     const handleDelete = (indexToDelete: number) => {
         const updatedCombinations = combinationsData.filter((_, index) => index !== indexToDelete);
         setCombinationsData(updatedCombinations);
@@ -49,11 +49,11 @@ const CMS_OFFERS = () => {
             return;
         }
 
-        // Update the testimonials using spread operator
+        // Update the combos using spread operator
         const updatedCombinations = [...combinationsData, newCombo];
         setCombinationsData(updatedCombinations);
 
-        // Clear the form data after adding the testimonial
+        // Clear the form data after adding the combo
         setNewCombo('');
     }
 
@@ -61,6 +61,11 @@ const CMS_OFFERS = () => {
     const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
+        if (combinationsData.length < 1) {
+            alert("Liste boş!");
+            return;
+        }
+
         setSaveAllStatus(1);
         fetch(`https://localhost:7173/cms/update-discount_combinations`, {
             method: 'POST',
@@ -92,10 +97,10 @@ const CMS_OFFERS = () => {
     }
 
     return (
-        <CMS_Template panelTitle='KAMPANYALAR'>
+        <CMS_TEMPLATE panelTitle='KAMPANYALAR'>
             <div className="cms_main-offers">
                 <div className="new_combo_discount">
-                    <form className="inputs" onSubmit={handleNewCombo}>
+                    <form onSubmit={handleNewCombo}>
                         <input type='text'
                             placeholder='Kombinasyon'
                             className='combination'
@@ -105,7 +110,7 @@ const CMS_OFFERS = () => {
                         <button type='submit' className='submit_button'>Yeni Ekle</button>
                     </form>
                 </div>
-                {combinationsData.length > 0 ?
+                {combinationsData.length > 0 ? <>
                     <div className="combination_list">
                         {combinationsData.map((combo, index) => (
                             <div className="combo-item" key={index}>
@@ -115,11 +120,12 @@ const CMS_OFFERS = () => {
                                 </div>
                             </div>
                         ))}
-                    </div> : <h3>Hiç bir kombinasyon kampanyası yok!</h3>
+                    </div>
+                    <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
+                </> : <h3>Hiç bir kombinasyon kampanyası yok!</h3>
                 }
-                <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
             </div>
-        </CMS_Template>
+        </CMS_TEMPLATE>
     )
 }
 

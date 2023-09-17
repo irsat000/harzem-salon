@@ -283,27 +283,27 @@
   flex-direction: column;
   gap: 20px;
 }
-.cms_main-testimonials .new_testimonial .inputs {
+.cms_main-testimonials .new_testimonial form {
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: flex-start;
 }
-.cms_main-testimonials .new_testimonial .inputs input,
-.cms_main-testimonials .new_testimonial .inputs textarea {
+.cms_main-testimonials .new_testimonial form input,
+.cms_main-testimonials .new_testimonial form textarea {
   outline: transparent;
   border: none;
   background-color: #444444;
   border-radius: 6px;
   color: #ffffff;
 }
-.cms_main-testimonials .new_testimonial .inputs .fullName {
+.cms_main-testimonials .new_testimonial form .fullName {
   width: 100%;
   max-width: 400px;
   padding: 10px;
   font-size: 1.3rem;
 }
-.cms_main-testimonials .new_testimonial .inputs .content {
+.cms_main-testimonials .new_testimonial form .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
@@ -327,11 +327,13 @@
   padding: 10px;
   border-bottom: 1px solid #444444;
 }
-.cms_main-testimonials .testimonial_list .testimonial-item .fullName {
-  font-size: 1.4rem;
+.cms_main-testimonials .testimonial_list .testimonial-item > span.fullName {
+  font-size: 1.5rem;
+  font-family: "Bhavuka", sans-serif;
 }
-.cms_main-testimonials .testimonial_list .testimonial-item .content {
-  font-size: 1.2rem;
+.cms_main-testimonials .testimonial_list .testimonial-item > p.content {
+  font-size: 1.3rem;
+  font-family: "Bhavuka", sans-serif;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial {
   display: flex;
@@ -421,24 +423,24 @@
   flex-direction: column;
   gap: 20px;
 }
-.cms_main-offers .new_combo_discount .inputs {
+.cms_main-offers .new_combo_discount form {
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: flex-start;
 }
-.cms_main-offers .new_combo_discount .inputs .combination {
+.cms_main-offers .new_combo_discount form .combination {
   width: 100%;
   max-width: 600px;
   padding: 10px;
   font-size: 1.3rem;
-  font-family: "Montserrat", sans-serif;
-  font-weight: 300;
   outline: transparent;
   border: none;
   background-color: #444444;
   border-radius: 6px;
   color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
 .cms_main-offers > h3 {
   padding: 40px 0;
@@ -458,8 +460,9 @@
   padding: 10px;
   border-bottom: 1px solid #444444;
 }
-.cms_main-offers .combination_list .combo-item .combination {
-  font-size: 1.4rem;
+.cms_main-offers .combination_list .combo-item > span.combination {
+  font-size: 1.5rem;
+  font-family: "Bhavuka", sans-serif;
 }
 .cms_main-offers .combination_list .combo-item .options {
   margin-top: 6px;
@@ -477,6 +480,95 @@
 }
 .cms_main-offers .combination_list .combo-item .options .delete:hover {
   text-decoration: underline;
+}
+
+.cms_main-our_services {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.cms_main-our_services .new_service {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cms_main-our_services .new_service form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.cms_main-our_services .new_service form input,
+.cms_main-our_services .new_service form select {
+  padding: 10px;
+  font-size: 1.3rem;
+  outline: transparent;
+  border: none;
+  background-color: #444444;
+  border-radius: 6px;
+  color: #ffffff;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+}
+.cms_main-our_services .new_service form input {
+  width: 100%;
+  max-width: 600px;
+}
+.cms_main-our_services > h3 {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1.4rem;
+}
+.cms_main-our_services .our_services_cont {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #444444;
+  border-bottom: none;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .cateName {
+  padding: 10px;
+  font-size: 1.4rem;
+  font-family: "McLaren", cursive;
+  font-weight: 400;
+  border-bottom: 1px solid #444444;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+  padding: 10px;
+  padding-left: 20px;
+  border-bottom: 1px solid #444444;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item > span.serviceName {
+  font-size: 1.5rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .options .delete {
+  color: #f62424;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 1.4rem;
+  font-family: "Bhavuka", sans-serif;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .options .delete:hover {
+  text-decoration: underline;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service_list_empty {
+  padding: 10px;
+  padding-left: 20px;
+  font-size: 1.5rem;
+  font-family: "Bhavuka", sans-serif;
+  color: #ff9f9f;
+  border-bottom: 1px solid #444444;
 }
 
 @media (min-width: 768px) {

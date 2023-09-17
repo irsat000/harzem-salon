@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
-import CMS_Template from '../components/CMS_Template';
+import React from 'react';
+import CMS_TEMPLATE from '../components/CMS_Template';
 
 
 const CMS_MINI_GALLERY = () => {
 
     return (
-        <CMS_Template panelTitle='MİNİ GALERİ'>
+        <CMS_TEMPLATE panelTitle='MİNİ GALERİ'>
 
-        </CMS_Template>
+        </CMS_TEMPLATE>
     )
 }
 

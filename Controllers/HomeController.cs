@@ -92,6 +92,7 @@ public class HomeController : ControllerBase
                     miniGalleryImages = os.MiniGalleryImages.Select(mgi => mgi.imageLink)
                 })
             })
+            .AsSplitQuery()
             .ToListAsync();
 
         bool anyOurServicesEmpty = categories.Any(category => category.ourServices.IsNullOrEmpty());

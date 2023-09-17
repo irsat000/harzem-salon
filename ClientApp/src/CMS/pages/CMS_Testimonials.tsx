@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import CMS_Template from '../components/CMS_Template';
+import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import { Testimonial } from '../../components/TestimonialCarousel';
-import { ArrowClockwise, CheckLg } from 'react-bootstrap-icons';
 import SaveAll from '../components/CMS_SaveAll';
 
 
@@ -32,7 +31,7 @@ const CMS_TESTIMONIALS = () => {
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
 
-    // Deletes from the testomonials which then will replace the database records when saved
+    // Deletes from the testimonials which then will replace the database records when saved
     const handleDelete = (indexToDelete: number) => {
         const updatedTestimonials = testimonialsData.filter((_, index) => index !== indexToDelete);
         setTestimonialsData(updatedTestimonials);
@@ -44,7 +43,7 @@ const CMS_TESTIMONIALS = () => {
         content: ''
     });
 
-    // New testimonial handle inputs
+    // New testimonial, handle inputs
     const handleTFormChange = (e: any) => {
         const { name, value } = e.target;
         setTFormData({
@@ -134,6 +133,11 @@ const CMS_TESTIMONIALS = () => {
     const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
+        if (testimonialsData.length < 1) {
+            alert("Liste boş!");
+            return;
+        }
+
         setSaveAllStatus(1);
         fetch(`https://localhost:7173/cms/update-testimonials`, {
             method: 'POST',
@@ -165,10 +169,10 @@ const CMS_TESTIMONIALS = () => {
     }
 
     return (
-        <CMS_Template panelTitle='YORUMLAR'>
+        <CMS_TEMPLATE panelTitle='YORUMLAR'>
             <div className="cms_main-testimonials">
                 <div className="new_testimonial">
-                    <form className="inputs" onSubmit={handleNewTestimonial}>
+                    <form onSubmit={handleNewTestimonial}>
                         <input type='text'
                             placeholder='AD SOYAD'
                             className='fullName'
@@ -184,7 +188,7 @@ const CMS_TESTIMONIALS = () => {
                         <button type='submit' className='submit_button'>Yeni Ekle</button>
                     </form>
                 </div>
-                {testimonialsData.length > 0 ?
+                {testimonialsData.length > 0 ? <>
                     <div className="testimonial_list">
                         {testimonialsData.map((t, index) => {
                             const isEditMode = editMode === index;
@@ -226,12 +230,11 @@ const CMS_TESTIMONIALS = () => {
                             )
                         })}
                     </div>
-                    :
-                    <h3>Hiç yorum yok!</h3>
+                    <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
+                </> : <h3>Hiç yorum yok!</h3>
                 }
-                <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
             </div>
-        </CMS_Template>
+        </CMS_TEMPLATE>
     )
 }
 

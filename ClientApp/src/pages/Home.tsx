@@ -18,7 +18,7 @@ type ServiceCategory = {
     ourServices: OurService[];
 };
 
-type OurServicesModel = ServiceCategory[];
+export type OurServicesModel = ServiceCategory[];
 
 
 

@@ -3,16 +3,16 @@ import '../../styles/global.css';
 import '../../styles/cms.css';
 import { List, XLg } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+//import { useNavigate } from 'react-router-dom';
 
 
 
 
-const CMS_Template: React.FC<{
+const CMS_TEMPLATE: React.FC<{
     children: any,
     panelTitle: string
 }> = ({ children, panelTitle }) => {
-    const navigate = useNavigate();
+    //const navigate = useNavigate();
 
     useEffect(() => {
         // will send to login if the user doesn't have any login credentials
@@ -73,4 +73,4 @@ const CMS_Template: React.FC<{
     )
 }
 
-export default CMS_Template;
+export default CMS_TEMPLATE;
