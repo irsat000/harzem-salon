@@ -48,7 +48,7 @@ const CMS_Template: React.FC<{
                 <ul className='panel_list'>
                     <li><Link to="/panel/musteriler">MÜŞTERİ</Link></li>
                     <li><Link to="/panel/yorumlar">Yorumlar</Link></li>
-                    <li><Link to="/panel/teklifler">Teklifler</Link></li>
+                    <li><Link to="/panel/kampanyalar">Kampanyalar</Link></li>
                     <li><Link to="/panel/hizmetlerimiz">Hizmetlerimiz</Link></li>
                     <li><Link to="/panel/minigaleri">Mini Galeri</Link></li>
                     <li><Link to="/panel/galeri">Galeri</Link></li>

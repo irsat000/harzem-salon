@@ -37,7 +37,7 @@ public class HomeController : ControllerBase
     [HttpGet("discount_combinations")]
     public async Task<IActionResult> DiscountCombinations()
     {
-        var discountCombinations = await _db.DiscountCombinations.ToListAsync();
+        var discountCombinations = await _db.DiscountCombinations.Select(d => d.combination).ToListAsync();
 
         if (discountCombinations.IsNullOrEmpty())
         {

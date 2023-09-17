@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import CMS_Template from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import { Testimonial } from '../../components/TestimonialCarousel';
+import { ArrowClockwise, CheckLg } from 'react-bootstrap-icons';
+import SaveAll from '../components/CMS_SaveAll';
 
 
 const CMS_TESTIMONIALS = () => {
@@ -14,6 +16,7 @@ const CMS_TESTIMONIALS = () => {
                 switch (res.status) {
                     case 404:
                         // List is empty, it's ok for cms
+                        console.log(`Testimonial list is empty but it's ok`);
                         break;
                     case 200:
                         return res.json();
@@ -22,8 +25,9 @@ const CMS_TESTIMONIALS = () => {
                 }
             })
             .then((data) => {
-                // Assign data
-                setTestimonialsData(data.testimonials);
+                if (data && data.testimonials) {
+                    setTestimonialsData(data.testimonials);
+                }
             })
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
@@ -126,9 +130,11 @@ const CMS_TESTIMONIALS = () => {
         setTempValues(testimonialsData[index]);
     }
 
-
+    // 0: Default, 1: Loading, 2: Success
+    const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
+        setSaveAllStatus(1);
         fetch(`https://localhost:7173/cms/update-testimonials`, {
             method: 'POST',
             headers: {
@@ -139,7 +145,7 @@ const CMS_TESTIMONIALS = () => {
             .then((res) => {
                 switch (res.status) {
                     case 200:
-                        alert("Yorumlar kaydedildi.");
+                        setSaveAllStatus(2);
                         break;
                     default:
                         alert("HATA!");
@@ -149,12 +155,18 @@ const CMS_TESTIMONIALS = () => {
             .catch((err) => {
                 alert("HATA!");
                 console.error('Fetch error:', err)
+            })
+            .finally(() => {
+                // Wait 3 seconds to show Check icon as in Success
+                setTimeout(() => {
+                    setSaveAllStatus(0);
+                }, 3000);
             });
     }
 
     return (
         <CMS_Template panelTitle='YORUMLAR'>
-            <div className="csm_main-testimonials">
+            <div className="cms_main-testimonials">
                 <div className="new_testimonial">
                     <form className="inputs" onSubmit={handleNewTestimonial}>
                         <input type='text'
@@ -169,7 +181,7 @@ const CMS_TESTIMONIALS = () => {
                             name='content'
                             value={tFormData.content}
                             onChange={handleTFormChange} ></textarea>
-                        <button type='submit'>Yeni Ekle</button>
+                        <button type='submit' className='submit_button'>Yeni Ekle</button>
                     </form>
                 </div>
                 {testimonialsData.length > 0 ?
@@ -214,10 +226,10 @@ const CMS_TESTIMONIALS = () => {
                             )
                         })}
                     </div>
-                    : <h3>Hiç yorum yok!</h3>}
-                <div className="save-cont">
-                    <button type='button' onClick={handleSaveAll}>Değişiklikleri Kaydet</button>
-                </div>
+                    :
+                    <h3>Hiç yorum yok!</h3>
+                }
+                <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
             </div>
         </CMS_Template>
     )

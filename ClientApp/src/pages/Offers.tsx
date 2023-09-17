@@ -5,17 +5,11 @@ import { defaultFetchGet } from '../utility/fetchUtils';
 
 
 
-type DiscountCombination = {
-    id: number,
-    combination: string
-}
-
-type DiscountCombinationsModel = DiscountCombination[];
 
 
 const PAGE_OFFERS = () => {
 
-    const [discountCombinationsData, setDiscountCombinationsData] = useState<DiscountCombinationsModel | null>(null);
+    const [discountCombinationsData, setDiscountCombinationsData] = useState<string[] | null>(null);
 
     useEffect(() => {
         const cachedDiscountCombinationsData = JSON.parse(localStorage.getItem(`cachedDiscountCombinationsData`) || 'null');
@@ -38,7 +32,7 @@ const PAGE_OFFERS = () => {
                     // Create expiration date
                     const expirationDate = new Date();
                     expirationDate.setDate(expirationDate.getDate() + 2);
-                    
+
                     // Assign data and cache it
                     setDiscountCombinationsData(data.discountCombinations);
                     localStorage.setItem(`cachedDiscountCombinationsData`, JSON.stringify({
@@ -75,7 +69,7 @@ const PAGE_OFFERS = () => {
                             </p>
                             <div className='offer_detail-seperator'></div>
                             <ul>
-                                {discountCombinationsData.map(comb => (<li key={comb.id}>{comb.combination}</li>))}
+                                {discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))}
                             </ul>
                         </div>
                     </div> : <></>

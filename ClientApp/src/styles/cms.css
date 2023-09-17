@@ -1,3 +1,71 @@
+.submit_button {
+  padding: 6px 16px;
+  outline: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  color: #ffffff;
+  background-color: #3d8a3a;
+  transition: background-color 0.1s ease;
+  font-family: "Mukta", sans-serif;
+  font-size: 1.2rem;
+}
+.submit_button:hover {
+  background-color: #55a553;
+}
+
+.save_all-cont {
+  padding: 10px 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.save_all-cont button.loading {
+  cursor: default;
+}
+.save_all-cont button {
+  padding: 0 20px;
+  outline: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  background-color: #3d8a3a;
+  transition: background-color 0.1s ease;
+  font-family: "Mukta", sans-serif;
+  height: 60px;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 1.4rem;
+}
+.save_all-cont button:hover {
+  background-color: #55a553;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.save_all-cont button svg {
+  display: flex;
+  color: #ffffff;
+  font-size: 2rem;
+}
+.save_all-cont button .loading_svg {
+  animation: spin 2s linear infinite;
+}
+
 .cms_container {
   display: flex;
   flex-direction: row;
@@ -200,126 +268,101 @@
   background-color: #50a55e;
 }
 
-.csm_main-testimonials {
+.cms_main-testimonials {
   display: flex;
   flex-direction: column;
   gap: 40px;
 }
-.csm_main-testimonials input,
-.csm_main-testimonials textarea {
+.cms_main-testimonials input,
+.cms_main-testimonials textarea {
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
-.csm_main-testimonials .new_testimonial {
+.cms_main-testimonials .new_testimonial {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.csm_main-testimonials .new_testimonial .inputs {
+.cms_main-testimonials .new_testimonial .inputs {
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: flex-start;
 }
-.csm_main-testimonials .new_testimonial .inputs input,
-.csm_main-testimonials .new_testimonial .inputs textarea {
+.cms_main-testimonials .new_testimonial .inputs input,
+.cms_main-testimonials .new_testimonial .inputs textarea {
   outline: transparent;
   border: none;
   background-color: #444444;
   border-radius: 6px;
   color: #ffffff;
 }
-.csm_main-testimonials .new_testimonial .inputs .fullName {
+.cms_main-testimonials .new_testimonial .inputs .fullName {
   width: 100%;
   max-width: 400px;
   padding: 10px;
   font-size: 1.3rem;
 }
-.csm_main-testimonials .new_testimonial .inputs .content {
+.cms_main-testimonials .new_testimonial .inputs .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
   font-size: 1.1rem;
 }
-.csm_main-testimonials .new_testimonial .inputs button {
-  padding: 6px 16px;
-  outline: transparent;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  color: #ffffff;
-  background-color: #3d8a3a;
-  transition: background-color 0.1s ease;
-  font-family: "Mukta", sans-serif;
-  font-size: 1.2rem;
-}
-.csm_main-testimonials .new_testimonial .inputs button:hover {
-  background-color: #55a553;
-}
-.csm_main-testimonials > h3 {
+.cms_main-testimonials > h3 {
   padding: 40px 0;
   text-align: center;
   font-size: 1.4rem;
 }
-.csm_main-testimonials .testimonial_list {
+.cms_main-testimonials .testimonial_list {
   display: flex;
   flex-direction: column;
   border: 1px solid #444444;
   border-bottom: none;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item {
+.cms_main-testimonials .testimonial_list .testimonial-item {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   border-bottom: 1px solid #444444;
-  /*.fullName.inactive,
-  .content.inactive {
-      display: none;
-  }*/
-  /*.update_testimonial.active {
-      display: flex;
-  }*/
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .fullName {
+.cms_main-testimonials .testimonial_list .testimonial-item .fullName {
   font-size: 1.4rem;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .content {
+.cms_main-testimonials .testimonial_list .testimonial-item .content {
   font-size: 1.2rem;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial {
   display: flex;
   flex-direction: column;
   gap: 14px;
   align-items: flex-start;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial input,
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial textarea {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial input,
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial textarea {
   outline: transparent;
   border: none;
   background-color: #444444;
   border-radius: 6px;
   color: #ffffff;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .fullName {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .fullName {
   width: 100%;
   max-width: 400px;
   padding: 10px;
   font-size: 1.3rem;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .content {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
   font-size: 1.1rem;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options {
   display: inline;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button {
   padding: 4px 10px;
   outline: transparent;
   border: none;
@@ -334,21 +377,21 @@
   transition: background-color 0.1s ease;
   background-color: #3d8a3a;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button:hover {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button:hover {
   background-color: #55a553;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset] {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset] {
   margin-right: 30px;
   background-color: #a82b2b;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset]:hover {
+.cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options button[type=reset]:hover {
   background-color: #af4949;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .options {
+.cms_main-testimonials .testimonial_list .testimonial-item .options {
   margin-top: 6px;
   padding: 0 10px;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .options span {
+.cms_main-testimonials .testimonial_list .testimonial-item .options span {
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
@@ -357,39 +400,83 @@
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .options span:hover {
+.cms_main-testimonials .testimonial_list .testimonial-item .options span:hover {
   text-decoration: underline;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .options .delete {
+.cms_main-testimonials .testimonial_list .testimonial-item .options .delete {
   color: #f62424;
   margin-right: 40px;
 }
-.csm_main-testimonials .testimonial_list .testimonial-item .options .update {
+.cms_main-testimonials .testimonial_list .testimonial-item .options .update {
   color: #38bf4e;
 }
-.csm_main-testimonials .save-cont {
-  padding: 10px 0 50px;
+
+.cms_main-offers {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  gap: 40px;
 }
-.csm_main-testimonials .save-cont button {
-  padding: 10px 20px;
+.cms_main-offers .new_combo_discount {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.cms_main-offers .new_combo_discount .inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: flex-start;
+}
+.cms_main-offers .new_combo_discount .inputs .combination {
+  width: 100%;
+  max-width: 600px;
+  padding: 10px;
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
   outline: transparent;
   border: none;
+  background-color: #444444;
   border-radius: 6px;
-  cursor: pointer;
+  color: #ffffff;
+}
+.cms_main-offers > h3 {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 1.4rem;
+}
+.cms_main-offers .combination_list {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #444444;
+  border-bottom: none;
+}
+.cms_main-offers .combination_list .combo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border-bottom: 1px solid #444444;
+}
+.cms_main-offers .combination_list .combo-item .combination {
+  font-size: 1.4rem;
+}
+.cms_main-offers .combination_list .combo-item .options {
+  margin-top: 6px;
+  padding: 0 10px;
+}
+.cms_main-offers .combination_list .combo-item .options .delete {
+  color: #f62424;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
-  color: #ffffff;
-  background-color: #3d8a3a;
-  transition: background-color 0.1s ease;
-  font-family: "Mukta", sans-serif;
-  font-size: 1.4rem;
+  cursor: pointer;
+  font-size: 1.3rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
 }
-.csm_main-testimonials .save-cont button:hover {
-  background-color: #55a553;
+.cms_main-offers .combination_list .combo-item .options .delete:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {

@@ -23,7 +23,7 @@ const App = () => {
       <Route path="/panel/giris" element={<CMS_LOGIN />} />
       <Route path="/panel/musteriler" element={<CMS_CUSTOMERS />} />
       <Route path="/panel/yorumlar" element={<CMS_TESTIMONIALS />} />
-      <Route path="/panel/teklifler" element={<CMS_OFFERS />} />
+      <Route path="/panel/kampanyalar" element={<CMS_OFFERS />} />
       <Route path="/panel/hizmetlerimiz" element={<CMS_OUR_SERVICES />} />
       <Route path="/panel/minigaleri" element={<CMS_MINI_GALLERY />} />
       <Route path="/panel/galeri" element={<CMS_GALLERY />} />

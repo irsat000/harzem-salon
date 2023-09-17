@@ -1,3 +1,86 @@
+.submit_button {
+    padding: 6px 16px;
+    outline: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    user-select: none;
+    color: #ffffff;
+    background-color: #3d8a3a;
+    transition: background-color 0.1s ease;
+    font-family: "Mukta", sans-serif;
+    font-size: 1.2rem;
+
+    &:hover {
+        background-color: #55a553;
+    }
+}
+
+.save_all-cont {
+    padding: 10px 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    button.loading {
+        cursor: default;
+    }
+
+    button {
+        padding: 0 20px;
+        outline: transparent;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        background-color: #3d8a3a;
+        transition: background-color 0.1s ease;
+        font-family: "Mukta", sans-serif;
+        height: 60px;
+        min-width: 120px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        font-size: 1.4rem;
+
+        &:hover {
+            background-color: #55a553;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        svg {
+            display: flex;
+            color: #ffffff;
+            font-size: 2rem;
+        }
+
+        .loading_svg {
+            animation: spin 2s linear infinite;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
 .cms_container {
     display: flex;
     flex-direction: row;
@@ -248,8 +331,7 @@
 }
 
 
-
-.csm_main-testimonials {
+.cms_main-testimonials {
     display: flex;
     flex-direction: column;
     gap: 40px;
@@ -293,24 +375,6 @@
                 padding: 10px;
                 font-size: 1.1rem;
             }
-
-            button {
-                padding: 6px 16px;
-                outline: transparent;
-                border: none;
-                border-radius: 6px;
-                cursor: pointer;
-                user-select: none;
-                color: #ffffff;
-                background-color: #3d8a3a;
-                transition: background-color 0.1s ease;
-                font-family: "Mukta", sans-serif;
-                font-size: 1.2rem;
-
-                &:hover {
-                    background-color: #55a553;
-                }
-            }
         }
 
     }
@@ -342,15 +406,6 @@
             .content {
                 font-size: 1.2rem;
             }
-
-            /*.fullName.inactive,
-            .content.inactive {
-                display: none;
-            }*/
-
-            /*.update_testimonial.active {
-                display: flex;
-            }*/
 
             .update_testimonial {
                 display: flex;
@@ -440,35 +495,85 @@
             }
         }
     }
+}
 
-    .save-cont {
-        padding: 10px 0 50px;
+
+.cms_main-offers{
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .new_combo_discount {
         display: flex;
-        align-items: center;
-        justify-content: center;
+        flex-direction: column;
+        gap: 20px;
 
-        button {
-            padding: 10px 20px;
-            outline: transparent;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            user-select: none;
-            color: #ffffff;
-            background-color: #3d8a3a;
-            transition: background-color 0.1s ease;
-            font-family: "Mukta", sans-serif;
-            font-size: 1.4rem;
+        .inputs {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-start;
 
-            &:hover {
-                background-color: #55a553;
+            .combination {
+                width: 100%;
+                max-width: 600px;
+                padding: 10px;
+                font-size: 1.3rem;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 300;
+                outline: transparent;
+                border: none;
+                background-color: #444444;
+                border-radius: 6px;
+                color: #ffffff;
+            }
+        }
+    }
+
+    // No combo
+    >h3 {
+        padding: 40px 0;
+        text-align: center;
+        font-size: 1.4rem;
+    }
+
+    .combination_list{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid #444444;
+        border-bottom: none;
+
+        .combo-item {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            padding: 10px;
+            border-bottom: 1px solid #444444;
+
+            .combination {
+                font-size: 1.4rem;
+            }
+
+            .options {
+                margin-top: 6px;
+                padding: 0 10px;
+
+                .delete {
+                    color: #f62424;
+                    user-select: none;
+                    cursor: pointer;
+                    font-size: 1.3rem;
+                    font-family: 'Montserrat', sans-serif;
+                    font-weight: 300;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
             }
         }
     }
 }
-
-
-
 
 
 
