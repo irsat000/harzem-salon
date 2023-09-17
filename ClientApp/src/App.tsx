@@ -9,7 +9,6 @@ import CMS_CUSTOMERS from './CMS/pages/CMS_Customers';
 import CMS_TESTIMONIALS from './CMS/pages/CMS_Testimonials';
 import CMS_OFFERS from './CMS/pages/CMS_Offers';
 import CMS_OUR_SERVICES from './CMS/pages/CMS_OurServices';
-import CMS_MINI_GALLERY from './CMS/pages/CMS_MiniGallery';
 import CMS_GALLERY from './CMS/pages/CMS_Gallery';
 
 const App = () => {
@@ -25,7 +24,6 @@ const App = () => {
       <Route path="/panel/yorumlar" element={<CMS_TESTIMONIALS />} />
       <Route path="/panel/kampanyalar" element={<CMS_OFFERS />} />
       <Route path="/panel/hizmetlerimiz" element={<CMS_OUR_SERVICES />} />
-      <Route path="/panel/minigaleri" element={<CMS_MINI_GALLERY />} />
       <Route path="/panel/galeri" element={<CMS_GALLERY />} />
     </Routes>
   );

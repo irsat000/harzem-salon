@@ -1,3 +1,8 @@
+:root {
+  --cms-border-color1: #444444;
+  --cms-border-color2: #666666;
+}
+
 .submit_button {
   padding: 6px 16px;
   outline: transparent;
@@ -11,7 +16,7 @@
   background-color: #3d8a3a;
   transition: background-color 0.1s ease;
   font-family: "Mukta", sans-serif;
-  font-size: 1.2rem;
+  font-size: 1.2em;
 }
 .submit_button:hover {
   background-color: #55a553;
@@ -44,7 +49,7 @@
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .save_all-cont button:hover {
   background-color: #55a553;
@@ -60,7 +65,7 @@
 .save_all-cont button svg {
   display: flex;
   color: #ffffff;
-  font-size: 2rem;
+  font-size: 2em;
 }
 .save_all-cont button .loading_svg {
   animation: spin 2s linear infinite;
@@ -70,6 +75,7 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  font-size: 16px;
 }
 .cms_container .cms_drawer-cont.active {
   display: block;
@@ -114,10 +120,10 @@
 .cms_container .cms_drawer-cont .cms_drawer .close-cms_drawer-btn {
   padding: 14px;
   align-self: flex-end;
-  font-size: 2rem;
+  font-size: 2em;
 }
 .cms_container .cms_drawer-cont .cms_drawer > h3 {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   padding: 0 40px 0 20px;
   font-family: "McLaren", cursive;
   font-weight: 400;
@@ -129,7 +135,7 @@
   cursor: pointer;
   padding: 10px 40px 10px 20px;
   transition: background-color 0.1s ease;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_container .cms_drawer-cont .cms_drawer .panel_list li a:hover {
@@ -139,7 +145,7 @@
   cursor: pointer;
   padding: 10px 40px 10px 20px;
   transition: background-color 0.1s ease;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_container .cms_drawer-cont .cms_drawer .option_list li:hover {
@@ -155,10 +161,10 @@
   top: 0;
   overflow-y: auto;
   height: 100vh;
-  border-right: 2px solid #444444;
+  border-right: 2px solid var(--cms-border-color1);
 }
 .cms_container nav > h3 {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   padding: 0 40px 0 20px;
   font-family: "McLaren", cursive;
   font-weight: 400;
@@ -170,7 +176,7 @@
   cursor: pointer;
   padding: 10px 40px 10px 20px;
   transition: background-color 0.1s ease;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_container nav .panel_list li a:hover {
@@ -180,7 +186,7 @@
   cursor: pointer;
   padding: 10px 40px 10px 20px;
   transition: background-color 0.1s ease;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_container nav .option_list li:hover {
@@ -199,7 +205,7 @@
 }
 .cms_container .cms_panel-cont header .cms_drawer-btn {
   display: flex;
-  font-size: 3rem;
+  font-size: 3em;
 }
 .cms_container .cms_panel-cont main {
   padding: 10px 2%;
@@ -209,7 +215,7 @@
   text-align: center;
   font-family: "Delius", cursive;
   font-weight: 400;
-  font-size: 2rem;
+  font-size: 1.4em;
 }
 
 .cms-login-cont {
@@ -222,7 +228,7 @@
   padding: 20vh 0;
 }
 .cms-login-cont > h3 {
-  font-size: 1.6rem;
+  font-size: 1.6em;
   font-family: "Delius", cursive;
   font-weight: 400;
 }
@@ -247,7 +253,7 @@
 .cms-login-cont form .form_inputs input {
   outline: transparent;
   padding: 10px 16px;
-  font-size: 1.1rem;
+  font-size: 1.1em;
   border-radius: 6px;
   background-color: #323232;
   border: 1px solid #bcbcbc;
@@ -255,7 +261,7 @@
 }
 .cms-login-cont form button {
   outline: transparent;
-  font-size: 1.2rem;
+  font-size: 1.2em;
   padding: 8px 26px;
   border-radius: 6px;
   border: 1px solid #bcbcbc;
@@ -301,23 +307,23 @@
   width: 100%;
   max-width: 400px;
   padding: 10px;
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 .cms_main-testimonials .new_testimonial form .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 .cms_main-testimonials > h3 {
   padding: 40px 0;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .cms_main-testimonials .testimonial_list {
   display: flex;
   flex-direction: column;
-  border: 1px solid #444444;
+  border: 1px solid var(--cms-border-color1);
   border-bottom: none;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item {
@@ -325,14 +331,14 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid var(--cms-border-color1);
 }
 .cms_main-testimonials .testimonial_list .testimonial-item > span.fullName {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item > p.content {
-  font-size: 1.3rem;
+  font-size: 1.3em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial {
@@ -353,13 +359,13 @@
   width: 100%;
   max-width: 400px;
   padding: 10px;
-  font-size: 1.3rem;
+  font-size: 1.3em;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .content {
   width: 100%;
   min-height: 70px;
   padding: 10px;
-  font-size: 1.1rem;
+  font-size: 1.1em;
 }
 .cms_main-testimonials .testimonial_list .testimonial-item .update_testimonial .update_testimonial_options {
   display: inline;
@@ -375,7 +381,7 @@
           user-select: none;
   color: #ffffff;
   font-family: "Mukta", sans-serif;
-  font-size: 1rem;
+  font-size: 1em;
   transition: background-color 0.1s ease;
   background-color: #3d8a3a;
 }
@@ -398,7 +404,7 @@
      -moz-user-select: none;
           user-select: none;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.3em;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
@@ -433,7 +439,7 @@
   width: 100%;
   max-width: 600px;
   padding: 10px;
-  font-size: 1.3rem;
+  font-size: 1.3em;
   outline: transparent;
   border: none;
   background-color: #444444;
@@ -445,12 +451,12 @@
 .cms_main-offers > h3 {
   padding: 40px 0;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .cms_main-offers .combination_list {
   display: flex;
   flex-direction: column;
-  border: 1px solid #444444;
+  border: 1px solid var(--cms-border-color1);
   border-bottom: none;
 }
 .cms_main-offers .combination_list .combo-item {
@@ -458,10 +464,10 @@
   flex-direction: column;
   gap: 10px;
   padding: 10px;
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid var(--cms-border-color1);
 }
 .cms_main-offers .combination_list .combo-item > span.combination {
-  font-size: 1.5rem;
+  font-size: 1.5em;
   font-family: "Bhavuka", sans-serif;
 }
 .cms_main-offers .combination_list .combo-item .options {
@@ -474,7 +480,7 @@
      -moz-user-select: none;
           user-select: none;
   cursor: pointer;
-  font-size: 1.3rem;
+  font-size: 1.3em;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
 }
@@ -501,7 +507,7 @@
 .cms_main-our_services .new_service form input,
 .cms_main-our_services .new_service form select {
   padding: 10px;
-  font-size: 1.3rem;
+  font-size: 1.3em;
   outline: transparent;
   border: none;
   background-color: #444444;
@@ -517,7 +523,7 @@
 .cms_main-our_services > h3 {
   padding: 40px 0;
   text-align: center;
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .cms_main-our_services .our_services_cont {
   display: flex;
@@ -527,48 +533,96 @@
 .cms_main-our_services .our_services_cont .our_services_list-item {
   display: flex;
   flex-direction: column;
-  border: 1px solid #444444;
-  border-bottom: none;
+  border: 1px solid var(--cms-border-color2);
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .cateName {
   padding: 10px;
-  font-size: 1.4rem;
+  font-size: 1.4em;
   font-family: "McLaren", cursive;
   font-weight: 400;
-  border-bottom: 1px solid #444444;
+  border-bottom: 1px solid var(--cms-border-color2);
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .service-item {
+  border-bottom: 1px solid var(--cms-border-color2);
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item:last-child {
+  border-bottom: none;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 30px;
-  padding: 10px;
-  padding-left: 20px;
-  border-bottom: 1px solid #444444;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--cms-border-color1);
 }
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item > span.serviceName {
-  font-size: 1.5rem;
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > span.serviceName {
+  font-size: 1.5em;
   font-family: "Bhavuka", sans-serif;
 }
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .options .delete {
-  color: #f62424;
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .add_image,
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .delete {
+  margin-left: auto;
+  padding: 0 10px;
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
   cursor: pointer;
-  font-size: 1.4rem;
+  font-size: 1.2em;
   font-family: "Bhavuka", sans-serif;
 }
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .options .delete:hover {
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .add_image:hover,
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .delete:hover {
+  text-decoration: underline;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .add_image {
+  color: #4fe34d;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .delete {
+  color: #f62424;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery {
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 10px 16px;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .img_wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 7px;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .img_wrap img {
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  max-width: 100%;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .img_wrap .delete {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-family: "Bhavuka", sans-serif;
+  text-align: center;
+  color: #f62424;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .img_wrap .delete:hover {
   text-decoration: underline;
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .service_list_empty {
-  padding: 10px;
-  padding-left: 20px;
-  font-size: 1.5rem;
+  padding: 10px 20px;
+  font-size: 1.5em;
   font-family: "Bhavuka", sans-serif;
   color: #ff9f9f;
-  border-bottom: 1px solid #444444;
 }
 
 @media (min-width: 768px) {
@@ -577,5 +631,19 @@
   }
   .cms_container .cms_panel-cont header {
     display: none;
+  }
+  .cms_container .cms_panel-cont main .cms_main-title {
+    font-size: 1.8rem;
+  }
+  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap {
+    gap: 40px;
+    justify-content: flex-start;
+  }
+  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .add_image,
+  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .delete {
+    margin-left: unset;
+  }
+  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery {
+    justify-content: flex-start;
   }
 }/*# sourceMappingURL=cms.css.map */

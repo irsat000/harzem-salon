@@ -186,6 +186,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  cursor: pointer;
 }
 .gallery-section .gallery_showmore {
   width: 100%;

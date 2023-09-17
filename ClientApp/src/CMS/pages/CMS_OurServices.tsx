@@ -2,8 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
-import { OurServicesModel } from '../../pages/Home';
+import { OurServicesModel, ServiceCategory } from '../../pages/Home';
 import { convertToAscii } from '../../utility/utils';
+import { ScaleUpImage } from '../../pages/Gallery';
 
 
 const CMS_OUR_SERVICES = () => {
@@ -24,9 +25,37 @@ const CMS_OUR_SERVICES = () => {
                         throw new Error(`HTTP error! status: ${res.status}`);
                 }
             })
-            .then((data) => {
+            .then(async (data) => {
                 if (data && data.categories) {
-                    setOurServicesData(data.categories);
+                    // Replace image urls with the rendered ones.
+                    const updatedCategories = await Promise.all(
+                        data.categories.map(async (cate: ServiceCategory) => {
+                            const updatedOurServices = await Promise.all(
+                                cate.ourServices.map(async (service) => {
+                                    const updatedImages = (await Promise.all(
+                                        service.miniGalleryImages.map(async (imgLink) => {
+                                            try {
+                                                const importedImage = await import(`../../assets/images/mini_gallery/${imgLink}`);
+                                                return importedImage.default;
+                                            } catch (error) {
+                                                return null;
+                                            }
+                                        })
+                                    )).filter((image) => image !== null); // Clean from nulls when there are errors
+
+                                    return {
+                                        ...service,
+                                        miniGalleryImages: updatedImages,
+                                    };
+                                })
+                            );
+
+                            return {
+                                ...cate,
+                                ourServices: updatedOurServices
+                            }
+                        }));
+                    setOurServicesData(updatedCategories);
                 }
             })
             .catch((err) => console.error('Error fetching data:', err));
@@ -139,8 +168,19 @@ const CMS_OUR_SERVICES = () => {
             });
     }
 
+
+    // Scale up for image
+    const [scaleUpActive, setScaleUpActive] = useState(false);
+    const [sclupImage, setSclupImage] = useState<undefined | string>(undefined);
+
+    const handleScaleUp = (imageUrl: string) => {
+        setSclupImage(imageUrl);
+        setScaleUpActive(true);
+    }
+
     return (
         <CMS_TEMPLATE panelTitle='HİZMETLERİMİZ'>
+            <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
             <div className="cms_main-our_services">
                 <div className="new_service">
                     <form onSubmit={handleNewService}>
@@ -171,10 +211,23 @@ const CMS_OUR_SERVICES = () => {
                                     <h3 className='cateName'>{cateName}</h3>
                                     {cate.ourServices.length > 0 ? cate.ourServices.map((service, sIndex) => (
                                         <div className="service-item" key={'service_' + sIndex}>
-                                            <span className='serviceName'>{service.serviceName}</span>
-                                            <div className="options">
+                                            <div className="service-wrap">
+                                                <span className='serviceName'>{service.serviceName}</span>
+                                                <span className='add_image'>Yeni Foto</span>
                                                 <span className='delete' onClick={() => handleDelete(cIndex, sIndex)}>Sil</span>
                                             </div>
+                                            {!service.miniGalleryImages.length || // 0 is falsy
+                                                <div className="mini_gallery">
+                                                    {service.miniGalleryImages.map((imgLink, mgiIndex) => {
+                                                        return (
+                                                            <div className="img_wrap" key={mgiIndex}>
+                                                                <img src={imgLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} onClick={() => handleScaleUp(imgLink)} />
+                                                                <span className='delete'>Sil</span>
+                                                            </div>
+                                                        )
+                                                    })}
+                                                </div>
+                                            }
                                         </div>
                                     )) : <span className='service_list_empty'>Bu kategoride hizmet yok!</span>}
                                 </div>

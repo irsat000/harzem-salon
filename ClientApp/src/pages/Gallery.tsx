@@ -13,7 +13,27 @@ export type GalleryImage = {
 }
 
 
-const ScaleUpImage: React.FC<{
+/**
+* Adds scale up for any image
+* @param {string} imageurl - Image link
+* @param {Function} setSclupImage - Clean image upon close
+* @param {boolean} scaleUpActive - Component state
+* @param {Function} setScaleUpActive - On/Off for component
+* @returns {JSX.Element} React component.
+*
+* @example
+* const [scaleUpActive, setScaleUpActive] = useState(false);
+* const [sclupImage, setSclupImage] = useState<undefined | string>(undefined);
+* const handleScaleUp = (imageUrl: string) => {
+*     setSclupImage(imageUrl);
+*     setScaleUpActive(true);
+* }
+* 
+* <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
+* 
+* <img src={image_link} onClick={() => handleScaleUp(image_link)} />
+*/
+export const ScaleUpImage: React.FC<{
     imageUrl?: string,
     setSclupImage: (e: string | undefined) => void,
     scaleUpActive: boolean,
@@ -92,27 +112,25 @@ const PAGE_GALLERY = () => {
 
     return (
         <Template isHomepage={false}>
-            <>
-                <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
-                <div className='gallery-header'>
-                    <div></div>
-                    <h1>GALERİ</h1>
-                    <div></div>
-                </div>
-                <div className='gallery-cont'>
-                    {galleryData ? galleryData.map((item, index) => (
-                        <div key={index} className='gallery-item'>
-                            <div className="image-wrap">
-                                <img src={item.imageLink} alt='Galeri fotoğrafı' onClick={() => handleScaleUp(item.imageLink)} />
-                            </div>
-                            <div className='gallery_item_details'>
-                                <p>{item.title}</p>
-                                <span>Tarih - {item.uploadDate}</span>
-                            </div>
+            <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
+            <div className='gallery-header'>
+                <div></div>
+                <h1>GALERİ</h1>
+                <div></div>
+            </div>
+            <div className='gallery-cont'>
+                {galleryData ? galleryData.map((item, index) => (
+                    <div key={index} className='gallery-item'>
+                        <div className="image-wrap">
+                            <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />
                         </div>
-                    )) : <></>}
-                </div>
-            </>
+                        <div className='gallery_item_details'>
+                            <p>{item.title}</p>
+                            <span>Tarih - {item.uploadDate}</span>
+                        </div>
+                    </div>
+                )) : <></>}
+            </div>
         </Template>
     )
 }

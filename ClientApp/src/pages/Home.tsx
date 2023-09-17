@@ -5,6 +5,7 @@ import Template from '../components/Template';
 import { Link } from 'react-router-dom';
 import '../styles/home.css'
 import { defaultFetchGet } from '../utility/fetchUtils';
+import { ScaleUpImage } from './Gallery';
 
 
 export type OurService = {
@@ -13,7 +14,7 @@ export type OurService = {
     miniGalleryImages: string[];
 };
 
-type ServiceCategory = {
+export type ServiceCategory = {
     cateCode: string;
     ourServices: OurService[];
 };
@@ -129,8 +130,19 @@ const PAGE_HOME = () => {
         )
     }
 
+
+    // Scale up for image
+    const [scaleUpActive, setScaleUpActive] = useState(false);
+    const [sclupImage, setSclupImage] = useState<undefined | string>(undefined);
+
+    const handleScaleUp = (imageUrl: string) => {
+        setSclupImage(imageUrl);
+        setScaleUpActive(true);
+    }
+
     return (
         <Template isHomepage={true} gallerySection={gallerySection} ourservicesSection={ourservicesSection}>
+            <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
             <MiniGallery miniGalleryData={miniGalleryData} miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
             <p className='appointment_contact_info'>
                 Randevu için arayınız - <span>0 (543) 819 20 19</span>
@@ -194,7 +206,7 @@ const PAGE_HOME = () => {
                 <section className='gallery-section'>
                     {homeGalleryData.map((image, index) => (
                         <div className='gallery-item' key={index}>
-                            <img src={image} alt={`Galeri fotoğrafı ${index}`} />
+                            <img src={image} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(image)} />
                         </div>
                     ))}
                     <div className='gallery_showmore'>
