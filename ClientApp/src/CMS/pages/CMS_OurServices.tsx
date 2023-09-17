@@ -80,6 +80,14 @@ const CMS_OUR_SERVICES = () => {
         setOurServicesData(tempData);
     };
 
+    // Deletes from the images of services
+    const handleDeleteImage = (cateIndex: number, serviceIndex: number, indexToDelete: number) => {
+        const tempData = [...ourServicesData];
+        tempData[cateIndex].ourServices[serviceIndex].miniGalleryImages =
+            tempData[cateIndex].ourServices[serviceIndex].miniGalleryImages.filter((_, index) => index !== indexToDelete);
+        setOurServicesData(tempData);
+    };
+
     // New service form data
     const [newServiceData, setNewServiceData] = useState({
         cateCode: 'sac',
@@ -222,7 +230,7 @@ const CMS_OUR_SERVICES = () => {
                                                         return (
                                                             <div className="img_wrap" key={mgiIndex}>
                                                                 <img src={imgLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} onClick={() => handleScaleUp(imgLink)} />
-                                                                <span className='delete'>Sil</span>
+                                                                <span className='delete' onClick={() => handleDeleteImage(cIndex, sIndex, mgiIndex)}>Sil</span>
                                                             </div>
                                                         )
                                                     })}
