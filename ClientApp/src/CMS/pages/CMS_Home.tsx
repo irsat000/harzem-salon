@@ -8,7 +8,7 @@ const CMS_HOME = () => {
 
     useEffect(() => {
         // will send to login if the user doesn't have any login credentials, otherwise musteriler
-        navigate('/panel/musteriler');
+        navigate('/panel/yorumlar');
 
     }, [navigate])
     

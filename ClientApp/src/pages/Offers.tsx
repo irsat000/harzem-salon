@@ -47,6 +47,7 @@ const PAGE_OFFERS = () => {
     return (
         <Template isHomepage={false}>
             <>
+                {/*
                 <div className='offer-item'>
                     <div className='offer-header'>
                         <h1>Arkadaşını Getir</h1>
@@ -58,7 +59,8 @@ const PAGE_OFFERS = () => {
                     </div>
                 </div>
                 <div className='offer-seperator'></div>
-                {discountCombinationsData ?
+                */}
+                {discountCombinationsData ? <>
                     <div className='offer-item'>
                         <div className='offer-header'>
                             <h1>Kombinasyon Tarifeleri</h1>
@@ -72,7 +74,8 @@ const PAGE_OFFERS = () => {
                                 {discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))}
                             </ul>
                         </div>
-                    </div> : <></>
+                    </div>
+                </> : <></>
                 }
             </>
         </Template>

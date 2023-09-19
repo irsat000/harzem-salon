@@ -30,7 +30,6 @@ const CMS_TEMPLATE: React.FC<{
                     </div>
                     <h3>Panel</h3>
                     <ul className='panel_list'>
-                        <li><Link to="/panel/musteriler">MÜŞTERİ</Link></li>
                         <li><Link to="/panel/yorumlar">Yorumlar</Link></li>
                         <li><Link to="/panel/teklifler">Teklifler</Link></li>
                         <li><Link to="/panel/hizmetlerimiz">Hizmetlerimiz</Link></li>
@@ -45,7 +44,6 @@ const CMS_TEMPLATE: React.FC<{
             <nav>
                 <h3>Panel</h3>
                 <ul className='panel_list'>
-                    <li><Link to="/panel/musteriler">MÜŞTERİ</Link></li>
                     <li><Link to="/panel/yorumlar">Yorumlar</Link></li>
                     <li><Link to="/panel/kampanyalar">Kampanyalar</Link></li>
                     <li><Link to="/panel/hizmetlerimiz">Hizmetlerimiz</Link></li>

@@ -24,8 +24,7 @@ builder.Services.AddCors(options =>
         });
     });
     
-IFileProvider physicalProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
-builder.Services.AddSingleton<IFileProvider>(physicalProvider);
+builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();

@@ -46,7 +46,7 @@ const CMS_GALLERY = () => {
         // Get the selected image file
         const selectedImage = e.target.files[0];
         // Check
-        if (!selectedImage || selectedImage.type.includes('image/')) {
+        if (!selectedImage || !selectedImage.type.includes('image/')) {
             alert('Sadece fotoğraflar yüklenebilir!');
             e.target.value = ''; // Clear input
             return;
@@ -66,15 +66,52 @@ const CMS_GALLERY = () => {
             return;
         }
 
+        // Create payload
+        const formData = new FormData();
+        formData.append('file', newImage);
+        formData.append('title', newDescription);
+        formData.append('category', 'gallery');
 
-
-        const newImageData = {
-            imageLink: newImage,
-            title: newDescription,
-            uploadDate: new Date().toLocaleString()
-        }
-        console.log(newImageData);
-        console.log(galleryData);
+        fetch(`https://localhost:7173/cms/upload-image`, {
+            method: 'POST',
+            body: formData
+        })
+            .then((res) => {
+                switch (res.status) {
+                    case 200:
+                        return res.json();
+                    default:
+                        alert("HATA!");
+                        throw new Error(`HTTP error! status: ${res.status}`);
+                }
+            })
+            .then((data) => {
+                
+                alert("Başarılı!")
+                const reader = new FileReader();
+                reader.onload = (event) => {
+                    if (!event.target || !event.target.result) {
+                        alert("Sayfa yenileme gerekli");
+                        return;
+                    }
+                    const updated = [...galleryData];
+                    updated.unshift({
+                        id: 0,
+                        imageLink: event.target.result as string,
+                        title: newDescription,
+                        uploadDate: new Date().toLocaleDateString()
+                    })
+                    setGalleryData(updated)
+                    console.log(updated);
+                    
+                };
+                // Read the selected file as a Data URL (base64)
+                reader.readAsDataURL(newImage);
+            })
+            .catch((err) => {
+                alert("HATA!");
+                console.error('Fetch error:', err)
+            });
     }
 
     // Scale up images

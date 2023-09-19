@@ -21,3 +21,10 @@ public partial class OurService_Update
     public required string serviceCode { get; set; }
     public required List<string> MiniGalleryImages { get; set; }
 }
+
+public class UploadImageModel
+{
+    public required IFormFile file { get; set; }
+    public required string title { get; set; }
+    public required string category { get; set; }
+}
