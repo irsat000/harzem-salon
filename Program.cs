@@ -1,5 +1,6 @@
 using System.Text.Json.Serialization;
 using harzem_salon.Entities;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -22,6 +23,9 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
     });
+    
+IFileProvider physicalProvider = new PhysicalFileProvider(Directory.GetCurrentDirectory());
+builder.Services.AddSingleton<IFileProvider>(physicalProvider);
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();

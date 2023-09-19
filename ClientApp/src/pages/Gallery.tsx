@@ -71,7 +71,7 @@ const PAGE_GALLERY = () => {
     }
 
 
-    const [galleryData, setGalleryData] = useState<GalleryImage[] | null>(null);
+    const [galleryData, setGalleryData] = useState<GalleryImage[]>([]);
 
     useEffect(() => {
         const cachedGalleryData = sessionStorage.getItem(`cachedGalleryData`);
@@ -119,7 +119,7 @@ const PAGE_GALLERY = () => {
                 <div></div>
             </div>
             <div className='gallery-cont'>
-                {galleryData ? galleryData.map((item, index) => (
+                {galleryData.length > 0 ? galleryData.map((item, index) => (
                     <div key={index} className='gallery-item'>
                         <div className="image-wrap">
                             <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />

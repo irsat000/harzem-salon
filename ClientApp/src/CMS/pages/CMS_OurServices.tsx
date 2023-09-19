@@ -25,37 +25,18 @@ const CMS_OUR_SERVICES = () => {
                         throw new Error(`HTTP error! status: ${res.status}`);
                 }
             })
-            .then(async (data) => {
+            .then((data) => {
                 if (data && data.categories) {
-                    // Replace image urls with the rendered ones.
-                    const updatedCategories = await Promise.all(
-                        data.categories.map(async (cate: ServiceCategory) => {
-                            const updatedOurServices = await Promise.all(
-                                cate.ourServices.map(async (service) => {
-                                    const updatedImages = (await Promise.all(
-                                        service.miniGalleryImages.map(async (imgLink) => {
-                                            try {
-                                                const importedImage = await import(`../../assets/images/mini_gallery/${imgLink}`);
-                                                return importedImage.default;
-                                            } catch (error) {
-                                                return null;
-                                            }
-                                        })
-                                    )).filter((image) => image !== null); // Clean from nulls when there are errors
-
-                                    return {
-                                        ...service,
-                                        miniGalleryImages: updatedImages,
-                                    };
-                                })
-                            );
-
-                            return {
-                                ...cate,
-                                ourServices: updatedOurServices
-                            }
-                        }));
-                    setOurServicesData(updatedCategories);
+                    const updated = data.categories.map((cate: ServiceCategory) => ({
+                        ...cate,
+                        ourServices: cate.ourServices.map((s) => ({
+                            ...s,
+                            miniGalleryImages: s.miniGalleryImages.map((img) =>
+                                'https://localhost:7173/i/mini_gallery/' + img
+                            ),
+                        })),
+                    }));
+                    setOurServicesData(updated);
                 }
             })
             .catch((err) => console.error('Error fetching data:', err));

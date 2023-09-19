@@ -25,26 +25,15 @@ const MiniGallery: React.FC<{
 
     useEffect(() => {
         if (miniGalleryData) {
-            const importMiniGalleryImages = async () => {
-                const updatedMiniGalleryData = await Promise.all(
-                    miniGalleryData.map(async (s) => {
-                        if (activeCategory === "Hepsi" || activeCategory === s.serviceName) {
-                            return await Promise.all(
-                                s.miniGalleryImages.map(async (image) => {
-                                    const importedImage = await import(`../assets/images/mini_gallery/${image}`);
-                                    return importedImage.default;
-                                })
-                            );
-                        } else {
-                            // Return an empty array so it doesn't register as undefined
-                            return [];
-                        }
-                    })
-                );
-                // Flatten the array of arrays of image URLs
-                setMiniGalleryImgList(updatedMiniGalleryData.flat());
-            };
-            importMiniGalleryImages();
+            // Get images by category
+            // Return an empty array if the array is empty so it doesn't register as undefined
+            const updatedMiniGalleryData = miniGalleryData.map((s) => (
+                activeCategory === "Hepsi" || activeCategory === s.serviceName
+                    ? s.miniGalleryImages.map(img => 'https://localhost:7173/i/mini_gallery/' + img)
+                    : []
+            ));
+            // Flatten the image URLs
+            setMiniGalleryImgList(updatedMiniGalleryData.flat());
         }
     }, [miniGalleryData, activeCategory]);
 

@@ -741,6 +741,50 @@
 }
 
 
+.cms_main-gallery {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+
+    .new_image {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            align-items: flex-start;
+
+            input {
+                padding: 10px;
+                font-size: 1.3em;
+                outline: transparent;
+                border: none;
+                background-color: #444444;
+                border-radius: 6px;
+                color: #ffffff;
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 300;
+            }
+
+            .description {
+                width: 100%;
+            }
+        }
+    }
+    
+    // No list
+    >h3 {
+        padding: 40px 0;
+        text-align: center;
+        font-size: 1.4em;
+    }
+}
+
+
+
 
 
 
@@ -782,7 +826,8 @@
                             margin-left: unset;
                         }
                     }
-                    .mini_gallery{
+
+                    .mini_gallery {
                         justify-content: flex-start;
                     }
                 }
