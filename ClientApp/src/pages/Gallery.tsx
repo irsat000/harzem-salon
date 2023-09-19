@@ -91,20 +91,13 @@ const PAGE_GALLERY = () => {
                     }
                 })
                 .then(async (data) => {
-                    data.gallery = await Promise.all(
-                        data.gallery.map(async (image: GalleryImage) => {
-                            const importedImage = await import(`../assets/images/gallery/${image.imageLink}`);
-                            const newDate = new Date(image.uploadDate);
-                            return {
-                                id: image.id,
-                                imageLink: importedImage.default,
-                                title: image.title,
-                                uploadDate: newDate.toLocaleDateString()
-                            };
-                        })
-                    );
-                    setGalleryData(data.gallery);
-                    sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(data.gallery));
+                    const updated = data.gallery.map((img: GalleryImage) => ({
+                        ...img,
+                        imageLink: 'https://localhost:7173/i/gallery/' + img.imageLink,
+                        uploadDate: new Date(img.uploadDate).toLocaleDateString()
+                    }));
+                    setGalleryData(updated);
+                    sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(updated));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }

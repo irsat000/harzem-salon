@@ -96,14 +96,9 @@ const PAGE_HOME = () => {
                     }
                 })
                 .then(async (data) => {
-                    data.gallery = await Promise.all(
-                        data.gallery.map(async (image: string) => {
-                            const importedImage = await import(`../assets/images/gallery/${image}`);
-                            return importedImage.default;
-                        })
-                    );
-                    setHomeGalleryData(data.gallery);
-                    sessionStorage.setItem(`cachedHomeGalleryData`, JSON.stringify(data.gallery));
+                    const updated = data.gallery.map((imageLink: string) => 'https://localhost:7173/i/gallery/' + imageLink)
+                    setHomeGalleryData(updated);
+                    sessionStorage.setItem(`cachedHomeGalleryData`, JSON.stringify(updated));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }

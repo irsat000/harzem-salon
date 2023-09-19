@@ -21,11 +21,11 @@ const Drawer: React.FC<{
     return (
         <div className={`drawer-cont ${drawerActive ? 'active' : ''}`} onClick={() => handleClose()}>
             <div className='drawer' onClick={(e) => e.stopPropagation()}>
-                <img src={require('../assets/images/nails_transparent.png')} alt='Mobil menü fotoğrafı' className='drawer-header'/>
-                <button type='button' className='d-check_balance-btn' onClick={() => {
+                <img src={require('../assets/images/nails_transparent.png')} alt='Mobil menü fotoğrafı' className='drawer-header' />
+                {/*<button type='button' className='d-check_balance-btn' onClick={() => {
                     handleClose()
                     setBalanceCheckActive(true)
-                }}>Kupon Sorgula</button>
+                }}>Kupon Sorgula</button>*/}
                 <ul>
                     {isHomepage && ourservicesSection
                         ? <li><button onClick={() => {

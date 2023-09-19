@@ -15,7 +15,7 @@
   z-index: 100;
   background-color: rgba(0, 0, 0, 0.8);
 }
-@keyframes slideIn {
+@keyframes slideIn_drawer {
   from {
     right: -60%;
     opacity: 0;
@@ -40,7 +40,7 @@
   padding: 0 16px 20px;
   overflow-y: auto;
   gap: 20px;
-  animation: slideIn 0.3s ease-in-out;
+  animation: slideIn_drawer 0.3s ease-in-out;
 }
 .drawer-cont .drawer .drawer-header {
   margin-right: -16px;

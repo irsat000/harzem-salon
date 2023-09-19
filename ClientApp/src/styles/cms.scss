@@ -109,7 +109,7 @@
         z-index: 100;
         background-color: rgba(0, 0, 0, 0.6);
 
-        @keyframes slideIn {
+        @keyframes slideIn_cmsdrawer {
             from {
                 left: -30%;
                 opacity: 0;
@@ -134,7 +134,7 @@
             align-items: flex-start;
             overflow-y: auto;
             gap: 10px;
-            animation: slideIn 0.1s ease-in-out;
+            animation: slideIn_cmsdrawer 0.1s ease-in-out;
 
             .close-cms_drawer-btn {
                 padding: 14px;

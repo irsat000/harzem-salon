@@ -21,13 +21,9 @@ const Header: React.FC<{
                 <div className='drawer_btn' onClick={() => setDrawerActive(true)}>
                     <List />
                 </div>
-                <div className='balance-cont'>
-                    {/*<div className='account-logout'>
-                        <BoxArrowLeft />
-                    </div>
-                    <span>Fatma Sönmez - Bakiye: 0,00 TL</span>*/}
+                {/*<div className='balance-cont'>
                     <button type='button' onClick={() => setBalanceCheckActive(true)}>Kupon Sorgula</button>
-                </div>
+                </div>*/}
             </div>
             <div className='header_seperator'></div>
             <div className='header_2'>
