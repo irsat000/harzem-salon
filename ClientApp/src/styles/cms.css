@@ -629,6 +629,7 @@
   display: flex;
   flex-direction: column;
   gap: 40px;
+  margin-bottom: 40px;
 }
 .cms_main-gallery .new_image {
   display: flex;

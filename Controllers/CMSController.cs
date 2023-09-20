@@ -111,4 +111,86 @@ public class CMSController : ControllerBase
             return StatusCode(500, new { message = "Error" });
         }
     }
+
+    [HttpPost("upload-image-gallery")]
+    public async Task<IActionResult> UploadImage_Gallery([FromForm] NewGalleryImage model)
+    {
+        try
+        {
+            CreateImageModel createModel = new()
+            {
+                file = model.file,
+                category = "gallery"
+            };
+            string? createdName = await CreateImage(createModel);
+            if (createdName == null)
+            {
+                return BadRequest("Error when uploading image.");
+            }
+
+            Gallery newImage = new()
+            {
+                imageLink = createdName,
+                title = model.title ?? null,
+                uploadDate = DateTime.UtcNow
+            };
+
+            await _db.Galleries.AddAsync(newImage);
+            await _db.SaveChangesAsync();
+
+            return Ok(new
+            {
+                created = new
+                {
+                    newImage.id,
+                    name = createdName,
+                    date = newImage.uploadDate
+                },
+                message = "Success!"
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
+
+    public async Task<string?> CreateImage(CreateImageModel model)
+    {
+        try
+        {
+            if (model.file.Length == 0)
+            {
+                return null;
+            }
+
+            // Check if the uploaded file is an image
+            if (!model.file.ContentType.StartsWith("image/"))
+            {
+                return null;
+            }
+
+            // Choose folder path using category
+            string folder = model.category == "mini_gallery" ? "images/mini_gallery/" : "images/gallery/";
+
+            // Generate a unique file name to prevent overwriting existing files
+            var uniqueFileName = $"{Guid.NewGuid()}_{model.file.FileName}";
+
+            // Define the directory path
+            var uploadPath = Path.Combine(folder, uniqueFileName);
+
+            // Save the file to the server
+            using (var stream = new FileStream(uploadPath, FileMode.Create))
+            {
+                await model.file.CopyToAsync(stream);
+            }
+
+            return uniqueFileName;
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
 }

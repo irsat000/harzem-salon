@@ -142,7 +142,7 @@ const CMS_OUR_SERVICES = () => {
                         break;
                     default:
                         alert("HATA!");
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject("HATA!");
                 }
             })
             .catch((err) => {

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { GalleryImage, ScaleUpImage } from '../../pages/Gallery';
 import { defaultFetchGet } from '../../utility/fetchUtils';
-import SaveAll from '../components/CMS_SaveAll';
 
 
 // Allowed types for upload
@@ -32,6 +31,7 @@ const CMS_GALLERY = () => {
                     uploadDate: new Date(img.uploadDate).toLocaleDateString()
                 }));
                 setGalleryData(updated);
+                console.log(updated);
             })
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
@@ -70,9 +70,8 @@ const CMS_GALLERY = () => {
         const formData = new FormData();
         formData.append('file', newImage);
         formData.append('title', newDescription);
-        formData.append('category', 'gallery');
 
-        fetch(`https://localhost:7173/cms/upload-image`, {
+        fetch(`https://localhost:7173/cms/upload-image-gallery`, {
             method: 'POST',
             body: formData
         })
@@ -82,34 +81,22 @@ const CMS_GALLERY = () => {
                         return res.json();
                     default:
                         alert("HATA!");
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject("HATA!");
                 }
             })
             .then((data) => {
-                
-                alert("Başarılı!")
-                const reader = new FileReader();
-                reader.onload = (event) => {
-                    if (!event.target || !event.target.result) {
-                        alert("Sayfa yenileme gerekli");
-                        return;
-                    }
-                    const updated = [...galleryData];
-                    updated.unshift({
-                        id: 0,
-                        imageLink: event.target.result as string,
-                        title: newDescription,
-                        uploadDate: new Date().toLocaleDateString()
-                    })
-                    setGalleryData(updated)
-                    console.log(updated);
-                    
-                };
-                // Read the selected file as a Data URL (base64)
-                reader.readAsDataURL(newImage);
+                alert("Yükleme başarılı!")
+                const updated = [...galleryData];
+                updated.unshift({
+                    id: data.created.id,
+                    imageLink: 'https://localhost:7173/i/gallery/' + data.created.name,
+                    title: newDescription,
+                    uploadDate: new Date(data.created.date).toLocaleDateString()
+                });
+                setGalleryData(updated);
             })
             .catch((err) => {
-                alert("HATA!");
+                alert("İşlemde hata.");
                 console.error('Fetch error:', err)
             });
     }
@@ -121,45 +108,6 @@ const CMS_GALLERY = () => {
     const handleScaleUp = (imageUrl: string) => {
         setSclupImage(imageUrl);
         setScaleUpActive(true);
-    }
-
-    // 0: Default, 1: Loading, 2: Success
-    const [saveAllStatus, setSaveAllStatus] = useState(0);
-    // Update database
-    const handleSaveAll = () => {
-        if (galleryData.length === 0) {
-            alert("Liste boş!");
-            return;
-        }
-
-        setSaveAllStatus(1);
-        fetch(`https://localhost:7173/cms/update-gallery`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json; charset=utf-8'
-            },
-            body: JSON.stringify(galleryData)
-        })
-            .then((res) => {
-                switch (res.status) {
-                    case 200:
-                        setSaveAllStatus(2);
-                        break;
-                    default:
-                        alert("HATA!");
-                        throw new Error(`HTTP error! status: ${res.status}`);
-                }
-            })
-            .catch((err) => {
-                alert("HATA!");
-                console.error('Fetch error:', err)
-            })
-            .finally(() => {
-                // Wait 3 seconds to show Check icon as in Success
-                setTimeout(() => {
-                    setSaveAllStatus(0);
-                }, 3000);
-            });
     }
 
     return (
@@ -186,13 +134,12 @@ const CMS_GALLERY = () => {
                                     <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />
                                 </div>
                                 <div className='gallery_item_details'>
-                                    <p>{item.title}</p>
+                                    {item.title ? <p>{item.title}</p> : <></>}
                                     <span>Tarih - {item.uploadDate}</span>
                                 </div>
                             </div>
                         ))}
                     </div>
-                    <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
                 </> : <h3>Galeride fotoğraf yok.</h3>}
             </div>
         </CMS_TEMPLATE>

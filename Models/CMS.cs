@@ -22,9 +22,14 @@ public partial class OurService_Update
     public required List<string> MiniGalleryImages { get; set; }
 }
 
-public class UploadImageModel
+public class NewGalleryImage
 {
     public required IFormFile file { get; set; }
-    public required string title { get; set; }
+    public string? title { get; set; }
+}
+
+public class CreateImageModel
+{
+    public required IFormFile file { get; set; }
     public required string category { get; set; }
 }

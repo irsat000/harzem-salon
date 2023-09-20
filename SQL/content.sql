@@ -50,6 +50,7 @@ INSERT INTO MiniGalleryImages VALUES ('6.jpg', 4)
 
 
 
+DELETE FROM Gallery
 INSERT INTO Gallery VALUES ('1.jpg', 'Bugün de böyle bir þey yaptýk. 1', GETDATE())
 INSERT INTO Gallery VALUES ('2.jpg', 'Bugün de böyle bir þey yaptýk. 2', GETDATE())
 INSERT INTO Gallery VALUES ('3.jpg', 'Bugün de böyle bir þey yaptýk. 3', GETDATE())
@@ -60,7 +61,6 @@ INSERT INTO Gallery VALUES ('7.jpg', 'Bugün de böyle bir þey yaptýk. 7', GETDATE
 INSERT INTO Gallery VALUES ('8.jpg', 'Bugün de böyle bir þey yaptýk. 8', GETDATE())
 INSERT INTO Gallery VALUES ('9.jpg', 'Bugün de böyle bir þey yaptýk. 9', GETDATE())
 INSERT INTO Gallery VALUES ('10.jpg', 'Bugün de böyle bir þey yaptýk. 10', GETDATE())
-
 
 
 

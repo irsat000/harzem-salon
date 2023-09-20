@@ -9,7 +9,7 @@ public partial class Gallery
 
     public string imageLink { get; set; } = null!;
 
-    public string title { get; set; } = null!;
+    public string? title { get; set; }
 
     public DateTime uploadDate { get; set; }
 }

@@ -153,7 +153,7 @@ const CMS_TESTIMONIALS = () => {
                         break;
                     default:
                         alert("HATA!");
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject("HATA!");
                 }
             })
             .catch((err) => {
