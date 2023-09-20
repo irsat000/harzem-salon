@@ -3,6 +3,7 @@ using harzem_salon.Model;
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 
 namespace harzem_salon.Controllers;
 
@@ -12,11 +13,13 @@ public class CMSController : ControllerBase
 {
     private readonly ILogger<CMSController> _logger;
     private readonly HarzemSalonContext _db;
+    private readonly IFileProvider _fileProvider;
 
-    public CMSController(ILogger<CMSController> logger, HarzemSalonContext db)
+    public CMSController(ILogger<CMSController> logger, HarzemSalonContext db, IFileProvider fileProvider)
     {
         _logger = logger;
         _db = db;
+        _fileProvider = fileProvider;
     }
 
     [HttpPost("update-testimonials")]
@@ -117,27 +120,31 @@ public class CMSController : ControllerBase
     {
         try
         {
+            // Create model for CreateImage function
             CreateImageModel createModel = new()
             {
                 file = model.file,
                 category = "gallery"
             };
+            // Will return the name of the created file or null
             string? createdName = await CreateImage(createModel);
             if (createdName == null)
             {
                 return BadRequest("Error when uploading image.");
             }
 
+            // Create gallery record for the image and save it to database
             Gallery newImage = new()
             {
                 imageLink = createdName,
                 title = model.title ?? null,
                 uploadDate = DateTime.UtcNow
             };
-
             await _db.Galleries.AddAsync(newImage);
             await _db.SaveChangesAsync();
 
+            // Return the necessary properties for updating the current gallery-
+            // inside front end with unshift and useState
             return Ok(new
             {
                 created = new
@@ -155,6 +162,58 @@ public class CMSController : ControllerBase
         }
     }
 
+    [HttpPost("delete-image-gallery")]
+    public async Task<IActionResult> DeleteImage_Gallery([FromBody] int id)
+    {
+        try
+        {
+            // Get the record that will be deleted by id
+            var willBeDeleted = await _db.Galleries.FirstOrDefaultAsync(img => img.id == id);
+            if (willBeDeleted == null)
+            {
+                return NotFound("Record not found.");
+            }
+            // Remove from database
+            _db.Galleries.Remove(willBeDeleted);
+            await _db.SaveChangesAsync();
+            // Remove image
+            bool imgIsRemoved = RemoveImage(willBeDeleted.imageLink, "gallery");
+            if (!imgIsRemoved)
+            {
+                // Maybe logging later
+                return Accepted(new { message = "Record is deleted but file is not." });
+            }
+            // Response
+            return Ok(new { message = "Success!" });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
+
+    public bool RemoveImage(string imageName, string category)
+    {
+        try
+        {
+            // Get image from the folder
+            var filePath = Path.Combine("images", category, imageName);
+            var fileInfo = _fileProvider.GetFileInfo(filePath);
+            // Check if the file exists
+            if (!fileInfo.Exists)
+            {
+                return false;
+            }
+            // Delete the file
+            System.IO.File.Delete(filePath);
+            return true;
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 
     public async Task<string?> CreateImage(CreateImageModel model)
     {

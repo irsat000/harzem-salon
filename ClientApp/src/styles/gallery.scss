@@ -50,14 +50,15 @@
             flex-direction: column;
             gap: 10px;
             margin-top: 10px;
+            font-size: 18px;
 
             p {
-                font-size: 1rem;
+                font-size: 1em;
                 font-family: "Montserrat", sans-serif;
             }
 
             span {
-                font-size: 0.8rem;
+                font-size: 0.8em;
                 font-family: "Armata", sans-serif;
             }
         }
@@ -105,10 +106,7 @@
             }
 
             .gallery_item_details {
-
-                p {
-                    font-size: 1.1rem;
-                }
+                font-size: 20px;
             }
         }
     }

@@ -652,6 +652,7 @@
   color: #ffffff;
   font-family: "Montserrat", sans-serif;
   font-weight: 300;
+  width: 100%;
 }
 .cms_main-gallery .new_image form .description {
   width: 100%;
@@ -660,6 +661,21 @@
   padding: 40px 0;
   text-align: center;
   font-size: 1.4em;
+}
+.cms_main-gallery .gallery-cont .gallery-item .gallery_item_details .delete {
+  align-self: flex-start;
+  color: #f62424;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  cursor: pointer;
+  font-size: 1.3em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  padding: 6px;
+}
+.cms_main-gallery .gallery-cont .gallery-item .gallery_item_details .delete:hover {
+  text-decoration: underline;
 }
 
 @media (min-width: 768px) {
@@ -682,5 +698,8 @@
   }
   .cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery {
     justify-content: flex-start;
+  }
+  .cms_main-gallery .new_image form input {
+    width: unset;
   }
 }/*# sourceMappingURL=cms.css.map */

@@ -20,7 +20,8 @@ public class ImageController : ControllerBase
         try
         {
             // Get image from the folder
-            var fileInfo = _fileProvider.GetFileInfo($"images/{category}/{imageName}");
+            var filePath = Path.Combine("images", category, imageName);
+            var fileInfo = _fileProvider.GetFileInfo(filePath);
             // Check if file exists in the directory
             if (!fileInfo.Exists)
             {
@@ -37,5 +38,5 @@ public class ImageController : ControllerBase
         {
             return StatusCode(500, "Internal Server Error");
         }
-    }   
+    }
 }

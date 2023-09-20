@@ -80,7 +80,6 @@ const CMS_OFFERS = () => {
                         setSaveAllStatus(2);
                         break;
                     default:
-                        alert("HATA!");
                         return Promise.reject("HATA!");
                 }
             })

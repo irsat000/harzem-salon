@@ -56,17 +56,26 @@ const CMS_OUR_SERVICES = () => {
 
     // Deletes from the our services which then will replace the database records when saved
     const handleDelete = (cateIndex: number, indexToDelete: number) => {
-        const tempData = [...ourServicesData];
-        tempData[cateIndex].ourServices = tempData[cateIndex].ourServices.filter((_, index) => index !== indexToDelete);
-        setOurServicesData(tempData);
+        const tempData = [...ourServicesData]; // Shallow copy
+        const category = tempData[cateIndex]; // Get category and its ourServices
+        if (category && category.ourServices) {
+            category.ourServices.splice(indexToDelete, 1); // Remove by index
+            setOurServicesData(tempData); // Update
+        }
     };
 
     // Deletes from the images of services
     const handleDeleteImage = (cateIndex: number, serviceIndex: number, indexToDelete: number) => {
         const tempData = [...ourServicesData];
-        tempData[cateIndex].ourServices[serviceIndex].miniGalleryImages =
-            tempData[cateIndex].ourServices[serviceIndex].miniGalleryImages.filter((_, index) => index !== indexToDelete);
-        setOurServicesData(tempData);
+        const category = tempData[cateIndex];
+
+        if (category && category.ourServices && category.ourServices[serviceIndex]) {
+            const miniGalleryImages = category.ourServices[serviceIndex].miniGalleryImages;
+            if (miniGalleryImages) {
+                miniGalleryImages.splice(indexToDelete, 1);
+                setOurServicesData(tempData);
+            }
+        }
     };
 
     // New service form data
@@ -141,7 +150,6 @@ const CMS_OUR_SERVICES = () => {
                         setSaveAllStatus(2);
                         break;
                     default:
-                        alert("HATA!");
                         return Promise.reject("HATA!");
                 }
             })

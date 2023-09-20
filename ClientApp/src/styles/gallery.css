@@ -47,13 +47,14 @@
   flex-direction: column;
   gap: 10px;
   margin-top: 10px;
+  font-size: 18px;
 }
 .gallery-cont .gallery-item .gallery_item_details p {
-  font-size: 1rem;
+  font-size: 1em;
   font-family: "Montserrat", sans-serif;
 }
 .gallery-cont .gallery-item .gallery_item_details span {
-  font-size: 0.8rem;
+  font-size: 0.8em;
   font-family: "Armata", sans-serif;
 }
 
@@ -85,8 +86,8 @@
     transform: scale(1.05);
     margin-bottom: 6px;
   }
-  .gallery-cont .gallery-item .gallery_item_details p {
-    font-size: 1.1rem;
+  .gallery-cont .gallery-item .gallery_item_details {
+    font-size: 20px;
   }
 }
 @media (min-width: 992px) {

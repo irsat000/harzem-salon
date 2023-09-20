@@ -31,7 +31,6 @@ const CMS_GALLERY = () => {
                     uploadDate: new Date(img.uploadDate).toLocaleDateString()
                 }));
                 setGalleryData(updated);
-                console.log(updated);
             })
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
@@ -73,6 +72,9 @@ const CMS_GALLERY = () => {
 
         fetch(`https://localhost:7173/cms/upload-image-gallery`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
             body: formData
         })
             .then((res) => {
@@ -80,12 +82,11 @@ const CMS_GALLERY = () => {
                     case 200:
                         return res.json();
                     default:
-                        alert("HATA!");
                         return Promise.reject("HATA!");
                 }
             })
             .then((data) => {
-                alert("Yükleme başarılı!")
+                // Update the state with values given by server
                 const updated = [...galleryData];
                 updated.unshift({
                     id: data.created.id,
@@ -94,12 +95,50 @@ const CMS_GALLERY = () => {
                     uploadDate: new Date(data.created.date).toLocaleDateString()
                 });
                 setGalleryData(updated);
+                alert("Yükleme başarılı!");
             })
             .catch((err) => {
-                alert("İşlemde hata.");
-                console.error('Fetch error:', err)
+                alert("HATA!");
+                console.error('Fetch error:', err);
             });
     }
+
+    const handleImageDelete = (index: number) => {
+        // Get record id
+        const imgId = galleryData[index].id;
+
+        if (window.confirm("Silmek istediğinizden emin misiniz?")) {
+            fetch(`https://localhost:7173/cms/delete-image-gallery`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(imgId)
+            })
+                .then((res) => {
+                    switch (res.status) {
+                        case 200:
+                        case 202:
+                            // Update the gallery data after removing
+                            const updated = [...galleryData];
+                            updated.splice(index, 1);
+                            setGalleryData(updated);
+                            alert("Silme başarılı!");
+                            break;
+                        default:
+                            return Promise.reject("HATA!");
+                    }
+                })
+                .catch((err) => {
+                    alert("HATA!");
+                    console.error('Fetch error:', err)
+                });
+        }
+    }
+
+
+
+
 
     // Scale up images
     const [scaleUpActive, setScaleUpActive] = useState(false);
@@ -136,6 +175,7 @@ const CMS_GALLERY = () => {
                                 <div className='gallery_item_details'>
                                     {item.title ? <p>{item.title}</p> : <></>}
                                     <span>Tarih - {item.uploadDate}</span>
+                                    <span className='delete' onClick={() => handleImageDelete(index)}>Sil</span>
                                 </div>
                             </div>
                         ))}
