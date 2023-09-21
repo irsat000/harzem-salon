@@ -562,9 +562,7 @@
   font-size: 1.5em;
   font-family: "Bhavuka", sans-serif;
 }
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .add_image,
 .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .delete {
-  margin-left: auto;
   padding: 0 10px;
   -webkit-user-select: none;
      -moz-user-select: none;
@@ -572,16 +570,10 @@
   cursor: pointer;
   font-size: 1.2em;
   font-family: "Bhavuka", sans-serif;
+  color: #f62424;
 }
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .add_image:hover,
 .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap > .delete:hover {
   text-decoration: underline;
-}
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .add_image {
-  color: #4fe34d;
-}
-.cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .delete {
-  color: #f62424;
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery {
   padding: 10px 20px;
@@ -617,6 +609,22 @@
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .img_wrap .delete:hover {
   text-decoration: underline;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .add_image {
+  display: flex;
+  align-items: center;
+  padding: 5px 10px;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .add_image label svg {
+  display: flex;
+  width: 45px;
+  height: 45px;
+  color: #bebebe;
+  transition: color 0.1s ease;
+  cursor: pointer;
+}
+.cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery .add_image label svg:hover {
+  color: #ffffff;
 }
 .cms_main-our_services .our_services_cont .our_services_list-item .service_list_empty {
   padding: 10px 20px;
@@ -691,10 +699,6 @@
   .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap {
     gap: 40px;
     justify-content: flex-start;
-  }
-  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .add_image,
-  .cms_main-our_services .our_services_cont .our_services_list-item .service-item .service-wrap .delete {
-    margin-left: unset;
   }
   .cms_main-our_services .our_services_cont .our_services_list-item .service-item .mini_gallery {
     justify-content: flex-start;

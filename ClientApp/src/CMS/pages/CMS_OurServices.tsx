@@ -1,10 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
 import { OurServicesModel, ServiceCategory } from '../../pages/Home';
 import { convertToAscii } from '../../utility/utils';
 import { ScaleUpImage } from '../../pages/Gallery';
+import { PlusSquare } from 'react-bootstrap-icons';
 
 
 const CMS_OUR_SERVICES = () => {
@@ -27,7 +28,8 @@ const CMS_OUR_SERVICES = () => {
             })
             .then((data) => {
                 if (data && data.categories) {
-                    const updated = data.categories.map((cate: ServiceCategory) => ({
+                    // This prevents me from properly saving data
+                    /*const updated = data.categories.map((cate: ServiceCategory) => ({
                         ...cate,
                         ourServices: cate.ourServices.map((s) => ({
                             ...s,
@@ -35,8 +37,9 @@ const CMS_OUR_SERVICES = () => {
                                 'https://localhost:7173/i/mini_gallery/' + img
                             ),
                         })),
-                    }));
-                    setOurServicesData(updated);
+                    }));*/
+
+                    setOurServicesData(data.categories);
                 }
             })
             .catch((err) => console.error('Error fetching data:', err));
@@ -66,14 +69,14 @@ const CMS_OUR_SERVICES = () => {
 
     // Deletes from the images of services
     const handleDeleteImage = (cateIndex: number, serviceIndex: number, indexToDelete: number) => {
-        const tempData = [...ourServicesData];
-        const category = tempData[cateIndex];
+        const tempData = [...ourServicesData]; // Shallow copy
+        const category = tempData[cateIndex]; // Get category and its ourServices
 
         if (category && category.ourServices && category.ourServices[serviceIndex]) {
-            const miniGalleryImages = category.ourServices[serviceIndex].miniGalleryImages;
+            const miniGalleryImages = category.ourServices[serviceIndex].miniGalleryImages; // Get images
             if (miniGalleryImages) {
-                miniGalleryImages.splice(indexToDelete, 1);
-                setOurServicesData(tempData);
+                miniGalleryImages.splice(indexToDelete, 1); // Remove by index
+                setOurServicesData(tempData); // Update
             }
         }
     };
@@ -127,10 +130,55 @@ const CMS_OUR_SERVICES = () => {
         });
     }
 
+    const handleImgUpload = (e: React.ChangeEvent<HTMLInputElement>, cIndex: number, sIndex: number) => {
+        // Get and check necessary values
+        const newImage = e.target.files![0];
+        if (!newImage || !newImage.type.includes('image/')) {
+            alert('Sadece fotoğraflar yüklenebilir!');
+            e.target.value = '';
+            return;
+        }
+        // Cut it off
+        e.target.value = '';
+
+        // Create payload
+        const formData = new FormData();
+        formData.append('file', newImage);
+
+        fetch(`https://localhost:7173/cms/upload-image-mini_gallery`, {
+            method: 'POST',
+            body: formData
+        })
+            .then((res) => {
+                switch (res.status) {
+                    case 200:
+                        return res.json();
+                    default:
+                        return Promise.reject("HATA!");
+                }
+            })
+            .then((data) => {
+                alert("Yükleme başarılı!");
+                // Update the state with values given by server
+                const updated = [...ourServicesData];
+                updated[cIndex].ourServices[sIndex].miniGalleryImages.unshift(data.createdName);
+                setOurServicesData(updated);
+            })
+            .catch((err) => {
+                alert("HATA!");
+                console.error('Fetch error:', err);
+            });
+    }
+
+
+
+
     // 0: Default, 1: Loading, 2: Success
     const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
+        console.log(ourServicesData);
+        return;
         if (ourServicesData.length < 1) {
             alert("Liste boş!");
             return;
@@ -206,27 +254,34 @@ const CMS_OUR_SERVICES = () => {
                             return (
                                 <div className="our_services_list-item" key={cIndex}>
                                     <h3 className='cateName'>{cateName}</h3>
-                                    {cate.ourServices.length > 0 ? cate.ourServices.map((service, sIndex) => (
-                                        <div className="service-item" key={'service_' + sIndex}>
-                                            <div className="service-wrap">
-                                                <span className='serviceName'>{service.serviceName}</span>
-                                                <span className='add_image'>Yeni Foto</span>
-                                                <span className='delete' onClick={() => handleDelete(cIndex, sIndex)}>Sil</span>
-                                            </div>
-                                            {!service.miniGalleryImages.length || // 0 is falsy
+                                    {cate.ourServices.length > 0 ? cate.ourServices.map((service, sIndex) => {
+                                        return (
+                                            <div className="service-item" key={`${cIndex}_${sIndex}`}>
+                                                <div className="service-wrap">
+                                                    <span className='serviceName'>{service.serviceName}</span>
+                                                    <span className='delete' onClick={() => handleDelete(cIndex, sIndex)}>Sil</span>
+                                                </div>
                                                 <div className="mini_gallery">
                                                     {service.miniGalleryImages.map((imgLink, mgiIndex) => {
+                                                        const newLink = `https://localhost:7173/i/mini_gallery/${imgLink}`;
                                                         return (
                                                             <div className="img_wrap" key={mgiIndex}>
-                                                                <img src={imgLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} onClick={() => handleScaleUp(imgLink)} />
+                                                                <img src={newLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} onClick={() => handleScaleUp(newLink)} />
                                                                 <span className='delete' onClick={() => handleDeleteImage(cIndex, sIndex, mgiIndex)}>Sil</span>
                                                             </div>
-                                                        )
+                                                        );
                                                     })}
+                                                    <div className='add_image' style={service.miniGalleryImages.length > 0 ? { height: '100px' } : {}} >
+                                                        <label>
+                                                            <PlusSquare />
+                                                            <input id='imageInput' type="file" accept="image/*" style={{ display: 'none' }}
+                                                                onChange={event => handleImgUpload(event, cIndex, sIndex)} />
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                            }
-                                        </div>
-                                    )) : <span className='service_list_empty'>Bu kategoride hizmet yok!</span>}
+                                            </div>
+                                        )
+                                    }) : <span className='service_list_empty'>Bu kategoride hizmet yok!</span>}
                                 </div>
                             )
                         })}
@@ -235,7 +290,7 @@ const CMS_OUR_SERVICES = () => {
                 </> : <h3>Hiç bir hizmet yok!</h3>
                 }
             </div>
-        </CMS_TEMPLATE>
+        </CMS_TEMPLATE >
     )
 }
 

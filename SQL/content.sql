@@ -21,7 +21,12 @@ INSERT INTO ServiceCategories VALUES (4, 'kirpik')
 INSERT INTO ServiceCategories VALUES (5, 'dudak')
 INSERT INTO ServiceCategories VALUES (6, 'epilasyon_depilasyon')
 GO
+
+
+DELETE FROM OurServices
+GO
 DBCC CHECKIDENT ('OurServices', RESEED, 0);
+GO
 INSERT INTO OurServices VALUES ('Kesim', 'kesim', 1)
 INSERT INTO OurServices VALUES ('Boya', 'boya', 1)
 INSERT INTO OurServices VALUES ('Fön', 'fon', 1)
@@ -40,7 +45,10 @@ INSERT INTO OurServices VALUES ('Ýðneli epilasyon', 'igneli_epilasyon', 6)
 INSERT INTO OurServices VALUES ('Kaþ & Býyýk', 'kas_&_biyik', 6)
 INSERT INTO OurServices VALUES ('Aðda', 'agda', 6)
 GO
+DELETE FROM MiniGalleryImages
+GO
 DBCC CHECKIDENT ('MiniGalleryImages', RESEED, 0);
+GO
 INSERT INTO MiniGalleryImages VALUES ('1.jpg', 1)
 INSERT INTO MiniGalleryImages VALUES ('2.jpg', 1)
 INSERT INTO MiniGalleryImages VALUES ('3.jpg', 1)

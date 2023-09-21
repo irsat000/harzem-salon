@@ -72,9 +72,6 @@ const CMS_GALLERY = () => {
 
         fetch(`https://localhost:7173/cms/upload-image-gallery`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
             body: formData
         })
             .then((res) => {
@@ -86,6 +83,7 @@ const CMS_GALLERY = () => {
                 }
             })
             .then((data) => {
+                alert("Yükleme başarılı!");
                 // Update the state with values given by server
                 const updated = [...galleryData];
                 updated.unshift({
@@ -95,7 +93,6 @@ const CMS_GALLERY = () => {
                     uploadDate: new Date(data.created.date).toLocaleDateString()
                 });
                 setGalleryData(updated);
-                alert("Yükleme başarılı!");
             })
             .catch((err) => {
                 alert("HATA!");
@@ -155,7 +152,7 @@ const CMS_GALLERY = () => {
             <div className='cms_main-gallery'>
                 <div className='new_image'>
                     <form onSubmit={handleNewImageSubmit}>
-                        <input type='file' name='image' onChange={handleNewImageChange} />
+                        <input type='file' name='image' onChange={handleNewImageChange} accept='image/*' />
                         <input type='text'
                             placeholder='Açıklama buraya'
                             className='description'

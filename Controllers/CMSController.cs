@@ -106,7 +106,25 @@ public class CMSController : ControllerBase
 
         try
         {
+            // Update database and then manage files
             await _db.SaveChangesAsync();
+
+            // Get image names of the updated our services as a string array
+            string[] newImageLinks = newOurServices
+                .SelectMany(cate => cate.OurServices
+                    .SelectMany(service => service.MiniGalleryImages
+                        .Select(img => img))).ToArray();
+
+            // Remove images that doesn't exist in the updated our services
+            string[] allExistingFiles = Directory.GetFiles(Path.Combine("images", "mini_gallery"));
+            foreach (string fileName in allExistingFiles)
+            {
+                if (!newImageLinks.Contains(fileName))
+                {
+                    RemoveImage(fileName, "mini_gallery");
+                    // TODO: Logging if it return false
+                }
+            }
             return Ok(new { message = "Success" });
         }
         catch (Exception)
@@ -115,19 +133,40 @@ public class CMSController : ControllerBase
         }
     }
 
+
+    [HttpPost("upload-image-mini_gallery")]
+    public async Task<IActionResult> UploadImage_MiniGallery([FromForm] IFormFile file)
+    {
+        try
+        {
+            // Will return the name of the created file or null
+            string? createdName = await CreateImage(file, "mini_gallery");
+            if (createdName == null)
+            {
+                return BadRequest("Error when uploading image.");
+            }
+
+            // Return the necessary properties for updating the current mini gallery-
+            // inside front end with unshift and useState
+            return Ok(new
+            {
+                createdName,
+                message = "Success!"
+            });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, "Internal Server Error");
+        }
+    }
+
     [HttpPost("upload-image-gallery")]
     public async Task<IActionResult> UploadImage_Gallery([FromForm] NewGalleryImage model)
     {
         try
         {
-            // Create model for CreateImage function
-            CreateImageModel createModel = new()
-            {
-                file = model.file,
-                category = "gallery"
-            };
             // Will return the name of the created file or null
-            string? createdName = await CreateImage(createModel);
+            string? createdName = await CreateImage(model.file, "gallery");
             if (createdName == null)
             {
                 return BadRequest("Error when uploading image.");
@@ -215,34 +254,34 @@ public class CMSController : ControllerBase
         }
     }
 
-    public async Task<string?> CreateImage(CreateImageModel model)
+    public async Task<string?> CreateImage(IFormFile file, string category)
     {
         try
         {
-            if (model.file.Length == 0)
+            if (file.Length == 0)
             {
                 return null;
             }
 
             // Check if the uploaded file is an image
-            if (!model.file.ContentType.StartsWith("image/"))
+            if (!file.ContentType.StartsWith("image/"))
             {
                 return null;
             }
 
             // Choose folder path using category
-            string folder = model.category == "mini_gallery" ? "images/mini_gallery/" : "images/gallery/";
+            string folder = category == "mini_gallery" ? "mini_gallery" : "gallery";
 
             // Generate a unique file name to prevent overwriting existing files
-            var uniqueFileName = $"{Guid.NewGuid()}_{model.file.FileName}";
+            var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
 
             // Define the directory path
-            var uploadPath = Path.Combine(folder, uniqueFileName);
+            var uploadPath = Path.Combine("images", folder, uniqueFileName);
 
             // Save the file to the server
             using (var stream = new FileStream(uploadPath, FileMode.Create))
             {
-                await model.file.CopyToAsync(stream);
+                await file.CopyToAsync(stream);
             }
 
             return uniqueFileName;
