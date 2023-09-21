@@ -1,8 +1,8 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
-import { OurServicesModel, ServiceCategory } from '../../pages/Home';
+import { OurServicesModel } from '../../pages/Home';
 import { convertToAscii } from '../../utility/utils';
 import { ScaleUpImage } from '../../pages/Gallery';
 import { PlusSquare } from 'react-bootstrap-icons';
@@ -28,17 +28,6 @@ const CMS_OUR_SERVICES = () => {
             })
             .then((data) => {
                 if (data && data.categories) {
-                    // This prevents me from properly saving data
-                    /*const updated = data.categories.map((cate: ServiceCategory) => ({
-                        ...cate,
-                        ourServices: cate.ourServices.map((s) => ({
-                            ...s,
-                            miniGalleryImages: s.miniGalleryImages.map((img) =>
-                                'https://localhost:7173/i/mini_gallery/' + img
-                            ),
-                        })),
-                    }));*/
-
                     setOurServicesData(data.categories);
                 }
             })
@@ -177,8 +166,6 @@ const CMS_OUR_SERVICES = () => {
     const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
-        console.log(ourServicesData);
-        return;
         if (ourServicesData.length < 1) {
             alert("Liste boş!");
             return;

@@ -107,12 +107,12 @@ const PAGE_HOME = () => {
     const ListOurServices: React.FC<{
         cateCode: string;
     }> = ({ cateCode }) => {
-        return (ourServicesData ?
+        return (ourServicesData &&
             <ul>
                 {ourServicesData.find(c => c.cateCode === cateCode)!.ourServices.map((service: OurService) => (
                     <li key={service.serviceCode}>- {service.serviceName}</li>
                 ))}
-            </ul> : <></>
+            </ul>
         )
     }
 
@@ -192,7 +192,7 @@ const PAGE_HOME = () => {
                 </div>
             </section>
             <TestimonialCarousel />
-            {homeGalleryData ? <>
+            {homeGalleryData && <>
                 <div className='section-header' ref={gallerySection}>
                     <div></div>
                     <h2>GALERİ</h2>
@@ -208,7 +208,7 @@ const PAGE_HOME = () => {
                         <Link to='/galeri'>Daha fazla göster</Link>
                     </div>
                 </section>
-            </> : <></>}
+            </>}
         </Template>
     )
 };

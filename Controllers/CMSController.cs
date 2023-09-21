@@ -116,7 +116,8 @@ public class CMSController : ControllerBase
                         .Select(img => img))).ToArray();
 
             // Remove images that doesn't exist in the updated our services
-            string[] allExistingFiles = Directory.GetFiles(Path.Combine("images", "mini_gallery"));
+            string[] allExistingFiles = Directory.GetFiles(Path.Combine("images", "mini_gallery"))
+                .Select(fullPath => Path.GetFileName(fullPath)).ToArray();
             foreach (string fileName in allExistingFiles)
             {
                 if (!newImageLinks.Contains(fileName))

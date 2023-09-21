@@ -60,7 +60,7 @@ const PAGE_OFFERS = () => {
                 </div>
                 <div className='offer-seperator'></div>
                 */}
-                {discountCombinationsData ? <>
+                {discountCombinationsData && <>
                     <div className='offer-item'>
                         <div className='offer-header'>
                             <h1>Kombinasyon Tarifeleri</h1>
@@ -75,8 +75,7 @@ const PAGE_OFFERS = () => {
                             </ul>
                         </div>
                     </div>
-                </> : <></>
-                }
+                </>}
             </>
         </Template>
     )

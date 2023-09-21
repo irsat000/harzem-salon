@@ -1,5 +1,5 @@
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { defaultFetchGet } from '../utility/fetchUtils';
 
 export type Testimonial = {
@@ -74,7 +74,7 @@ const TestimonialCarousel = () => {
         }
     };
 
-    return testimonialsData ? <>
+    return testimonialsData && <>
         <div className='section-header'>
             <div></div>
             <h2>REFERANSLAR</h2>
@@ -95,7 +95,7 @@ const TestimonialCarousel = () => {
                 ))}
             </div>
         </section>
-    </> : <></>;
+    </>;
 }
 
 export default TestimonialCarousel;

@@ -118,11 +118,13 @@ const PAGE_GALLERY = () => {
                             <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />
                         </div>
                         <div className='gallery_item_details'>
-                            {item.title ? <p>{item.title}</p> : <></>}
+                            {item.title && <p>{item.title}</p>}
                             <span>Tarih - {item.uploadDate}</span>
                         </div>
                     </div>
-                )) : <></>}
+                )) : <>
+                    {/* TODO: No gallery data indication */}
+                </>}
             </div>
         </Template>
     )

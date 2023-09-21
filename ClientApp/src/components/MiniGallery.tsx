@@ -17,11 +17,14 @@ const MiniGallery: React.FC<{
     const [activeIndex, setActiveIndex] = useState(0);
     const [activeCategory, setActiveCategory] = useState('Hepsi');
 
+    const [miniGalleryImgList, setMiniGalleryImgList] = useState<string[]>([]);
+
     const handleMinigalleryClose = () => {
         setMiniGalleryActive(false);
+        setActiveCategory('Hepsi');
+        setActiveIndex(0);
+        setMiniGalleryImgList([]);
     }
-
-    const [miniGalleryImgList, setMiniGalleryImgList] = useState<string[] | null>(null);
 
     useEffect(() => {
         if (miniGalleryData) {
@@ -37,12 +40,12 @@ const MiniGallery: React.FC<{
         }
     }, [miniGalleryData, activeCategory]);
 
-    return miniGalleryImgList && miniGalleryImgList.length > 0 ? (
+    return miniGalleryImgList.length > 0 ? (
         <div className={`minigallery-cont ${miniGalleryActive ? 'active' : ''}`} ref={miniGallery}>
-            <div className='mg-close' onClick={() => setMiniGalleryActive(false)}>
+            <div className='mg-close' onClick={handleMinigalleryClose}>
                 <XLg />
             </div>
-            <div className="mg-carousel-cont" onClick={() => handleMinigalleryClose()}>
+            <div className="mg-carousel-cont" onClick={handleMinigalleryClose}>
                 <div className='mg-carousel'>
                     <div className='mg-prev' onClick={(e) => {
                         setActiveIndex((prevIndex) => (prevIndex - 1 + miniGalleryImgList.length) % miniGalleryImgList.length);
@@ -86,12 +89,12 @@ const MiniGallery: React.FC<{
                     setActiveCategory('Hepsi');
                     setActiveIndex(0);
                 }}>Hepsi</span>
-                {miniGalleryData ? miniGalleryData.map((s, index) => (
+                {miniGalleryData && miniGalleryData.map((s, index) => s.miniGalleryImages.length > 0 && (
                     <span key={index} className={activeCategory === s.serviceName ? 'active' : ''} onClick={() => {
                         setActiveCategory(s.serviceName);
                         setActiveIndex(0);
                     }}>{s.serviceName}</span>
-                )) : <></>}
+                ))}
             </div>
         </div>
     ) : <></>
