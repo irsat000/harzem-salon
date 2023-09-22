@@ -4,6 +4,7 @@ using Microsoft.Extensions.FileProviders;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -38,10 +39,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             ValidateIssuerSigningKey = true,
             ValidIssuer = "HarzemSalonApi",
             ValidAudience = "HarzemSalon",
-            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["MyContext:JwtSecret"]!))
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["HarzemSalon:JwtSecret"]!))
         };
     });
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
+builder.Services.AddRateLimiter(options =>
+{
+    options.AddFixedWindowLimiter("FixedWindow_General", opt =>
+    {
+        opt.Window = TimeSpan.FromSeconds(5);
+        opt.PermitLimit = 10;
+        opt.QueueLimit = 10;
+        opt.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+    }).RejectionStatusCode = 429;
+    options.AddFixedWindowLimiter("FixedWindow_ServeImage", opt =>
+    {
+        opt.Window = TimeSpan.FromSeconds(5);
+        opt.PermitLimit = 10;
+        opt.QueueLimit = 10;
+        opt.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+    }).RejectionStatusCode = 429;
+});
 
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
@@ -56,6 +74,7 @@ if (!app.Environment.IsDevelopment())
 }
 
 app.UseCors("AllowHarzemSalon");
+app.UseRateLimiter();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();

@@ -1,5 +1,5 @@
 import React from 'react';
-import { BoxArrowLeft, List } from 'react-bootstrap-icons';
+import { List } from 'react-bootstrap-icons';
 import { Link, useNavigate } from 'react-router-dom';
 
 

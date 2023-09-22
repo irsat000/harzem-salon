@@ -1,5 +1,6 @@
 using harzem_salon.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.FileProviders;
 
 namespace harzem_salon.Controllers;
@@ -15,6 +16,7 @@ public class ImageController : ControllerBase
     }
 
     [HttpGet("i/{category}/{imageName}")]
+    [EnableRateLimiting("FixedWindow_ServeImage")]
     public IActionResult GetImage(string category, string imageName)
     {
         try

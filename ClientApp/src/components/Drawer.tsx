@@ -1,5 +1,5 @@
 import React from 'react';
-import { XLg } from 'react-bootstrap-icons';
+import { } from 'react-bootstrap-icons';
 import { Link } from 'react-router-dom';
 import '../styles/drawer.css';
 

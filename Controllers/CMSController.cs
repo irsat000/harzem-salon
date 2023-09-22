@@ -9,11 +9,13 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.RateLimiting;
 
 namespace harzem_salon.Controllers;
 
 [ApiController]
 [Route("cms")]
+[EnableRateLimiting("FixedWindow_General")]
 public class CMSController : ControllerBase
 {
     private readonly ILogger<CMSController> _logger;
@@ -77,7 +79,7 @@ public class CMSController : ControllerBase
         try
         {
             // Get secret
-            string? jwtSecret = _config["MyContext:JwtSecret"];
+            string? jwtSecret = _config["HarzemSalon:JwtSecret"];
             if (string.IsNullOrWhiteSpace(jwtSecret))
             {
                 return null;

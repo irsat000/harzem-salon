@@ -19,7 +19,7 @@ const CMS_TEMPLATE: React.FC<{
         if (!checkAdmin()) {
             navigate("/panel/giris");
         }
-    }, []);
+    }, [navigate]);
 
     const handleLogOut = () => {
         logoutAdmin();

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { checkAdmin, loginAdmin, readAdmin } from '../utility/authUtils';
+import { checkAdmin, loginAdmin } from '../utility/authUtils';
 import { useNavigate } from 'react-router-dom';
 
 const CMS_LOGIN = () => {
@@ -9,7 +9,7 @@ const CMS_LOGIN = () => {
         if (checkAdmin()) {
             navigate("/cms/panel");
         }
-    }, []);
+    }, [navigate]);
 
     // Form data manager
     const [formData, setFormData] = useState({
@@ -53,17 +53,9 @@ const CMS_LOGIN = () => {
                 loginAdmin(data.token);
 
                 navigate("/panel");
-
-
-                // Decode user data from cookie jwt
-                const readAdminData = readAdmin() as any;
-                // Set user data to UserContext for centralizing
-                /*setUserData({
-                    adminName: readAdminData.unique_name
-                });*/
             })
             .catch((err) => {
-                alert("HATA!");
+                alert("Giriş başarısız.");
             })
     }
 
