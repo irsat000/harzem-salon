@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
+import { readAdminJwt } from '../utility/authUtils';
 
 
 const CMS_OFFERS = () => {
@@ -70,7 +71,8 @@ const CMS_OFFERS = () => {
         fetch(`https://localhost:7173/cms/update-discount_combinations`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${readAdminJwt()}`
             },
             body: JSON.stringify(combinationsData)
         })

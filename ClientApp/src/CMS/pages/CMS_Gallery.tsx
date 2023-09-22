@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CMS_TEMPLATE from '../components/CMS_Template';
 import { GalleryImage, ScaleUpImage } from '../../pages/Gallery';
 import { defaultFetchGet } from '../../utility/fetchUtils';
+import { readAdminJwt } from '../utility/authUtils';
 
 
 // Allowed types for upload
@@ -72,6 +73,9 @@ const CMS_GALLERY = () => {
 
         fetch(`https://localhost:7173/cms/upload-image-gallery`, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${readAdminJwt()}`
+            },
             body: formData
         })
             .then((res) => {
@@ -109,6 +113,7 @@ const CMS_GALLERY = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${readAdminJwt()}`
                 },
                 body: JSON.stringify(imgId)
             })

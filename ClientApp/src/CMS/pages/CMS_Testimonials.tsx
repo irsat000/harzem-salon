@@ -3,6 +3,7 @@ import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import { Testimonial } from '../../components/TestimonialCarousel';
 import SaveAll from '../components/CMS_SaveAll';
+import { readAdminJwt } from '../utility/authUtils';
 
 
 const CMS_TESTIMONIALS = () => {
@@ -142,7 +143,8 @@ const CMS_TESTIMONIALS = () => {
         fetch(`https://localhost:7173/cms/update-testimonials`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${readAdminJwt()}`
             },
             body: JSON.stringify(testimonialsData)
         })

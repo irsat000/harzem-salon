@@ -6,6 +6,7 @@ import { OurServicesModel } from '../../pages/Home';
 import { convertToAscii } from '../../utility/utils';
 import { ScaleUpImage } from '../../pages/Gallery';
 import { PlusSquare } from 'react-bootstrap-icons';
+import { readAdminJwt } from '../utility/authUtils';
 
 
 const CMS_OUR_SERVICES = () => {
@@ -136,6 +137,9 @@ const CMS_OUR_SERVICES = () => {
 
         fetch(`https://localhost:7173/cms/upload-image-mini_gallery`, {
             method: 'POST',
+            headers: {
+                'Authorization': `Bearer ${readAdminJwt()}`
+            },
             body: formData
         })
             .then((res) => {
@@ -175,7 +179,8 @@ const CMS_OUR_SERVICES = () => {
         fetch(`https://localhost:7173/cms/update-our_services`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json; charset=utf-8'
+                'Content-Type': 'application/json; charset=utf-8',
+                'Authorization': `Bearer ${readAdminJwt()}`
             },
             body: JSON.stringify(ourServicesData)
         })

@@ -8,6 +8,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace harzem_salon.Controllers;
 
@@ -89,7 +90,8 @@ public class CMSController : ControllerBase
             var claims = new List<Claim>
             {
                 new Claim(ClaimTypes.NameIdentifier, admin.id.ToString()), // Admin Id
-                new Claim(ClaimTypes.Name, admin.adminName) // Admin name
+                new Claim(ClaimTypes.Name, admin.adminName), // Admin name
+                new Claim(ClaimTypes.Role, "admin")
             };
 
             // Token creation
@@ -111,10 +113,31 @@ public class CMSController : ControllerBase
         }
     }
 
+    private async Task<bool> CheckAdmin(ClaimsPrincipal user)
+    {
+        try
+        {
+            var adminId = User.FindFirst(ClaimTypes.NameIdentifier)!.Value;
+            var adminRole = User.FindFirst(ClaimTypes.Role)!.Value;
+            if (string.IsNullOrEmpty(adminId) || string.IsNullOrEmpty(adminRole) || adminRole != "admin")
+            {
+                return false;
+            }
+            return await _db.Admins.AnyAsync(a => a.id == Convert.ToInt32(adminId));
+        }
+        catch (Exception)
+        {
+            return false;
+        }
+    }
 
+    [Authorize]
     [HttpPost("update-testimonials")]
     public async Task<IActionResult> UpdateTestimonials([FromBody] NewTestimonial[] newTestimonials)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         // Note: Can be empty array, it's okay
 
         // Remove all existing testimonials
@@ -139,9 +162,13 @@ public class CMSController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPost("update-discount_combinations")]
     public async Task<IActionResult> UpdateDiscountCombinations([FromBody] string[] newCombos)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         // Note: Can be empty array, it's okay
 
         // Remove all existing combinations
@@ -165,9 +192,13 @@ public class CMSController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPost("update-our_services")]
     public async Task<IActionResult> UpdateOurServices([FromBody] ServiceCategory_Update[] newOurServices)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         // Note: Can be empty array, it's okay
 
         // Remove all existing categories, services and mini gallery
@@ -224,10 +255,13 @@ public class CMSController : ControllerBase
         }
     }
 
-
+    [Authorize]
     [HttpPost("upload-image-mini_gallery")]
     public async Task<IActionResult> UploadImage_MiniGallery([FromForm] IFormFile file)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         try
         {
             // Will return the name of the created file or null
@@ -251,9 +285,13 @@ public class CMSController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPost("upload-image-gallery")]
     public async Task<IActionResult> UploadImage_Gallery([FromForm] NewGalleryImage model)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         try
         {
             // Will return the name of the created file or null
@@ -292,9 +330,13 @@ public class CMSController : ControllerBase
         }
     }
 
+    [Authorize]
     [HttpPost("delete-image-gallery")]
     public async Task<IActionResult> DeleteImage_Gallery([FromBody] int id)
     {
+        if (!await CheckAdmin(User))
+            return Unauthorized("No authority");
+
         try
         {
             // Get the record that will be deleted by id
@@ -323,7 +365,7 @@ public class CMSController : ControllerBase
     }
 
 
-    public bool RemoveImage(string imageName, string category)
+    private bool RemoveImage(string imageName, string category)
     {
         try
         {
@@ -345,7 +387,7 @@ public class CMSController : ControllerBase
         }
     }
 
-    public async Task<string?> CreateImage(IFormFile file, string category)
+    private async Task<string?> CreateImage(IFormFile file, string category)
     {
         try
         {

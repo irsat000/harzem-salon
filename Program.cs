@@ -1,6 +1,9 @@
 using System.Text.Json.Serialization;
 using harzem_salon.Entities;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -23,7 +26,21 @@ builder.Services.AddCors(options =>
                 .AllowAnyMethod();
         });
     });
-    
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+    .AddJwtBearer(options =>
+    {
+        options.TokenValidationParameters = new TokenValidationParameters
+        {
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true,
+            ValidIssuer = "HarzemSalonApi",
+            ValidAudience = "HarzemSalon",
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["MyContext:JwtSecret"]!))
+        };
+    });
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
 
 builder.Logging.ClearProviders();
@@ -42,6 +59,8 @@ app.UseCors("AllowHarzemSalon");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
 
 app.MapControllerRoute(
