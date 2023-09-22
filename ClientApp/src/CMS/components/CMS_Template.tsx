@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import '../../styles/global.css';
 import '../../styles/cms.css';
 import { List, XLg } from 'react-bootstrap-icons';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { checkAdmin, logoutAdmin } from '../utility/authUtils';
 //import { useNavigate } from 'react-router-dom';
 
 
@@ -12,12 +13,19 @@ const CMS_TEMPLATE: React.FC<{
     children: any,
     panelTitle: string
 }> = ({ children, panelTitle }) => {
-    //const navigate = useNavigate();
-
+    const navigate = useNavigate();
     useEffect(() => {
-        // will send to login if the user doesn't have any login credentials
-
+        // Check admin session
+        if (!checkAdmin()) {
+            navigate("/panel/giris");
+        }
     }, []);
+
+    const handleLogOut = () => {
+        logoutAdmin();
+        alert("Çıkış yapıldı.")
+        navigate("/panel/giris");
+    }
 
     const [cmsDrawerActive, setCmsDrawerActive] = useState(false);
 
@@ -37,7 +45,7 @@ const CMS_TEMPLATE: React.FC<{
                     </ul>
                     <h3>İşlemler</h3>
                     <ul className='option_list'>
-                        <li>Çıkış Yap</li>
+                        <li onClick={handleLogOut}>Çıkış Yap</li>
                     </ul>
                 </div>
             </div>
@@ -51,7 +59,7 @@ const CMS_TEMPLATE: React.FC<{
                 </ul>
                 <h3>İşlemler</h3>
                 <ul className='option_list'>
-                    <li>Çıkış Yap</li>
+                    <li onClick={handleLogOut}>Çıkış Yap</li>
                 </ul>
             </nav>
             <div className='cms_panel-cont'>

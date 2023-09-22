@@ -1,6 +1,19 @@
 
 namespace harzem_salon.Model;
 
+public class AdminLoginCreds
+{
+    public required string adminName { get; set; }
+    public required string adminPassword { get; set; }
+}
+
+public class AdminClaims
+{
+    public required int id { get; set; }
+    public required string adminName { get; set; }
+}
+
+
 public class NewTestimonial
 {
     public required string fullName { get; set; }

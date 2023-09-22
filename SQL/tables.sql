@@ -1,6 +1,5 @@
 
 
-
 CREATE DATABASE HarzemSalon;
 GO
 USE HarzemSalon;
@@ -40,13 +39,11 @@ CREATE TABLE OurServices(
 	CONSTRAINT FK_OurServices_ServiceCategories FOREIGN KEY (cateId) REFERENCES ServiceCategories(id)
 );
 
--- Each Mini Gallery in the website will have "All" and singular service options
--- If a service is deleted, we will have to delete the images from storage using the imageLink (idk how)
 CREATE TABLE MiniGalleryImages(
 	id INT PRIMARY KEY IDENTITY(1, 1),
-	imageLink NVARCHAR(MAX) NOT NULL,
+	imageLink NVARCHAR(255) NOT NULL,
 	serviceId INT NOT NULL,
-	CONSTRAINT FK_MiniGalleryImages_OurServices FOREIGN KEY (serviceId) REFERENCES OurServices(id) ON DELETE CASCADE
+	CONSTRAINT FK_MiniGalleryImages_OurServices FOREIGN KEY (serviceId) REFERENCES OurServices(id)
 );
 
 
@@ -59,6 +56,7 @@ CREATE TABLE Admins(
 );
 
 
+/*
 CREATE TABLE Customers(
 	id INT PRIMARY KEY IDENTITY(1, 1),
 	customerNO INT NOT NULL UNIQUE,
@@ -119,3 +117,4 @@ BEGIN
 	-- nc = NewComers
 	-- d = deleted
 END;
+*/

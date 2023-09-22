@@ -1,9 +1,13 @@
 using harzem_salon.Entities;
 using harzem_salon.Model;
-using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using Microsoft.IdentityModel.Tokens;
 
 namespace harzem_salon.Controllers;
 
@@ -14,13 +18,99 @@ public class CMSController : ControllerBase
     private readonly ILogger<CMSController> _logger;
     private readonly HarzemSalonContext _db;
     private readonly IFileProvider _fileProvider;
+    private readonly IConfiguration _config;
 
-    public CMSController(ILogger<CMSController> logger, HarzemSalonContext db, IFileProvider fileProvider)
+    public CMSController(
+        ILogger<CMSController> logger,
+        HarzemSalonContext db,
+        IFileProvider fileProvider,
+        IConfiguration config)
     {
         _logger = logger;
         _db = db;
         _fileProvider = fileProvider;
+        _config = config;
     }
+
+    [HttpPost("admin-login")]
+    public async Task<IActionResult> AdminLogin([FromBody] AdminLoginCreds creds)
+    {
+        try
+        {
+            // Validate input
+            if (string.IsNullOrWhiteSpace(creds.adminName) || string.IsNullOrWhiteSpace(creds.adminPassword))
+            {
+                return BadRequest("Invalid input data.");
+            }
+
+            // Check user
+            var checkUser = await _db.Admins.AsNoTracking().Where(u => u.adminName == creds.adminName)
+                    .FirstOrDefaultAsync();
+            if (checkUser == null || checkUser.adminPassword != creds.adminPassword)
+            {
+                return NotFound("User not found");
+            }
+
+            // Login
+            AdminClaims adminClaims = new()
+            {
+                id = checkUser.id,
+                adminName = checkUser.adminName
+            };
+            var JWT = GenerateJWT(adminClaims);
+            if (JWT == null)
+            {
+                return StatusCode(500, "Internal server error while generating JWT.");
+            }
+
+            return Ok(new { message = "Admin login is successful", token = JWT });
+        }
+        catch (Exception)
+        {
+            return StatusCode(500, new { message = "Error" });
+        }
+    }
+
+    private string? GenerateJWT(AdminClaims admin)
+    {
+        try
+        {
+            // Get secret
+            string? jwtSecret = _config["MyContext:JwtSecret"];
+            if (string.IsNullOrWhiteSpace(jwtSecret))
+            {
+                return null;
+            }
+
+            // Get Jwt secret
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSecret)); //Encoding.ASCII.GetBytes();
+
+            // Create claims
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, admin.id.ToString()), // Admin Id
+                new Claim(ClaimTypes.Name, admin.adminName) // Admin name
+            };
+
+            // Token creation
+            JwtSecurityTokenHandler tokenHandler = new();
+            var tokenDescriptor = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.UtcNow.AddDays(3),
+                SigningCredentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature),
+                Issuer = "HarzemSalonApi",
+                Audience = "HarzemSalon"
+            };
+            var token = tokenHandler.CreateToken(tokenDescriptor);
+            return tokenHandler.WriteToken(token);
+        }
+        catch (Exception)
+        {
+            return null;
+        }
+    }
+
 
     [HttpPost("update-testimonials")]
     public async Task<IActionResult> UpdateTestimonials([FromBody] NewTestimonial[] newTestimonials)
@@ -123,7 +213,7 @@ public class CMSController : ControllerBase
                 if (!newImageLinks.Contains(fileName))
                 {
                     RemoveImage(fileName, "mini_gallery");
-                    // TODO: Logging if it return false
+                    // TODO: Logging if it returns false
                 }
             }
             return Ok(new { message = "Success" });
