@@ -8,7 +8,7 @@ namespace harzem_salon.Controllers;
 
 [ApiController]
 [Route("api/content")]
-[EnableRateLimiting("FixedWindow_General")]
+[EnableRateLimiting("fixed_default")]
 public class HomeController : ControllerBase
 {
     private readonly ILogger<HomeController> _logger;

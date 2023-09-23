@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.AspNetCore.RateLimiting;
+using System.Threading.RateLimiting;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
@@ -17,7 +18,9 @@ builder.Services.AddControllersWithViews()
             // Prevents cycles and "Possible object cycle detected" error
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
+
 builder.Services.AddDbContext<HarzemSalonContext>();
+
 builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowHarzemSalon", builder =>
@@ -42,22 +45,27 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["HarzemSalon:JwtSecret"]!))
         };
     });
+
 builder.Services.AddSingleton<IFileProvider>(new PhysicalFileProvider(Directory.GetCurrentDirectory()));
-builder.Services.AddRateLimiter(options =>
+
+builder.Services.AddRateLimiter(_ =>
 {
-    options.AddFixedWindowLimiter("FixedWindow_General", opt =>
+    _.AddFixedWindowLimiter(policyName: "fixed_default", opt =>
     {
-        opt.Window = TimeSpan.FromSeconds(5);
-        opt.PermitLimit = 10;
-        opt.QueueLimit = 10;
-        opt.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
+        opt.Window = TimeSpan.FromSeconds(15);
+        opt.PermitLimit = 12;
     }).RejectionStatusCode = 429;
-    options.AddFixedWindowLimiter("FixedWindow_ServeImage", opt =>
+    _.AddFixedWindowLimiter(policyName: "fixed_serveImage", opt =>
     {
-        opt.Window = TimeSpan.FromSeconds(5);
+        opt.Window = TimeSpan.FromHours(1);
+        opt.PermitLimit = 1200;
+        opt.QueueLimit = 6;
+        opt.QueueProcessingOrder = QueueProcessingOrder.OldestFirst;
+    }).RejectionStatusCode = 429;
+    _.AddFixedWindowLimiter(policyName: "fixed_cmsLogin", opt =>
+    {
+        opt.Window = TimeSpan.FromMinutes(1);
         opt.PermitLimit = 10;
-        opt.QueueLimit = 10;
-        opt.QueueProcessingOrder = System.Threading.RateLimiting.QueueProcessingOrder.OldestFirst;
     }).RejectionStatusCode = 429;
 });
 
@@ -73,11 +81,11 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseCors("AllowHarzemSalon");
-app.UseRateLimiter();
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
+app.UseCors("AllowHarzemSalon");
+app.UseRateLimiter(); // After routing
 app.UseAuthentication();
 app.UseAuthorization();
 

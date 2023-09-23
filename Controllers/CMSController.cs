@@ -15,7 +15,7 @@ namespace harzem_salon.Controllers;
 
 [ApiController]
 [Route("cms")]
-[EnableRateLimiting("FixedWindow_General")]
+[EnableRateLimiting("fixed_default")]
 public class CMSController : ControllerBase
 {
     private readonly ILogger<CMSController> _logger;
@@ -36,6 +36,7 @@ public class CMSController : ControllerBase
     }
 
     [HttpPost("admin-login")]
+    [EnableRateLimiting("fixed_cmsLogin")]
     public async Task<IActionResult> AdminLogin([FromBody] AdminLoginCreds creds)
     {
         try
