@@ -149,42 +149,42 @@ const PAGE_HOME = () => {
             </div>
             <section className='our_services-section'>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/sac.png')} alt='Saç hizmetleri' />
+                    <img src={require('../assets/images/services/sac.png')} loading="lazy" alt='Saç hizmetleri' />
                     <h4>Saç</h4>
                     <ListOurServices cateCode='sac' />
                     <span>05438192019</span>
                     <MiniGalleryButton cateCode='sac' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/tirnak.png')} alt='Tırnak hizmetleri' />
+                    <img src={require('../assets/images/services/tirnak.png')} loading="lazy" alt='Tırnak hizmetleri' />
                     <h4>Tırnak</h4>
                     <ListOurServices cateCode='tirnak' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='tirnak' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/makyaj.jpg')} alt='Makyaj hizmetleri' />
+                    <img src={require('../assets/images/services/makyaj.jpg')} loading="lazy" alt='Makyaj hizmetleri' />
                     <h4>Makyaj</h4>
                     <ListOurServices cateCode='makyaj' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='makyaj' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/kirpik.jpg')} alt='Kirpik hizmetleri' />
+                    <img src={require('../assets/images/services/kirpik.jpg')} loading="lazy" alt='Kirpik hizmetleri' />
                     <h4>Kirpik</h4>
                     <ListOurServices cateCode='kirpik' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='kirpik' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/dudak.png')} alt='Dudak hizmetleri' />
+                    <img src={require('../assets/images/services/dudak.png')} loading="lazy" alt='Dudak hizmetleri' />
                     <h4>Dudak</h4>
                     <ListOurServices cateCode='dudak' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='dudak' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/epilasyon.jpg')} alt='Epilasyon ve Depilasyon hizmetleri' />
+                    <img src={require('../assets/images/services/epilasyon.jpg')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
                     <h4>Epilasyon & Depilasyon</h4>
                     <ListOurServices cateCode='epilasyon_depilasyon' />
                     <span><span>05393597313</span>-<span>05438192019</span></span>
@@ -201,7 +201,8 @@ const PAGE_HOME = () => {
                 <section className='gallery-section'>
                     {homeGalleryData.map((image, index) => (
                         <div className='gallery-item' key={index}>
-                            <img src={image} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(image)} />
+                            <img src={image} alt={`Galeri fotoğrafı ${index}`} loading="lazy"
+                                onClick={() => handleScaleUp(image)} />
                         </div>
                     ))}
                     <div className='gallery_showmore'>

@@ -1,9 +1,3 @@
-:root {
-    --cms-border-color1: #444444;
-    --cms-border-color2: #666666;
-}
-
-
 .submit_button {
     padding: 6px 16px;
     outline: transparent;
@@ -88,6 +82,12 @@
 
 
 .cms_container {
+    background-color: #ffffff;
+    color: #000000;
+    --cms-border-color1: #a1a1a1;
+    --cms-border-color2: #a1a1a1;
+
+
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -128,7 +128,7 @@
             left: 0;
             height: 100%;
             max-width: 80%;
-            background-color: #323232;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
@@ -161,7 +161,7 @@
                         font-family: "Bhavuka", sans-serif;
 
                         &:hover {
-                            background-color: #444444;
+                            background-color: #e5e5e5;
                         }
                     }
                 }
@@ -176,7 +176,7 @@
                     font-family: "Bhavuka", sans-serif;
 
                     &:hover {
-                        background-color: #444444;
+                        background-color: #e5e5e5;
                     }
                 }
             }
@@ -215,7 +215,7 @@
                     font-family: "Bhavuka", sans-serif;
 
                     &:hover {
-                        background-color: #444444;
+                        background-color: #e5e5e5;
                     }
                 }
             }
@@ -230,7 +230,7 @@
                 font-family: "Bhavuka", sans-serif;
 
                 &:hover {
-                    background-color: #444444;
+                    background-color: #e5e5e5;
                 }
             }
         }
@@ -246,6 +246,8 @@
             flex-direction: row;
             justify-content: flex-start;
             padding: 8px 2%;
+            background-color: #ffffff;
+            border-bottom: 2px solid var(--cms-border-color1);
 
             .cms_drawer-btn {
                 display: flex;
@@ -293,9 +295,9 @@
         padding: 20px 16px;
         width: 300px;
         max-width: 90%;
-        background-color: #444444;
+        background-color: #ffffff;
+        border: 1px solid var(--cms-border-color1);
         border-radius: 10px;
-        border: 1px solid #bcbcbc;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -312,9 +314,8 @@
                 padding: 10px 16px;
                 font-size: 1.1em;
                 border-radius: 6px;
-                background-color: #323232;
-                border: 1px solid #bcbcbc;
-                color: #ffffff;
+                background-color: #ffffff;
+                border: 1px solid var(--cms-border-color2);
             }
         }
 
@@ -364,9 +365,9 @@
             textarea {
                 outline: transparent;
                 border: none;
-                background-color: #444444;
                 border-radius: 6px;
-                color: #ffffff;
+                border: 1px solid var(--cms-border-color1);
+                color: #000000;
             }
 
             .fullName {
@@ -426,9 +427,8 @@
                 textarea {
                     outline: transparent;
                     border: none;
-                    background-color: #444444;
+                    border: 1px solid var(--cms-border-color1);
                     border-radius: 6px;
-                    color: #ffffff;
                 }
 
                 .fullName {
@@ -530,9 +530,8 @@
                 font-size: 1.3em;
                 outline: transparent;
                 border: none;
-                background-color: #444444;
+                border: 1px solid var(--cms-border-color1);
                 border-radius: 6px;
-                color: #ffffff;
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
             }
@@ -608,9 +607,8 @@
                 font-size: 1.3em;
                 outline: transparent;
                 border: none;
-                background-color: #444444;
+                border: 1px solid var(--cms-border-color1);
                 border-radius: 6px;
-                color: #ffffff;
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
             }
@@ -725,17 +723,17 @@
                         align-items: center;
                         padding: 5px 10px;
 
-                        label{
+                        label {
                             svg {
                                 display: flex;
                                 width: 45px;
                                 height: 45px;
-                                color: #bebebe;
+                                color: #979797;
                                 transition: color 0.1s ease;
                                 cursor: pointer;
-    
+
                                 &:hover {
-                                    color: #ffffff;
+                                    color: #636363;
                                 }
                             }
                         }
@@ -776,9 +774,8 @@
                 font-size: 1.3em;
                 outline: transparent;
                 border: none;
-                background-color: #444444;
+                border: 1px solid var(--cms-border-color1);
                 border-radius: 6px;
-                color: #ffffff;
                 font-family: 'Montserrat', sans-serif;
                 font-weight: 300;
                 width: 100%;

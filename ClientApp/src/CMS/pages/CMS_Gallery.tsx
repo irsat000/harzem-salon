@@ -172,7 +172,8 @@ const CMS_GALLERY = () => {
                         {galleryData.map((item, index) => (
                             <div key={index} className='gallery-item'>
                                 <div className="image-wrap">
-                                    <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />
+                                    <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} loading="lazy"
+                                        onClick={() => handleScaleUp(item.imageLink)} />
                                 </div>
                                 <div className='gallery_item_details'>
                                     {item.title && <p>{item.title}</p>}

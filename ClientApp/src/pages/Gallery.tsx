@@ -51,7 +51,7 @@ export const ScaleUpImage: React.FC<{
                 <XLg />
             </div>
             {imageUrl ? (
-                <img src={imageUrl} alt="Yakınlaştırılmış fotoğraf" onClick={(e) => e.stopPropagation()} />
+                <img src={imageUrl} alt="Yakınlaştırılmış fotoğraf" loading="lazy" onClick={(e) => e.stopPropagation()} />
             ) : (
                 <div className="image-error" onClick={(e) => e.stopPropagation()}>Fotoğraf bulunamadı</div>
             )}
@@ -115,7 +115,8 @@ const PAGE_GALLERY = () => {
                 {galleryData.length > 0 ? galleryData.map((item, index) => (
                     <div key={index} className='gallery-item'>
                         <div className="image-wrap">
-                            <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} onClick={() => handleScaleUp(item.imageLink)} />
+                            <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} loading="lazy"
+                                onClick={() => handleScaleUp(item.imageLink)} />
                         </div>
                         <div className='gallery_item_details'>
                             {item.title && <p>{item.title}</p>}

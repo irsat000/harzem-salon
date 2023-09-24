@@ -7,7 +7,7 @@ const CMS_LOGIN = () => {
     useEffect(() => {
         // Check admin session
         if (checkAdmin()) {
-            navigate("/cms/panel");
+            navigate("/panel");
         }
     }, [navigate]);
 
@@ -60,15 +60,17 @@ const CMS_LOGIN = () => {
     }
 
     return (
-        <div className='cms-login-cont'>
-            <h3>Panel Giriş</h3>
-            <form className='cms-login-form' onSubmit={handleSubmit}>
-                <div className="form_inputs">
-                    <input type='text' placeholder='Admin Adı' name='adminName' onChange={handleChange} />
-                    <input type='password' placeholder='Şifre' name='adminPassword' onChange={handleChange} />
-                </div>
-                <button type='submit'>Giriş</button>
-            </form>
+        <div className="cms_container">
+            <div className='cms-login-cont'>
+                <h3>Panel Giriş</h3>
+                <form className='cms-login-form' onSubmit={handleSubmit}>
+                    <div className="form_inputs">
+                        <input type='text' placeholder='Admin Adı' name='adminName' onChange={handleChange} />
+                        <input type='password' placeholder='Şifre' name='adminPassword' onChange={handleChange} />
+                    </div>
+                    <button type='submit'>Giriş</button>
+                </form>
+            </div>
         </div>
     )
 }

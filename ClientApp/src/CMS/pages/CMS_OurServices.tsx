@@ -258,7 +258,8 @@ const CMS_OUR_SERVICES = () => {
                                                         const newLink = `https://localhost:7173/i/mini_gallery/${imgLink}`;
                                                         return (
                                                             <div className="img_wrap" key={mgiIndex}>
-                                                                <img src={newLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} onClick={() => handleScaleUp(newLink)} />
+                                                                <img src={newLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} loading="lazy"
+                                                                    onClick={() => handleScaleUp(newLink)} />
                                                                 <span className='delete' onClick={() => handleDeleteImage(cIndex, sIndex, mgiIndex)}>Sil</span>
                                                             </div>
                                                         );

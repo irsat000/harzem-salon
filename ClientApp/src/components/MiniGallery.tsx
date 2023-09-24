@@ -59,6 +59,7 @@ const MiniGallery: React.FC<{
                             key={index}
                             src={image}
                             alt={`Fotoğraf ${index}`}
+                            loading="lazy"
                             onClick={(e) => e.stopPropagation()}
                         />
                     ))}
@@ -77,6 +78,7 @@ const MiniGallery: React.FC<{
                         key={index}
                         src={image}
                         alt={`Küçük fotoğraf ${index}`}
+                        loading="lazy"
                         onClick={() => setActiveIndex(index)}
                     />
                 ))}
