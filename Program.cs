@@ -19,7 +19,7 @@ builder.Services.AddControllersWithViews()
             options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles;
         });
 
-builder.Services.AddDbContext<HarzemSalonContext>();
+builder.Services.AddDbContext<sitelerguzellikdbContext>();
 
 builder.Services.AddCors(options =>
     {

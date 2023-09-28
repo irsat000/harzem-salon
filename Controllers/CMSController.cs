@@ -19,13 +19,13 @@ namespace harzem_salon.Controllers;
 public class CMSController : ControllerBase
 {
     private readonly ILogger<CMSController> _logger;
-    private readonly HarzemSalonContext _db;
+    private readonly sitelerguzellikdbContext _db;
     private readonly IFileProvider _fileProvider;
     private readonly IConfiguration _config;
 
     public CMSController(
         ILogger<CMSController> logger,
-        HarzemSalonContext db,
+        sitelerguzellikdbContext db,
         IFileProvider fileProvider,
         IConfiguration config)
     {

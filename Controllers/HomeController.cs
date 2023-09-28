@@ -12,9 +12,9 @@ namespace harzem_salon.Controllers;
 public class HomeController : ControllerBase
 {
     private readonly ILogger<HomeController> _logger;
-    private readonly HarzemSalonContext _db;
+    private readonly sitelerguzellikdbContext _db;
 
-    public HomeController(ILogger<HomeController> logger, HarzemSalonContext db)
+    public HomeController(ILogger<HomeController> logger, sitelerguzellikdbContext db)
     {
         _logger = logger;
         _db = db;
