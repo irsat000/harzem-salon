@@ -23,9 +23,9 @@ builder.Services.AddDbContext<HarzemSalonContext>();
 
 builder.Services.AddCors(options =>
     {
-        options.AddPolicy("AllowHarzemSalon", builder =>
+        options.AddPolicy("AllowHarzemSalon", _builder =>
         {
-            builder.WithOrigins("https://localhost:44442")
+            _builder.WithOrigins(builder.Configuration["HarzemSalon:AllowedCors"]!)
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });

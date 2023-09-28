@@ -1,8 +1,8 @@
 
 
-CREATE DATABASE HarzemSalon;
+CREATE DATABASE sitelerguzellikdb;
 GO
-USE HarzemSalon;
+USE sitelerguzellikdb;
 GO
 
 
@@ -46,8 +46,6 @@ CREATE TABLE MiniGalleryImages(
 	CONSTRAINT FK_MiniGalleryImages_OurServices FOREIGN KEY (serviceId) REFERENCES OurServices(id)
 );
 
-
--- USER MANAGEMENT
 
 CREATE TABLE Admins(
 	id INT PRIMARY KEY IDENTITY(1, 1),

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { checkAdmin, loginAdmin } from '../utility/authUtils';
 import { useNavigate } from 'react-router-dom';
+import { apiLink } from '../../utility/utils';
 
 const CMS_LOGIN = () => {
     const navigate = useNavigate();
@@ -33,7 +34,7 @@ const CMS_LOGIN = () => {
             adminPassword: formData.adminPassword
         };
 
-        fetch(`https://localhost:7173/cms/admin-login`, {
+         fetch(`${apiLink}/cms/admin-login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8'

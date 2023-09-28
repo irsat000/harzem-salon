@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import '../styles/home.css'
 import { defaultFetchGet } from '../utility/fetchUtils';
 import { ScaleUpImage } from './Gallery';
+import { apiLink } from '../utility/utils';
 
 
 export type OurService = {
@@ -60,7 +61,7 @@ const PAGE_HOME = () => {
         if (cachedOurServicesData) {
             setOurServicesData(JSON.parse(cachedOurServicesData));
         } else {
-            fetch(`https://localhost:7173/api/content/our_services`, defaultFetchGet())
+             fetch(`${apiLink}/api/content/our_services`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -84,7 +85,7 @@ const PAGE_HOME = () => {
         if (cachedHomeGalleryData) {
             setHomeGalleryData(JSON.parse(cachedHomeGalleryData));
         } else {
-            fetch(`https://localhost:7173/api/content/home_gallery`, defaultFetchGet())
+             fetch(`${apiLink}/api/content/home_gallery`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -96,7 +97,7 @@ const PAGE_HOME = () => {
                     }
                 })
                 .then(async (data) => {
-                    const updated = data.gallery.map((imageLink: string) => 'https://localhost:7173/i/gallery/' + imageLink)
+                    const updated = data.gallery.map((imageLink: string) => apiLink + '/i/gallery/' + imageLink)
                     setHomeGalleryData(updated);
                     sessionStorage.setItem(`cachedHomeGalleryData`, JSON.stringify(updated));
                 })

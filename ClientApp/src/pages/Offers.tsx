@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Template from '../components/Template';
 import '../styles/offers.css';
 import { defaultFetchGet } from '../utility/fetchUtils';
+import { apiLink } from '../utility/utils';
 
 
 
@@ -17,7 +18,7 @@ const PAGE_OFFERS = () => {
         if (cachedDiscountCombinationsData && new Date() < new Date(cachedDiscountCombinationsData.expire)) {
             setDiscountCombinationsData(cachedDiscountCombinationsData.discountCombinations);
         } else {
-            fetch(`https://localhost:7173/api/content/discount_combinations`, defaultFetchGet())
+             fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:

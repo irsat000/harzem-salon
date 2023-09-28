@@ -19,6 +19,13 @@ public class HomeController : ControllerBase
         _logger = logger;
         _db = db;
     }
+    
+
+    [HttpGet("test")]
+    public IActionResult Test()
+    {
+        return Ok(new { message = "Success" });
+    }
 
     [HttpGet("testimonials")]
     public async Task<IActionResult> Testimonials()

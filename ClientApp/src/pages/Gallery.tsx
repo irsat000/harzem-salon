@@ -3,6 +3,7 @@ import Template from '../components/Template';
 import '../styles/gallery.css';
 import { XLg } from 'react-bootstrap-icons';
 import { defaultFetchGet } from '../utility/fetchUtils';
+import { apiLink } from '../utility/utils';
 
 
 export type GalleryImage = {
@@ -79,7 +80,7 @@ const PAGE_GALLERY = () => {
         if (cachedGalleryData) {
             setGalleryData(JSON.parse(cachedGalleryData));
         } else {
-            fetch(`https://localhost:7173/api/content/gallery`, defaultFetchGet())
+             fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -93,7 +94,7 @@ const PAGE_GALLERY = () => {
                 .then(async (data) => {
                     const updated = data.gallery.map((img: GalleryImage) => ({
                         ...img,
-                        imageLink: 'https://localhost:7173/i/gallery/' + img.imageLink,
+                        imageLink: apiLink + '/i/gallery/' + img.imageLink,
                         uploadDate: new Date(img.uploadDate).toLocaleDateString()
                     }));
                     setGalleryData(updated);

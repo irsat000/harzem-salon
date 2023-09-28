@@ -4,6 +4,7 @@ import { defaultFetchGet } from '../../utility/fetchUtils';
 import { Testimonial } from '../../components/TestimonialCarousel';
 import SaveAll from '../components/CMS_SaveAll';
 import { readAdminJwt } from '../utility/authUtils';
+import { apiLink } from '../../utility/utils';
 
 
 const CMS_TESTIMONIALS = () => {
@@ -11,7 +12,7 @@ const CMS_TESTIMONIALS = () => {
     const [testimonialsData, setTestimonialsData] = useState<Testimonial[]>([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7173/api/content/testimonials`, defaultFetchGet())
+         fetch(`${apiLink}/api/content/testimonials`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
@@ -140,7 +141,7 @@ const CMS_TESTIMONIALS = () => {
         }
 
         setSaveAllStatus(1);
-        fetch(`https://localhost:7173/cms/update-testimonials`, {
+         fetch(`${apiLink}/cms/update-testimonials`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',

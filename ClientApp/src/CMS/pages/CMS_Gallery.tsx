@@ -3,16 +3,14 @@ import CMS_TEMPLATE from '../components/CMS_Template';
 import { GalleryImage, ScaleUpImage } from '../../pages/Gallery';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import { readAdminJwt } from '../utility/authUtils';
+import { apiLink } from '../../utility/utils';
 
-
-// Allowed types for upload
-//const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg', 'image/webp'];
 
 const CMS_GALLERY = () => {
     const [galleryData, setGalleryData] = useState<GalleryImage[]>([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7173/api/content/gallery`, defaultFetchGet())
+         fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
@@ -28,7 +26,7 @@ const CMS_GALLERY = () => {
             .then((data) => {
                 const updated = data.gallery.map((img: GalleryImage) => ({
                     ...img,
-                    imageLink: 'https://localhost:7173/i/gallery/' + img.imageLink,
+                    imageLink: apiLink + '/i/gallery/' + img.imageLink,
                     uploadDate: new Date(img.uploadDate).toLocaleDateString()
                 }));
                 setGalleryData(updated);
@@ -71,7 +69,7 @@ const CMS_GALLERY = () => {
         formData.append('file', newImage);
         formData.append('title', newDescription);
 
-        fetch(`https://localhost:7173/cms/upload-image-gallery`, {
+         fetch(`${apiLink}/cms/upload-image-gallery`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${readAdminJwt()}`
@@ -92,7 +90,7 @@ const CMS_GALLERY = () => {
                 const updated = [...galleryData];
                 updated.unshift({
                     id: data.created.id,
-                    imageLink: 'https://localhost:7173/i/gallery/' + data.created.name,
+                    imageLink: apiLink + '/i/gallery/' + data.created.name,
                     title: newDescription,
                     uploadDate: new Date(data.created.date).toLocaleDateString()
                 });
@@ -109,7 +107,7 @@ const CMS_GALLERY = () => {
         const imgId = galleryData[index].id;
 
         if (window.confirm("Silmek istediğinizden emin misiniz?")) {
-            fetch(`https://localhost:7173/cms/delete-image-gallery`, {
+             fetch(`${apiLink}/cms/delete-image-gallery`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

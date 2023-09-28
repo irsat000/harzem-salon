@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { ChevronLeft, ChevronRight, XLg } from 'react-bootstrap-icons';
 import { OurService } from '../pages/Home';
+import { apiLink } from '../utility/utils';
 
 
 
@@ -32,7 +33,7 @@ const MiniGallery: React.FC<{
             // Return an empty array if the array is empty so it doesn't register as undefined
             const updatedMiniGalleryData = miniGalleryData.map((s) => (
                 activeCategory === "Hepsi" || activeCategory === s.serviceName
-                    ? s.miniGalleryImages.map(img => 'https://localhost:7173/i/mini_gallery/' + img)
+                    ? s.miniGalleryImages.map(img => apiLink + '/i/mini_gallery/' + img)
                     : []
             ));
             // Flatten the image URLs

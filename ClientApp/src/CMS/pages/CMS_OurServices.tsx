@@ -3,7 +3,7 @@ import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
 import { OurServicesModel } from '../../pages/Home';
-import { convertToAscii } from '../../utility/utils';
+import { convertToAscii, apiLink } from '../../utility/utils';
 import { ScaleUpImage } from '../../pages/Gallery';
 import { PlusSquare } from 'react-bootstrap-icons';
 import { readAdminJwt } from '../utility/authUtils';
@@ -14,7 +14,7 @@ const CMS_OUR_SERVICES = () => {
     const [ourServicesData, setOurServicesData] = useState<OurServicesModel>([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7173/api/content/our_services`, defaultFetchGet())
+        fetch(`${apiLink}/api/content/our_services`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
@@ -135,7 +135,7 @@ const CMS_OUR_SERVICES = () => {
         const formData = new FormData();
         formData.append('file', newImage);
 
-        fetch(`https://localhost:7173/cms/upload-image-mini_gallery`, {
+        fetch(`${apiLink}/cms/upload-image-mini_gallery`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${readAdminJwt()}`
@@ -176,7 +176,7 @@ const CMS_OUR_SERVICES = () => {
         }
 
         setSaveAllStatus(1);
-        fetch(`https://localhost:7173/cms/update-our_services`, {
+        fetch(`${apiLink}/cms/update-our_services`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -255,7 +255,7 @@ const CMS_OUR_SERVICES = () => {
                                                 </div>
                                                 <div className="mini_gallery">
                                                     {service.miniGalleryImages.map((imgLink, mgiIndex) => {
-                                                        const newLink = `https://localhost:7173/i/mini_gallery/${imgLink}`;
+                                                        const newLink = apiLink + '/i/mini_gallery/' + imgLink;
                                                         return (
                                                             <div className="img_wrap" key={mgiIndex}>
                                                                 <img src={newLink} alt={`Mini galeri fotoğrafı ${mgiIndex}`} loading="lazy"

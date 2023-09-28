@@ -3,6 +3,7 @@ import CMS_TEMPLATE from '../components/CMS_Template';
 import { defaultFetchGet } from '../../utility/fetchUtils';
 import SaveAll from '../components/CMS_SaveAll';
 import { readAdminJwt } from '../utility/authUtils';
+import { apiLink } from '../../utility/utils';
 
 
 const CMS_OFFERS = () => {
@@ -11,7 +12,7 @@ const CMS_OFFERS = () => {
     const [combinationsData, setCombinationsData] = useState<string[]>([]);
 
     useEffect(() => {
-        fetch(`https://localhost:7173/api/content/discount_combinations`, defaultFetchGet())
+         fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
@@ -68,7 +69,7 @@ const CMS_OFFERS = () => {
         }
 
         setSaveAllStatus(1);
-        fetch(`https://localhost:7173/cms/update-discount_combinations`, {
+         fetch(`${apiLink}/cms/update-discount_combinations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',

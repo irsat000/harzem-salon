@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { defaultFetchGet } from '../utility/fetchUtils';
+import { apiLink } from '../utility/utils';
 
 export type Testimonial = {
     fullName: string;
@@ -20,7 +21,7 @@ const TestimonialCarousel = () => {
         if (cachedTestimonialsData && new Date() < new Date(cachedTestimonialsData.expire)) {
             setTestimonialsData(cachedTestimonialsData.testimonials);
         } else {
-            fetch(`https://localhost:7173/api/content/testimonials`, defaultFetchGet())
+             fetch(`${apiLink}/api/content/testimonials`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
