@@ -17,12 +17,11 @@ const CMS_OFFERS = () => {
                 switch (res.status) {
                     case 404:
                         // List is empty, it's ok for cms
-                        console.log(`Combination list is empty but it's ok`);
-                        break;
+                        return Promise.reject(`Combination list is empty but it's ok`);
                     case 200:
                         return res.json();
                     default:
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject(`HTTP error! status: ${res.status}`);
                 }
             })
             .then((data) => {

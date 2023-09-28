@@ -40,6 +40,8 @@ public partial class sitelerguzellikdbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("PK__Admins__3213E83FBFD6170C");
 
+            entity.ToTable("Admins", "dbo");
+
             entity.HasIndex(e => e.adminName, "UQ__Admins__330679FEB5F3A32A").IsUnique();
 
             entity.Property(e => e.adminName).HasMaxLength(255);
@@ -50,6 +52,8 @@ public partial class sitelerguzellikdbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("PK__Discount__3213E83F0DA189DE");
 
+            entity.ToTable("DiscountCombinations", "dbo");
+
             entity.Property(e => e.combination).HasMaxLength(255);
         });
 
@@ -57,7 +61,7 @@ public partial class sitelerguzellikdbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("PK__Gallery__3213E83FA4A73970");
 
-            entity.ToTable("Gallery");
+            entity.ToTable("Gallery", "dbo");
 
             entity.Property(e => e.uploadDate)
                 .HasDefaultValueSql("(getdate())")
@@ -67,6 +71,8 @@ public partial class sitelerguzellikdbContext : DbContext
         modelBuilder.Entity<MiniGalleryImage>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PK__MiniGall__3213E83FB3A9CF5E");
+
+            entity.ToTable("MiniGalleryImages", "dbo");
 
             entity.Property(e => e.imageLink).HasMaxLength(255);
 
@@ -79,6 +85,8 @@ public partial class sitelerguzellikdbContext : DbContext
         modelBuilder.Entity<OurService>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PK__OurServi__3213E83FCB9B5AEE");
+
+            entity.ToTable("OurServices", "dbo");
 
             entity.Property(e => e.serviceCode).HasMaxLength(100);
             entity.Property(e => e.serviceName).HasMaxLength(100);
@@ -93,6 +101,8 @@ public partial class sitelerguzellikdbContext : DbContext
         {
             entity.HasKey(e => e.id).HasName("PK__ServiceC__3213E83FF1DEBE61");
 
+            entity.ToTable("ServiceCategories", "dbo");
+
             entity.Property(e => e.id).ValueGeneratedNever();
             entity.Property(e => e.cateCode).HasMaxLength(100);
         });
@@ -100,6 +110,8 @@ public partial class sitelerguzellikdbContext : DbContext
         modelBuilder.Entity<Testimonial>(entity =>
         {
             entity.HasKey(e => e.id).HasName("PK__Testimon__3213E83FCDF3B53F");
+
+            entity.ToTable("Testimonials", "dbo");
 
             entity.Property(e => e.fullName).HasMaxLength(255);
         });

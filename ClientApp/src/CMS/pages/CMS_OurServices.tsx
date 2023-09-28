@@ -19,12 +19,11 @@ const CMS_OUR_SERVICES = () => {
                 switch (res.status) {
                     case 404:
                         // List is empty, it's ok for cms
-                        console.log(`Our services list is empty but it's ok`);
-                        break;
+                        return Promise.reject(`Our services list is empty but it's ok`);
                     case 200:
                         return res.json();
                     default:
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject(`HTTP error! status: ${res.status}`);
                 }
             })
             .then((data) => {
@@ -97,7 +96,7 @@ const CMS_OUR_SERVICES = () => {
         // Get and check the category index based on cateCode
         const cateIndex = ourServicesData.findIndex(cate => cate.cateCode === newServiceData.cateCode);
         if (cateIndex === -1) {
-            throw new Error("Category not found.");
+            return Promise.reject("Category not found.");
         }
 
         // Create a copy of the original

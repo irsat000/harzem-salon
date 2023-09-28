@@ -2,16 +2,18 @@ import Cookies from 'js-cookie';
 import jwt_decode from "jwt-decode";
 
 export const loginAdmin = (jwt: string) => {
+    const expirationDate = new Date();
+    expirationDate.setDate(expirationDate.getDate() + 3);
+
     Cookies.set('jwt', jwt, {
         secure: true,
-        sameSite: 'strict'
+        sameSite: 'strict',
+        expires: expirationDate
     });
 }
 
 export const logoutAdmin = () => {
     Cookies.remove('jwt');
-    //setUserData: any
-    //setUserData(null);
 }
 
 export const readAdmin = () => {

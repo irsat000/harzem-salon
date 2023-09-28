@@ -12,17 +12,16 @@ const CMS_TESTIMONIALS = () => {
     const [testimonialsData, setTestimonialsData] = useState<Testimonial[]>([]);
 
     useEffect(() => {
-         fetch(`${apiLink}/api/content/testimonials`, defaultFetchGet())
+        fetch(`${apiLink}/api/content/testimonials`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
                         // List is empty, it's ok for cms
-                        console.log(`Testimonial list is empty but it's ok`);
-                        break;
+                        return Promise.reject(`Testimonial list is empty but it's ok.`);
                     case 200:
                         return res.json();
                     default:
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject(`HTTP error! status: ${res.status}`);
                 }
             })
             .then((data) => {
@@ -141,7 +140,7 @@ const CMS_TESTIMONIALS = () => {
         }
 
         setSaveAllStatus(1);
-         fetch(`${apiLink}/cms/update-testimonials`, {
+        fetch(`${apiLink}/cms/update-testimonials`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',

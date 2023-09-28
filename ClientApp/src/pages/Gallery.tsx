@@ -84,11 +84,11 @@ const PAGE_GALLERY = () => {
                 .then((res) => {
                     switch (res.status) {
                         case 404:
-                            throw new Error(`Testimonial list is empty!`);
+                            return Promise.reject(`Gallery is empty!`);
                         case 200:
                             return res.json();
                         default:
-                            throw new Error(`HTTP error! status: ${res.status}`);
+                            return Promise.reject(`HTTP error! status: ${res.status}`);
                     }
                 })
                 .then(async (data) => {

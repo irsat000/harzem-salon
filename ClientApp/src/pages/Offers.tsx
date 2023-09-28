@@ -22,11 +22,11 @@ const PAGE_OFFERS = () => {
                 .then((res) => {
                     switch (res.status) {
                         case 404:
-                            throw new Error(`Discount combination list is empty!`);
+                            return Promise.reject(`Discount combination list is empty!`);
                         case 200:
                             return res.json();
                         default:
-                            throw new Error(`HTTP error! status: ${res.status}`);
+                            return Promise.reject(`HTTP error! status: ${res.status}`);
                     }
                 })
                 .then((data) => {

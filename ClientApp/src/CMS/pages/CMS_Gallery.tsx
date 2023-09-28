@@ -10,26 +10,27 @@ const CMS_GALLERY = () => {
     const [galleryData, setGalleryData] = useState<GalleryImage[]>([]);
 
     useEffect(() => {
-         fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
+        fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
                         // List is empty, it's ok for cms
-                        console.log(`Gallery list is empty but it's ok`);
-                        break;
+                        return Promise.reject(`Gallery list is empty but it's ok`);
                     case 200:
                         return res.json();
                     default:
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject(`HTTP error! status: ${res.status}`);
                 }
             })
             .then((data) => {
-                const updated = data.gallery.map((img: GalleryImage) => ({
-                    ...img,
-                    imageLink: apiLink + '/i/gallery/' + img.imageLink,
-                    uploadDate: new Date(img.uploadDate).toLocaleDateString()
-                }));
-                setGalleryData(updated);
+                if (data && data.gallery) {
+                    const updated = data.gallery.map((img: GalleryImage) => ({
+                        ...img,
+                        imageLink: apiLink + '/i/gallery/' + img.imageLink,
+                        uploadDate: new Date(img.uploadDate).toLocaleDateString()
+                    }));
+                    setGalleryData(updated);
+                }
             })
             .catch((err) => console.error('Error fetching data:', err));
     }, []);
@@ -69,7 +70,7 @@ const CMS_GALLERY = () => {
         formData.append('file', newImage);
         formData.append('title', newDescription);
 
-         fetch(`${apiLink}/cms/upload-image-gallery`, {
+        fetch(`${apiLink}/cms/upload-image-gallery`, {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${readAdminJwt()}`
@@ -107,7 +108,7 @@ const CMS_GALLERY = () => {
         const imgId = galleryData[index].id;
 
         if (window.confirm("Silmek istediğinizden emin misiniz?")) {
-             fetch(`${apiLink}/cms/delete-image-gallery`, {
+            fetch(`${apiLink}/cms/delete-image-gallery`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -22,19 +22,32 @@ public class CMSController : ControllerBase
     private readonly sitelerguzellikdbContext _db;
     private readonly IFileProvider _fileProvider;
     private readonly IConfiguration _config;
+    private readonly IWebHostEnvironment _hostingEnvironment;
 
     public CMSController(
         ILogger<CMSController> logger,
         sitelerguzellikdbContext db,
         IFileProvider fileProvider,
-        IConfiguration config)
+        IConfiguration config,
+        IWebHostEnvironment hostingEnvironment
+        )
     {
         _logger = logger;
         _db = db;
         _fileProvider = fileProvider;
         _config = config;
+        _hostingEnvironment = hostingEnvironment;
     }
 
+
+
+    [HttpGet("test-root")]
+    public IActionResult TestRoot()
+    {
+        string rootPath = _hostingEnvironment.ContentRootPath;
+
+        return Ok(new { message = "Success", rootPath });
+    }
 
     [HttpPost("admin-login")]
     [EnableRateLimiting("fixed_cmsLogin")]
@@ -406,6 +419,9 @@ public class CMSController : ControllerBase
                 return null;
             }
 
+            // Get root path
+            string rootPath = _hostingEnvironment.ContentRootPath;
+
             // Choose folder path using category
             string folder = category == "mini_gallery" ? "mini_gallery" : "gallery";
 
@@ -413,7 +429,7 @@ public class CMSController : ControllerBase
             var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
 
             // Define the directory path
-            var uploadPath = Path.Combine("images", folder, uniqueFileName);
+            var uploadPath = Path.Combine(rootPath, "images", folder, uniqueFileName);
 
             // Save the file to the server
             using (var stream = new FileStream(uploadPath, FileMode.Create))

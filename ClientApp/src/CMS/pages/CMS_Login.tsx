@@ -46,7 +46,7 @@ const CMS_LOGIN = () => {
                     case 200:
                         return res.json();
                     default:
-                        throw new Error(`HTTP error! status: ${res.status}`);
+                        return Promise.reject(`HTTP error! status: ${res.status}`);
                 }
             })
             .then((data) => {

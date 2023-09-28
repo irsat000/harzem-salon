@@ -65,11 +65,11 @@ const PAGE_HOME = () => {
                 .then((res) => {
                     switch (res.status) {
                         case 404:
-                            throw new Error(`Category or our services are empty!`);
+                            return Promise.reject(`Category or our services are empty!`);
                         case 200:
                             return res.json();
                         default:
-                            throw new Error(`HTTP error! status: ${res.status}`);
+                            return Promise.reject(`HTTP error! status: ${res.status}`);
                     }
                 })
                 .then((data) => {
@@ -89,11 +89,11 @@ const PAGE_HOME = () => {
                 .then((res) => {
                     switch (res.status) {
                         case 404:
-                            throw new Error(`Testimonial list is empty!`);
+                            return Promise.reject(`Home gallery is empty!`);
                         case 200:
                             return res.json();
                         default:
-                            throw new Error(`HTTP error! status: ${res.status}`);
+                            return Promise.reject(`HTTP error! status: ${res.status}`);
                     }
                 })
                 .then(async (data) => {
