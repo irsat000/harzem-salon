@@ -214,7 +214,7 @@
 .cms_container .cms_panel-cont main .cms_main-title {
   margin: 20px 0;
   text-align: center;
-  font-family: "Delius", cursive;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
   font-size: 1.4em;
 }
@@ -230,7 +230,7 @@
 }
 .cms-login-cont > h3 {
   font-size: 1.6em;
-  font-family: "Delius", cursive;
+  font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
 .cms-login-cont form {
