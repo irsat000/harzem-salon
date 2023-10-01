@@ -9,7 +9,7 @@ header.extended::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url("../assets/images/banner.png");
+  background-image: url("../assets/images/banner.webp");
   background-position: center center;
   background-size: cover;
   opacity: 0.7;

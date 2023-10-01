@@ -27,6 +27,15 @@
     flex-direction: column;
     gap: 20px;
 
+    >h1 {
+        padding: 20px 0;
+        width: 100%;
+        text-align: center;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 400;
+        font-size: 1.4rem;
+    }
+
     .gallery-item {
         display: inline-block;
 

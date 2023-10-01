@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import TestimonialCarousel from '../components/TestimonialCarousel';
 import MiniGallery from '../components/MiniGallery';
 import Template from '../components/Template';
@@ -37,31 +37,15 @@ const PAGE_HOME = () => {
     const [homeGalleryData, setHomeGalleryData] = useState<string[] | null>(null);
     const [miniGalleryData, setMiniGalleryData] = useState<OurService[] | null>(null);
     const [ourServicesData, setOurServicesData] = useState<OurServicesModel | null>(null);
-    //const navigate = useNavigate();
-
-    const handleMiniGallery = (cateCode: string) => {
-        // Get one category using cateCode
-        // It has service and image list, required for mini gallery.
-        const miniGallery = ourServicesData?.find(sc => sc.cateCode === cateCode)?.ourServices;
-        if (!miniGallery) {
-            // Reset mini gallery for new category
-            setMiniGalleryData(null);
-            return;
-        }
-        setMiniGalleryData(miniGallery);
-        setMiniGalleryActive(true);
-    }
-
 
     useEffect(() => {
-
         // Our services data
         const cachedOurServicesData = sessionStorage.getItem(`ourServicesData`);
 
         if (cachedOurServicesData) {
             setOurServicesData(JSON.parse(cachedOurServicesData));
         } else {
-             fetch(`${apiLink}/api/content/our_services`, defaultFetchGet())
+            fetch(`${apiLink}/api/content/our_services`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -85,7 +69,7 @@ const PAGE_HOME = () => {
         if (cachedHomeGalleryData) {
             setHomeGalleryData(JSON.parse(cachedHomeGalleryData));
         } else {
-             fetch(`${apiLink}/api/content/home_gallery`, defaultFetchGet())
+            fetch(`${apiLink}/api/content/home_gallery`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -105,16 +89,82 @@ const PAGE_HOME = () => {
         }
     }, []);
 
+    const serviceList = useMemo(() => {
+        const obj = [
+            {
+                "cateCode": "sac",
+                "ourServices": [
+                    "Kesim",
+                    "Boya",
+                    "Fön",
+                    "Topuz"
+                ]
+            },
+            {
+                "cateCode": "tirnak",
+                "ourServices": [
+                    "Manikür",
+                    "Protez tırnak",
+                    "Kalıcı oje"
+                ]
+            },
+            {
+                "cateCode": "makyaj",
+                "ourServices": [
+                    "Kalıcı makyaj",
+                    "Makyaj",
+                    "BB Glow"
+                ]
+            },
+            {
+                "cateCode": "kirpik",
+                "ourServices": [
+                    "İpek kirpik",
+                    "Kirpik kaldırma"
+                ]
+            },
+            {
+                "cateCode": "dudak",
+                "ourServices": [
+                    "İğnesiz dudak dolgusu"
+                ]
+            },
+            {
+                "cateCode": "epilasyon_depilasyon",
+                "ourServices": [
+                    "Lazer epilasyon",
+                    "İğneli epilasyon",
+                    "Kaş & Bıyık",
+                    "Ağda"
+                ]
+            }
+        ]
+        return obj;
+    }, []);
+
     const ListOurServices: React.FC<{
         cateCode: string;
     }> = ({ cateCode }) => {
-        return (ourServicesData &&
+        return (serviceList &&
             <ul>
-                {ourServicesData.find(c => c.cateCode === cateCode)!.ourServices.map((service: OurService) => (
-                    <li key={service.serviceCode}>- {service.serviceName}</li>
+                {serviceList.find(c => c.cateCode === cateCode)!.ourServices.map((service, index) => (
+                    <li key={index}>- {service}</li>
                 ))}
             </ul>
         )
+    }
+
+    const handleMiniGallery = (cateCode: string) => {
+        // Get one category using cateCode
+        // It has service and image list, required for mini gallery.
+        const miniGallery = ourServicesData?.find(sc => sc.cateCode === cateCode)?.ourServices;
+        if (!miniGallery) {
+            // Reset mini gallery for new category
+            setMiniGalleryData(null);
+            return;
+        }
+        setMiniGalleryData(miniGallery);
+        setMiniGalleryActive(true);
     }
 
     const MiniGalleryButton: React.FC<{
@@ -150,42 +200,42 @@ const PAGE_HOME = () => {
             </div>
             <section className='our_services-section'>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/sac.png')} loading="lazy" alt='Saç hizmetleri' />
+                    <img src={require('../assets/images/services/sac.webp')} loading="lazy" alt='Saç hizmetleri' />
                     <h4>Saç</h4>
                     <ListOurServices cateCode='sac' />
                     <span>05438192019</span>
                     <MiniGalleryButton cateCode='sac' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/tirnak.png')} loading="lazy" alt='Tırnak hizmetleri' />
+                    <img src={require('../assets/images/services/tirnak.webp')} loading="lazy" alt='Tırnak hizmetleri' />
                     <h4>Tırnak</h4>
                     <ListOurServices cateCode='tirnak' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='tirnak' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/makyaj.jpg')} loading="lazy" alt='Makyaj hizmetleri' />
+                    <img src={require('../assets/images/services/makyaj.webp')} loading="lazy" alt='Makyaj hizmetleri' />
                     <h4>Makyaj</h4>
                     <ListOurServices cateCode='makyaj' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='makyaj' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/kirpik.jpg')} loading="lazy" alt='Kirpik hizmetleri' />
+                    <img src={require('../assets/images/services/kirpik.webp')} loading="lazy" alt='Kirpik hizmetleri' />
                     <h4>Kirpik</h4>
                     <ListOurServices cateCode='kirpik' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='kirpik' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/dudak.png')} loading="lazy" alt='Dudak hizmetleri' />
+                    <img src={require('../assets/images/services/dudak.webp')} loading="lazy" alt='Dudak hizmetleri' />
                     <h4>Dudak</h4>
                     <ListOurServices cateCode='dudak' />
                     <span>05393597313</span>
                     <MiniGalleryButton cateCode='dudak' />
                 </div>
                 <div className='service_item'>
-                    <img src={require('../assets/images/services/epilasyon.jpg')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
+                    <img src={require('../assets/images/services/epilasyon.webp')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
                     <h4>Epilasyon & Depilasyon</h4>
                     <ListOurServices cateCode='epilasyon_depilasyon' />
                     <span><span>05393597313</span>-<span>05438192019</span></span>

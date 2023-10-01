@@ -40,7 +40,8 @@ footer .about_us .contact-cont .contact_details .contact_item .contact_icon {
 }
 footer .about_us .contact-cont .contact_details .contact_item span {
   font-size: 1em;
-  font-family: "Della Respira", serif;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
 }
 footer .about_us .workplace-cont {
   order: 1;
@@ -59,11 +60,10 @@ footer .about_us .workplace-cont .workplace_on_map iframe {
 }
 footer .about_us .workplace-cont .workplace_photos {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px 2%;
 }
 footer .about_us .workplace-cont .workplace_photos img {
-  width: 48%;
   height: auto;
   border-radius: 8px;
 }
@@ -74,6 +74,15 @@ footer .copyright {
   font-family: "Della Respira", serif;
 }
 
+@media (min-width: 576px) {
+  footer .about_us .workplace-cont .workplace_photos {
+    justify-content: space-between;
+    flex-direction: row;
+  }
+  footer .about_us .workplace-cont .workplace_photos img {
+    width: 50%;
+  }
+}
 @media (min-width: 768px) {
   footer {
     margin-top: 50px;

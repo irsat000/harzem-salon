@@ -7,4 +7,4 @@ export const convertToAscii = (inputString: string) => {
 }
 
 // "https://localhost:7173" | ""
-export const apiLink = "";
+export const apiLink = "https://localhost:7173";

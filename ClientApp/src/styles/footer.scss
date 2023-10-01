@@ -42,7 +42,8 @@ footer {
 
                     span {
                         font-size: 1em;
-                        font-family: 'Della Respira', serif;
+                        font-family: "Montserrat", sans-serif;
+                        font-weight: 400;
                     }
                 }
             }
@@ -66,11 +67,10 @@ footer {
 
             .workplace_photos {
                 display: flex;
-                flex-direction: row;
-                justify-content: space-between;
+                flex-direction: column;
+                gap: 10px 2%;
 
                 img {
-                    width: 48%;
                     height: auto;
                     border-radius: 8px;
                 }
@@ -90,7 +90,17 @@ footer {
 
 
 // Small devices (landscape phones, 576px and up)
-@media (min-width: 576px) {}
+@media (min-width: 576px) {
+
+    footer .about_us .workplace-cont .workplace_photos {
+        justify-content: space-between;
+        flex-direction: row;
+
+        img {
+            width: 50%;
+        }
+    }
+}
 
 // Medium devices (tablets, 768px and up)
 @media (min-width: 768px) {
@@ -117,6 +127,7 @@ footer {
                     }
                 }
             }
+
             .workplace-cont {
                 .workplace_on_map {
                     iframe {

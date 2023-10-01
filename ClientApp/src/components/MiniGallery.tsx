@@ -62,6 +62,9 @@ const MiniGallery: React.FC<{
                             alt={`Fotoğraf ${index}`}
                             loading="lazy"
                             onClick={(e) => e.stopPropagation()}
+                            onError={() => {
+                                setMiniGalleryImgList((prevList) => prevList.filter((_, i) => i !== index));
+                            }}
                         />
                     ))}
                     <div className='mg-next' onClick={(e) => {
@@ -81,6 +84,9 @@ const MiniGallery: React.FC<{
                         alt={`Küçük fotoğraf ${index}`}
                         loading="lazy"
                         onClick={() => setActiveIndex(index)}
+                        onError={() => {
+                            setMiniGalleryImgList((prevList) => prevList.filter((_, i) => i !== index));
+                        }}
                     />
                 ))}
             </div>

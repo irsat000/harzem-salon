@@ -35,8 +35,8 @@ const Footer: React.FC<{
                         <iframe title='İşyeri Konumu' loading="lazy" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6096.6532366155325!2d29.12184203596804!3d40.17954413712012!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14ca3f41f951cbcb%3A0x43df58d8dd889a13!2sSiteler%20Kuaf%C3%B6r%20%26%20G%C3%BCzellik%20ve%20A%C4%9Fda%20Salonu!5e0!3m2!1sen!2str!4v1693843058034!5m2!1sen!2str"></iframe>
                     </div>
                     <div className='workplace_photos'>
-                        <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} loading="lazy" alt='İşyeri fotoğrafı 1' />
-                        <img src={require('../assets/images/workplace/workplace_from_outside.jpg')} loading="lazy" alt='İşyeri fotoğrafı 2' />
+                        <img src={require('../assets/images/workplace/workplace_from_outside1.webp')} loading="lazy" alt='İşyeri fotoğrafı 1' />
+                        <img src={require('../assets/images/workplace/workplace_from_outside2.webp')} loading="lazy" alt='İşyeri fotoğrafı 2' />
                     </div>
                 </div>
             </div>

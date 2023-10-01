@@ -80,7 +80,7 @@ const PAGE_GALLERY = () => {
         if (cachedGalleryData) {
             setGalleryData(JSON.parse(cachedGalleryData));
         } else {
-             fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
+            fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -116,8 +116,15 @@ const PAGE_GALLERY = () => {
                 {galleryData.length > 0 ? galleryData.map((item, index) => (
                     <div key={index} className='gallery-item'>
                         <div className="image-wrap">
-                            <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} loading="lazy"
-                                onClick={() => handleScaleUp(item.imageLink)} />
+                            <img
+                                src={item.imageLink}
+                                alt={`Galeri fotoğrafı ${index}`}
+                                loading="lazy"
+                                onClick={() => handleScaleUp(item.imageLink)}
+                                onError={() => {
+                                    setGalleryData((prevList) => prevList.filter((_, i) => i !== index));
+                                }}
+                            />
                         </div>
                         <div className='gallery_item_details'>
                             {item.title && <p>{item.title}</p>}
@@ -125,7 +132,7 @@ const PAGE_GALLERY = () => {
                         </div>
                     </div>
                 )) : <>
-                    {/* TODO: No gallery data indication */}
+                    <h1>Galeride fotoğraf bulunamadı.</h1>
                 </>}
             </div>
         </Template>
