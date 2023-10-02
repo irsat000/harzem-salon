@@ -7,6 +7,7 @@ import '../styles/home.css'
 import { defaultFetchGet } from '../utility/fetchUtils';
 import { ScaleUpImage } from './Gallery';
 import { apiLink } from '../utility/utils';
+import FadeInElement from '../components/FadeInElement';
 
 
 export type OurService = {
@@ -154,6 +155,11 @@ const PAGE_HOME = () => {
         )
     }
 
+
+    const [animations, setAnimations] = useState({
+
+    });
+
     const handleMiniGallery = (cateCode: string) => {
         // Get one category using cateCode
         // It has service and image list, required for mini gallery.
@@ -199,55 +205,71 @@ const PAGE_HOME = () => {
                 <div></div>
             </div>
             <section className='our_services-section'>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/sac.webp')} loading="lazy" alt='Saç hizmetleri' />
-                    <h4>Saç</h4>
-                    <ListOurServices cateCode='sac' />
-                    <span>05438192019</span>
-                    <MiniGalleryButton cateCode='sac' />
-                </div>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/tirnak.webp')} loading="lazy" alt='Tırnak hizmetleri' />
-                    <h4>Tırnak</h4>
-                    <ListOurServices cateCode='tirnak' />
-                    <span>05393597313</span>
-                    <MiniGalleryButton cateCode='tirnak' />
-                </div>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/makyaj.webp')} loading="lazy" alt='Makyaj hizmetleri' />
-                    <h4>Makyaj</h4>
-                    <ListOurServices cateCode='makyaj' />
-                    <span>05393597313</span>
-                    <MiniGalleryButton cateCode='makyaj' />
-                </div>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/kirpik.webp')} loading="lazy" alt='Kirpik hizmetleri' />
-                    <h4>Kirpik</h4>
-                    <ListOurServices cateCode='kirpik' />
-                    <span>05393597313</span>
-                    <MiniGalleryButton cateCode='kirpik' />
-                </div>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/dudak.webp')} loading="lazy" alt='Dudak hizmetleri' />
-                    <h4>Dudak</h4>
-                    <ListOurServices cateCode='dudak' />
-                    <span>05393597313</span>
-                    <MiniGalleryButton cateCode='dudak' />
-                </div>
-                <div className='service_item'>
-                    <img src={require('../assets/images/services/epilasyon.webp')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
-                    <h4>Epilasyon & Depilasyon</h4>
-                    <ListOurServices cateCode='epilasyon_depilasyon' />
-                    <span><span>05393597313</span>-<span>05438192019</span></span>
-                    <MiniGalleryButton cateCode='epilasyon_depilasyon' />
-                </div>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/sac.webp')} loading="lazy" alt='Saç hizmetleri' />
+                        <h4>Saç</h4>
+                        <ListOurServices cateCode='sac' />
+                        <span>05438192019</span>
+                        <MiniGalleryButton cateCode='sac' />
+                    </div>
+                </FadeInElement>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/tirnak.webp')} loading="lazy" alt='Tırnak hizmetleri' />
+                        <h4>Tırnak</h4>
+                        <ListOurServices cateCode='tirnak' />
+                        <span>05393597313</span>
+                        <MiniGalleryButton cateCode='tirnak' />
+                    </div>
+                </FadeInElement>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/makyaj.webp')} loading="lazy" alt='Makyaj hizmetleri' />
+                        <h4>Makyaj</h4>
+                        <ListOurServices cateCode='makyaj' />
+                        <span>05393597313</span>
+                        <MiniGalleryButton cateCode='makyaj' />
+                    </div>
+                </FadeInElement>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/kirpik.webp')} loading="lazy" alt='Kirpik hizmetleri' />
+                        <h4>Kirpik</h4>
+                        <ListOurServices cateCode='kirpik' />
+                        <span>05393597313</span>
+                        <MiniGalleryButton cateCode='kirpik' />
+                    </div>
+                </FadeInElement>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/dudak.webp')} loading="lazy" alt='Dudak hizmetleri' />
+                        <h4>Dudak</h4>
+                        <ListOurServices cateCode='dudak' />
+                        <span>05393597313</span>
+                        <MiniGalleryButton cateCode='dudak' />
+                    </div>
+                </FadeInElement>
+                <FadeInElement>
+                    <div className='service_item'>
+                        <img src={require('../assets/images/services/epilasyon.webp')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
+                        <h4>Epilasyon & Depilasyon</h4>
+                        <ListOurServices cateCode='epilasyon_depilasyon' />
+                        <span><span>05393597313</span>-<span>05438192019</span></span>
+                        <MiniGalleryButton cateCode='epilasyon_depilasyon' />
+                    </div>
+                </FadeInElement>
             </section>
-            <article className='about_us_article'>
-                <h1>Güzellik Salonumuz Hakkında</h1>
-                <p>
-                    Siteler Kuaför ve Güzellik Salonu, Bursa'da güzellik ve bakımın merkezi. Saç, makyaj, epilasyon ve daha fazlası için profesyonel hizmetlerimizle sizi bekliyoruz. Stilinizi yeniden keşfetmek, özel günlerde ışıldamak veya günlük bakımınızı yapmak için bize gelin. İhtiyaçlarınıza uygun özel hizmetlerimizle size en iyi hizmeti sunmak için buradayız. Göz alıcı bir görünüm için bizimle iletişime geçin.
-                </p>
-            </article>
+
+            <FadeInElement>
+                <article className='about_us_article'>
+                    <h1>Güzellik Salonumuz Hakkında</h1>
+                    <p>
+                        Siteler Kuaför ve Güzellik Salonu, Bursa'da güzellik ve bakımın merkezi. Saç, makyaj, epilasyon ve daha fazlası için profesyonel hizmetlerimizle sizi bekliyoruz. Stilinizi yeniden keşfetmek, özel günlerde ışıldamak veya günlük bakımınızı yapmak için bize gelin. İhtiyaçlarınıza uygun özel hizmetlerimizle size en iyi hizmeti sunmak için buradayız. Göz alıcı bir görünüm için bizimle iletişime geçin.
+                    </p>
+                </article>
+            </FadeInElement>
+            
             <TestimonialCarousel />
             {homeGalleryData && <>
                 <div className='section-header' ref={gallerySection}>
