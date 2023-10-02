@@ -242,6 +242,12 @@ const PAGE_HOME = () => {
                     <MiniGalleryButton cateCode='epilasyon_depilasyon' />
                 </div>
             </section>
+            <article className='about_us_article'>
+                <h1>Güzellik Salonumuz Hakkında</h1>
+                <p>
+                    Siteler Kuaför ve Güzellik Salonu, Bursa'da güzellik ve bakımın merkezi. Saç, makyaj, epilasyon ve daha fazlası için profesyonel hizmetlerimizle sizi bekliyoruz. Stilinizi yeniden keşfetmek, özel günlerde ışıldamak veya günlük bakımınızı yapmak için bize gelin. İhtiyaçlarınıza uygun özel hizmetlerimizle size en iyi hizmeti sunmak için buradayız. Göz alıcı bir görünüm için bizimle iletişime geçin.
+                </p>
+            </article>
             <TestimonialCarousel />
             {homeGalleryData && <>
                 <div className='section-header' ref={gallerySection}>

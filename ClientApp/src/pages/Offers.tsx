@@ -18,7 +18,7 @@ const PAGE_OFFERS = () => {
         if (cachedDiscountCombinationsData && new Date() < new Date(cachedDiscountCombinationsData.expire)) {
             setDiscountCombinationsData(cachedDiscountCombinationsData.discountCombinations);
         } else {
-             fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
+            fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
                 .then((res) => {
                     switch (res.status) {
                         case 404:
@@ -61,24 +61,25 @@ const PAGE_OFFERS = () => {
                 </div>
                 <div className='offer-seperator'></div>
                 */}
-                {discountCombinationsData && <>
-                    <div className='offer-item'>
-                        <div className='offer-header'>
-                            <h1>Kombinasyon Tarifeleri</h1>
-                        </div>
-                        <div className='offer-details'>
-                            <p>
-                                Listelenen hizmet kombinasyonlarında harcama yaptığınızda <span className='highlighted'>%5</span> indirim sunuyoruz.
-                            </p>
-                            <div className='offer_detail-seperator'></div>
-                            <ul>
-                                {discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))}
-                            </ul>
-                        </div>
+                <div className='offer-item'>
+                    <div className='offer-header'>
+                        <h1>Kombinasyon Tarifeleri</h1>
                     </div>
-                </>}
+                    <div className='offer-details'>
+                        <p>
+                            Listelenen hizmet kombinasyonlarında harcama yaptığınızda <span className='highlighted'>%5</span> indirim sunuyoruz.
+                        </p>
+                        <div className='offer_detail-seperator'></div>
+                        <ul>
+                            {discountCombinationsData
+                                ? discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))
+                                : <li>Liste boş</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
             </>
-        </Template>
+        </Template >
     )
 }
 
