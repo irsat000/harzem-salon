@@ -25,7 +25,7 @@ header.extended {
         z-index: -1;
     }
 
-    .header_3 {
+    .header-3 {
         display: flex;
     }
 }
@@ -37,13 +37,13 @@ header {
     position: relative;
     background-color: #262626;
 
-    .header_seperator {
+    .header-seperator {
         align-self: center;
         width: 94%;
         border-top: 1px solid rgba(255, 255, 255, 0.25);
     }
 
-    .header_1 {
+    .header-1 {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -51,13 +51,13 @@ header {
         padding: 6px 10px;
         gap: 10px;
 
-        .business_name {
+        .business-name {
             font-size: 1rem;
             font-family: 'Bhavuka', sans-serif;
         }
 
         // Mobile only
-        .drawer_btn {
+        .drawer-btn {
             display: flex;
             font-size: 1.7rem;
         }
@@ -115,7 +115,7 @@ header {
         }
     }
 
-    .header_2 {
+    .header-2 {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -137,7 +137,7 @@ header {
 
             >a,
             >button,
-            >.srv_dd_menu>a {
+            >.dropdown-menu>a {
                 font-size: 1.1rem;
                 font-family: 'Mukta', sans-serif;
                 font-weight: 400;
@@ -151,7 +151,7 @@ header {
 
             >a,
             >button,
-            >.srv_dd_menu {
+            >.dropdown-menu {
                 border-bottom: 1px solid #ffffff00;
                 transition: border-bottom 0.1s ease;
 
@@ -172,7 +172,7 @@ header {
                 }
             }
 
-            .srv_dd_menu {
+            .dropdown-menu {
                 position: relative;
 
                 >a:hover~ul {
@@ -217,7 +217,7 @@ header {
         }
     }
 
-    .header_3 {
+    .header-3 {
         display: none;
         margin-top: auto;
         flex-direction: row;
@@ -259,7 +259,7 @@ header {
             background-position: right center;
         }
 
-        .header_3 {
+        .header-3 {
             padding: 30px 4%;
 
             button {
@@ -271,16 +271,16 @@ header {
     }
 
     header {
-        .header_1 {
+        .header-1 {
             position: relative;
             padding: 10px 4%;
             height: 50px;
 
-            .business_name {
+            .business-name {
                 font-size: 1.2rem;
             }
 
-            .drawer_btn {
+            .drawer-btn {
                 display: none;
             }
 
@@ -289,7 +289,7 @@ header {
             }
         }
 
-        .header_2 {
+        .header-2 {
             padding: 16px 4%;
 
             .brand_name {
@@ -310,7 +310,7 @@ header {
     }
 
     header {
-        .header_1 {
+        .header-1 {
             justify-content: center;
         }
     }

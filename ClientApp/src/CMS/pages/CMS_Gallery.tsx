@@ -174,7 +174,7 @@ const CMS_GALLERY = () => {
                                     <img src={item.imageLink} alt={`Galeri fotoğrafı ${index}`} loading="lazy"
                                         onClick={() => handleScaleUp(item.imageLink)} />
                                 </div>
-                                <div className='gallery_item_details'>
+                                <div className='gallery-item-details'>
                                     {item.title && <p>{item.title}</p>}
                                     <span>Tarih - {item.uploadDate}</span>
                                     <span className='delete' onClick={() => handleImageDelete(index)}>Sil</span>

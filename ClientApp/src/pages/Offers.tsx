@@ -61,23 +61,22 @@ const PAGE_OFFERS = () => {
                 </div>
                 <div className='offer-seperator'></div>
                 */}
-                <div className='offer-item'>
-                    <div className='offer-header'>
-                        <h1>Kombinasyon Tarifeleri</h1>
+                {discountCombinationsData &&
+                    <div className='offer-item'>
+                        <div className='offer-header'>
+                            <h1>Kombinasyon Tarifeleri</h1>
+                        </div>
+                        <div className='offer-details'>
+                            <p>
+                                Listelenen hizmet kombinasyonlarında harcama yaptığınızda <span className='highlighted'>%5</span> indirim sunuyoruz.
+                            </p>
+                            <div className='offer-detail-seperator'></div>
+                            <ul>
+                                {discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))}
+                            </ul>
+                        </div>
                     </div>
-                    <div className='offer-details'>
-                        <p>
-                            Listelenen hizmet kombinasyonlarında harcama yaptığınızda <span className='highlighted'>%5</span> indirim sunuyoruz.
-                        </p>
-                        <div className='offer_detail-seperator'></div>
-                        <ul>
-                            {discountCombinationsData
-                                ? discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))
-                                : <li>Liste boş</li>
-                            }
-                        </ul>
-                    </div>
-                </div>
+                }
             </>
         </Template >
     )

@@ -36,7 +36,7 @@ const BalanceCheck: React.FC<{
     }
 
     return (
-        <div className={`balance_check-cont ${balanceCheckActive ? 'active' : ''}`} onClick={() => handleClose()}>
+        <div className={`balance-check-cont ${balanceCheckActive ? 'active' : ''}`} onClick={() => handleClose()}>
             <form className='balance_check' onClick={(e) => e.stopPropagation()} onSubmit={(e) => checkBalance(e)}>
                 <div className='bc-close' onClick={() => handleClose()}>
                     <XLg />

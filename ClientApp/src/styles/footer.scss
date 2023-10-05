@@ -4,7 +4,7 @@ footer {
     display: flex;
     flex-direction: column;
 
-    .about_us {
+    .about-us {
         padding: 20px 10px 30px;
         display: flex;
         flex-direction: column;
@@ -23,19 +23,19 @@ footer {
                 margin-bottom: 14px;
             }
 
-            .contact_details {
+            .contact-details {
                 display: flex;
                 flex-direction: column;
                 padding-left: 8px;
                 gap: 12px;
 
-                .contact_item {
+                .contact-item {
                     display: flex;
                     flex-direction: row;
                     align-items: flex-start;
                     gap: 8px;
 
-                    .contact_icon {
+                    .contact-icon {
                         display: flex;
                         font-size: 1.1em;
                     }
@@ -56,7 +56,7 @@ footer {
             gap: 10px;
             user-select: none;
 
-            .workplace_on_map {
+            .workplace-on-map {
                 iframe {
                     border: none;
                     border-radius: 8px;
@@ -65,7 +65,7 @@ footer {
                 }
             }
 
-            .workplace_photos {
+            .workplace-photos {
                 display: flex;
                 flex-direction: column;
                 gap: 10px 2%;
@@ -92,7 +92,7 @@ footer {
 // Small devices (landscape phones, 576px and up)
 @media (min-width: 576px) {
 
-    footer .about_us .workplace-cont .workplace_photos {
+    footer .about-us .workplace-cont .workplace-photos {
         justify-content: space-between;
         flex-direction: row;
 
@@ -108,7 +108,7 @@ footer {
     footer {
         margin-top: 50px;
 
-        .about_us {
+        .about-us {
             padding: 40px 4% 50px;
             font-size: 18px;
 
@@ -118,18 +118,18 @@ footer {
                     margin-bottom: 18px;
                 }
 
-                .contact_details {
+                .contact-details {
                     padding-left: 12px;
                     gap: 16px;
 
-                    .contact_item {
+                    .contact-item {
                         gap: 12px;
                     }
                 }
             }
 
             .workplace-cont {
-                .workplace_on_map {
+                .workplace-on-map {
                     iframe {
                         height: 450px;
                     }
@@ -149,7 +149,7 @@ footer {
 
 
     footer {
-        .about_us {
+        .about-us {
             flex-direction: row;
             font-size: 20px;
 
@@ -160,7 +160,7 @@ footer {
                     margin-bottom: 24px;
                 }
 
-                .contact_details {
+                .contact-details {
                     gap: 20px;
                 }
             }

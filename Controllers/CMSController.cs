@@ -40,7 +40,7 @@ public class CMSController : ControllerBase
     }
 
 
-
+    /* Check project path
     [HttpGet("test-root")]
     public IActionResult TestRoot()
     {
@@ -48,6 +48,7 @@ public class CMSController : ControllerBase
 
         return Ok(new { message = "Success", rootPath });
     }
+    */
 
     [HttpPost("admin-login")]
     [EnableRateLimiting("fixed_cmsLogin")]

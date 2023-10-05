@@ -155,11 +155,6 @@ const PAGE_HOME = () => {
         )
     }
 
-
-    const [animations, setAnimations] = useState({
-
-    });
-
     const handleMiniGallery = (cateCode: string) => {
         // Get one category using cateCode
         // It has service and image list, required for mini gallery.
@@ -196,7 +191,7 @@ const PAGE_HOME = () => {
         <Template isHomepage={true} gallerySection={gallerySection} ourservicesSection={ourservicesSection}>
             <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
             <MiniGallery miniGalleryData={miniGalleryData} miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
-            <p className='appointment_contact_info'>
+            <p className='appointment-contact-info'>
                 Randevu için arayınız - <span>0 (543) 819 20 19</span>
             </p>
             <div className='section-header' ref={ourservicesSection}>
@@ -204,9 +199,9 @@ const PAGE_HOME = () => {
                 <h2>HİZMETLERİMİZ</h2>
                 <div></div>
             </div>
-            <section className='our_services-section'>
+            <section className='our-services-section'>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/sac.webp')} loading="lazy" alt='Saç hizmetleri' />
                         <h4>Saç</h4>
                         <ListOurServices cateCode='sac' />
@@ -215,7 +210,7 @@ const PAGE_HOME = () => {
                     </div>
                 </FadeInElement>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/tirnak.webp')} loading="lazy" alt='Tırnak hizmetleri' />
                         <h4>Tırnak</h4>
                         <ListOurServices cateCode='tirnak' />
@@ -224,7 +219,7 @@ const PAGE_HOME = () => {
                     </div>
                 </FadeInElement>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/makyaj.webp')} loading="lazy" alt='Makyaj hizmetleri' />
                         <h4>Makyaj</h4>
                         <ListOurServices cateCode='makyaj' />
@@ -233,7 +228,7 @@ const PAGE_HOME = () => {
                     </div>
                 </FadeInElement>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/kirpik.webp')} loading="lazy" alt='Kirpik hizmetleri' />
                         <h4>Kirpik</h4>
                         <ListOurServices cateCode='kirpik' />
@@ -242,7 +237,7 @@ const PAGE_HOME = () => {
                     </div>
                 </FadeInElement>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/dudak.webp')} loading="lazy" alt='Dudak hizmetleri' />
                         <h4>Dudak</h4>
                         <ListOurServices cateCode='dudak' />
@@ -251,7 +246,7 @@ const PAGE_HOME = () => {
                     </div>
                 </FadeInElement>
                 <FadeInElement>
-                    <div className='service_item'>
+                    <div className='service-item'>
                         <img src={require('../assets/images/services/epilasyon.webp')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
                         <h4>Epilasyon & Depilasyon</h4>
                         <ListOurServices cateCode='epilasyon_depilasyon' />
@@ -262,10 +257,10 @@ const PAGE_HOME = () => {
             </section>
 
             <FadeInElement>
-                <article className='about_us_article'>
+                <article className='about-us-article intro'>
                     <h1>Güzellik Salonumuz Hakkında</h1>
                     <p>
-                        Siteler Kuaför ve Güzellik Salonu, Bursa'da güzellik ve bakımın merkezi. Saç, makyaj, epilasyon ve daha fazlası için profesyonel hizmetlerimizle sizi bekliyoruz. Stilinizi yeniden keşfetmek, özel günlerde ışıldamak veya günlük bakımınızı yapmak için bize gelin. İhtiyaçlarınıza uygun özel hizmetlerimizle size en iyi hizmeti sunmak için buradayız. Göz alıcı bir görünüm için bizimle iletişime geçin.
+                        Siteler Kuaför ve Güzellik Salonu, Bursa Yıldırım Sitelerde bayanlar için bir güzellik salonudur. Saç, makyaj, epilasyon, ağda, dövme ve daha fazlası için profesyonel ekipmanlarımız ve tecrübemiz ile sizleri bekliyoruz.
                     </p>
                 </article>
             </FadeInElement>
@@ -284,7 +279,7 @@ const PAGE_HOME = () => {
                                 onClick={() => handleScaleUp(image)} />
                         </div>
                     ))}
-                    <div className='gallery_showmore'>
+                    <div className='gallery-showmore'>
                         <Link to='/galeri'>Daha fazla göster</Link>
                     </div>
                 </section>

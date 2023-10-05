@@ -22,7 +22,7 @@ const Drawer: React.FC<{
         <div className={`drawer-cont ${drawerActive ? 'active' : ''}`} onClick={() => handleClose()}>
             <div className='drawer' onClick={(e) => e.stopPropagation()}>
                 <img src={require('../assets/images/nails_transparent.webp')} alt='Mobil menü fotoğrafı' className='drawer-header' />
-                {/*<button type='button' className='d-check_balance-btn' onClick={() => {
+                {/*<button type='button' className='d-check-balance-btn' onClick={() => {
                     handleClose()
                     setBalanceCheckActive(true)
                 }}>Kupon Sorgula</button>*/}

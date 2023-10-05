@@ -4,46 +4,46 @@ footer {
   display: flex;
   flex-direction: column;
 }
-footer .about_us {
+footer .about-us {
   padding: 20px 10px 30px;
   display: flex;
   flex-direction: column;
   gap: 20px 10%;
   font-size: 14px;
 }
-footer .about_us .contact-cont {
+footer .about-us .contact-cont {
   order: 2;
   display: flex;
   flex-direction: column;
 }
-footer .about_us .contact-cont h5 {
+footer .about-us .contact-cont h5 {
   font-size: 1.3em;
   font-family: "Della Respira", serif;
   font-weight: 400;
   margin-bottom: 14px;
 }
-footer .about_us .contact-cont .contact_details {
+footer .about-us .contact-cont .contact-details {
   display: flex;
   flex-direction: column;
   padding-left: 8px;
   gap: 12px;
 }
-footer .about_us .contact-cont .contact_details .contact_item {
+footer .about-us .contact-cont .contact-details .contact-item {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   gap: 8px;
 }
-footer .about_us .contact-cont .contact_details .contact_item .contact_icon {
+footer .about-us .contact-cont .contact-details .contact-item .contact-icon {
   display: flex;
   font-size: 1.1em;
 }
-footer .about_us .contact-cont .contact_details .contact_item span {
+footer .about-us .contact-cont .contact-details .contact-item span {
   font-size: 1em;
   font-family: "Montserrat", sans-serif;
   font-weight: 400;
 }
-footer .about_us .workplace-cont {
+footer .about-us .workplace-cont {
   order: 1;
   display: flex;
   flex-direction: column;
@@ -52,18 +52,18 @@ footer .about_us .workplace-cont {
      -moz-user-select: none;
           user-select: none;
 }
-footer .about_us .workplace-cont .workplace_on_map iframe {
+footer .about-us .workplace-cont .workplace-on-map iframe {
   border: none;
   border-radius: 8px;
   width: 100%;
   height: 300px;
 }
-footer .about_us .workplace-cont .workplace_photos {
+footer .about-us .workplace-cont .workplace-photos {
   display: flex;
   flex-direction: column;
   gap: 10px 2%;
 }
-footer .about_us .workplace-cont .workplace_photos img {
+footer .about-us .workplace-cont .workplace-photos img {
   height: auto;
   border-radius: 8px;
 }
@@ -75,11 +75,11 @@ footer .copyright {
 }
 
 @media (min-width: 576px) {
-  footer .about_us .workplace-cont .workplace_photos {
+  footer .about-us .workplace-cont .workplace-photos {
     justify-content: space-between;
     flex-direction: row;
   }
-  footer .about_us .workplace-cont .workplace_photos img {
+  footer .about-us .workplace-cont .workplace-photos img {
     width: 50%;
   }
 }
@@ -87,21 +87,21 @@ footer .copyright {
   footer {
     margin-top: 50px;
   }
-  footer .about_us {
+  footer .about-us {
     padding: 40px 4% 50px;
     font-size: 18px;
   }
-  footer .about_us .contact-cont h5 {
+  footer .about-us .contact-cont h5 {
     margin-bottom: 18px;
   }
-  footer .about_us .contact-cont .contact_details {
+  footer .about-us .contact-cont .contact-details {
     padding-left: 12px;
     gap: 16px;
   }
-  footer .about_us .contact-cont .contact_details .contact_item {
+  footer .about-us .contact-cont .contact-details .contact-item {
     gap: 12px;
   }
-  footer .about_us .workplace-cont .workplace_on_map iframe {
+  footer .about-us .workplace-cont .workplace-on-map iframe {
     height: 450px;
   }
   footer .copyright {
@@ -110,20 +110,20 @@ footer .copyright {
   }
 }
 @media (min-width: 992px) {
-  footer .about_us {
+  footer .about-us {
     flex-direction: row;
     font-size: 20px;
   }
-  footer .about_us .contact-cont {
+  footer .about-us .contact-cont {
     order: 1;
   }
-  footer .about_us .contact-cont h5 {
+  footer .about-us .contact-cont h5 {
     margin-bottom: 24px;
   }
-  footer .about_us .contact-cont .contact_details {
+  footer .about-us .contact-cont .contact-details {
     gap: 20px;
   }
-  footer .about_us .workplace-cont {
+  footer .about-us .workplace-cont {
     order: 2;
     gap: 20px;
   }

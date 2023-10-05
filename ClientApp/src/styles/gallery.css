@@ -47,7 +47,7 @@
      object-fit: contain;
   border-radius: 4px;
 }
-.gallery-cont .gallery-item .gallery_item_details {
+.gallery-cont .gallery-item .gallery-item-details {
   width: -moz-min-content;
   width: min-content;
   min-width: 100%;
@@ -57,11 +57,11 @@
   margin-top: 10px;
   font-size: 18px;
 }
-.gallery-cont .gallery-item .gallery_item_details p {
+.gallery-cont .gallery-item .gallery-item-details p {
   font-size: 1em;
   font-family: "Montserrat", sans-serif;
 }
-.gallery-cont .gallery-item .gallery_item_details span {
+.gallery-cont .gallery-item .gallery-item-details span {
   font-size: 0.8em;
   font-family: "Armata", sans-serif;
 }
@@ -94,7 +94,7 @@
     transform: scale(1.05);
     margin-bottom: 6px;
   }
-  .gallery-cont .gallery-item .gallery_item_details {
+  .gallery-cont .gallery-item .gallery-item-details {
     font-size: 20px;
   }
 }

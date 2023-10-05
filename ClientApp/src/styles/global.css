@@ -64,11 +64,11 @@ main {
   min-height: 500px;
 }
 
-.image_scaleup.active {
+.image-scaleup.active {
   display: flex;
 }
 
-.image_scaleup {
+.image-scaleup {
   display: none;
   flex-direction: column;
   position: fixed;
@@ -87,7 +87,7 @@ main {
   justify-content: center;
   align-items: center;
 }
-.image_scaleup .sclup-close {
+.image-scaleup .sclup-close {
   position: absolute;
   top: 20px;
   right: 30px;
@@ -103,17 +103,17 @@ main {
           backdrop-filter: blur(1px);
   transition: background-color 0.1s ease-in-out;
 }
-.image_scaleup .sclup-close:hover {
+.image-scaleup .sclup-close:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
-.image_scaleup img {
+.image-scaleup img {
   max-height: 90%;
   max-width: 90%;
   -o-object-fit: contain;
      object-fit: contain;
   border-radius: 8px;
 }
-.image_scaleup .image-error {
+.image-scaleup .image-error {
   height: 80%;
   width: 400px;
   max-width: 90%;

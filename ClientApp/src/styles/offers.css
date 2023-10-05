@@ -32,7 +32,7 @@
   color: #5bb13f;
   font-weight: bold;
 }
-.offer-item .offer-details .offer_detail-seperator {
+.offer-item .offer-details .offer-detail-seperator {
   width: 40px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }

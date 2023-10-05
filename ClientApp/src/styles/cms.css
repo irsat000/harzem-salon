@@ -667,7 +667,7 @@
   text-align: center;
   font-size: 1.4em;
 }
-.cms_main-gallery .gallery-cont .gallery-item .gallery_item_details .delete {
+.cms_main-gallery .gallery-cont .gallery-item .gallery-item-details .delete {
   align-self: flex-start;
   color: #f62424;
   -webkit-user-select: none;
@@ -679,7 +679,7 @@
   font-weight: 300;
   padding: 6px;
 }
-.cms_main-gallery .gallery-cont .gallery-item .gallery_item_details .delete:hover {
+.cms_main-gallery .gallery-cont .gallery-item .gallery-item-details .delete:hover {
   text-decoration: underline;
 }
 

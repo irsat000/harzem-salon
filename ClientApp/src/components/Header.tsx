@@ -16,20 +16,20 @@ const Header: React.FC<{
 
     return (
         <header className={isHomepage ? 'extended' : ''}>
-            <div className='header_1'>
-                <span className='business_name'>Siteler Kuaför & Güzellik Salonu</span>
-                <div className='drawer_btn' onClick={() => setDrawerActive(true)}>
+            <div className='header-1'>
+                <span className='business-name'>Siteler Kuaför & Güzellik Salonu</span>
+                <div className='drawer-btn' onClick={() => setDrawerActive(true)}>
                     <List />
                 </div>
                 {/*<div className='balance-cont'>
                     <button type='button' onClick={() => setBalanceCheckActive(true)}>Kupon Sorgula</button>
                 </div>*/}
             </div>
-            <div className='header_seperator'></div>
-            <div className='header_2'>
+            <div className='header-seperator'></div>
+            <div className='header-2'>
                 <Link to='/' className='brand_name'>HARZEM Salon</Link>
                 <nav>
-                    {/*<div className='srv_dd_menu'>
+                    {/*<div className='dropdown-menu'>
                         <Link to='/hizmetlerimiz'>HİZMETLER</Link>
                         <ul>
                             <li><Link to='/hizmetlerimiz?hizmet=sac'>Saç</Link></li>
@@ -48,7 +48,7 @@ const Header: React.FC<{
                     <button onClick={() => scrollToSection(aboutusSection)}>HAKKIMIZDA</button>
                 </nav>
             </div>
-            <div className='header_3'>
+            <div className='header-3'>
                 <button type='button' onClick={() => navigate('/kampanyalar')}>
                     Kampanyalar
                 </button>

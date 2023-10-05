@@ -15,7 +15,7 @@ header.extended::before {
   opacity: 0.7;
   z-index: -1;
 }
-header.extended .header_3 {
+header.extended .header-3 {
   display: flex;
 }
 
@@ -25,12 +25,12 @@ header {
   position: relative;
   background-color: #262626;
 }
-header .header_seperator {
+header .header-seperator {
   align-self: center;
   width: 94%;
   border-top: 1px solid rgba(255, 255, 255, 0.25);
 }
-header .header_1 {
+header .header-1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -38,15 +38,15 @@ header .header_1 {
   padding: 6px 10px;
   gap: 10px;
 }
-header .header_1 .business_name {
+header .header-1 .business-name {
   font-size: 1rem;
   font-family: "Bhavuka", sans-serif;
 }
-header .header_1 .drawer_btn {
+header .header-1 .drawer-btn {
   display: flex;
   font-size: 1.7rem;
 }
-header .header_1 .balance-cont {
+header .header-1 .balance-cont {
   display: none;
   flex-direction: row;
   align-items: center;
@@ -76,7 +76,7 @@ header .header_1 .balance-cont {
       font-weight: 300;
   }*/
 }
-header .header_1 .balance-cont button {
+header .header-1 .balance-cont button {
   cursor: pointer;
   outline: transparent;
   color: #ffffff;
@@ -89,31 +89,31 @@ header .header_1 .balance-cont button {
   background-color: rgba(255, 255, 255, 0.03);
   transition: background-color 0.1s ease-in-out;
 }
-header .header_1 .balance-cont button:hover {
+header .header-1 .balance-cont button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
-header .header_2 {
+header .header-2 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 10px;
 }
-header .header_2 .brand_name {
+header .header-2 .brand_name {
   font-size: 1.2rem;
   font-weight: 400;
   font-family: "Calligraffitti", cursive;
   padding-top: 8px;
   outline: transparent;
 }
-header .header_2 nav {
+header .header-2 nav {
   display: none;
   flex-direction: row;
   gap: 20px;
 }
-header .header_2 nav > a,
-header .header_2 nav > button,
-header .header_2 nav > .srv_dd_menu > a {
+header .header-2 nav > a,
+header .header-2 nav > button,
+header .header-2 nav > .dropdown-menu > a {
   font-size: 1.1rem;
   font-family: "Mukta", sans-serif;
   font-weight: 400;
@@ -124,15 +124,15 @@ header .header_2 nav > .srv_dd_menu > a {
   border: none;
   outline: transparent;
 }
-header .header_2 nav > a,
-header .header_2 nav > button,
-header .header_2 nav > .srv_dd_menu {
+header .header-2 nav > a,
+header .header-2 nav > button,
+header .header-2 nav > .dropdown-menu {
   border-bottom: 1px solid rgba(255, 255, 255, 0);
   transition: border-bottom 0.1s ease;
 }
-header .header_2 nav > a:hover,
-header .header_2 nav > button:hover,
-header .header_2 nav > .srv_dd_menu:hover {
+header .header-2 nav > a:hover,
+header .header-2 nav > button:hover,
+header .header-2 nav > .dropdown-menu:hover {
   border-bottom: 1px solid #ffffff;
 }
 @keyframes fadeIn_dd_menu {
@@ -145,16 +145,16 @@ header .header_2 nav > .srv_dd_menu:hover {
     transform: translateX(0);
   }
 }
-header .header_2 nav .srv_dd_menu {
+header .header-2 nav .dropdown-menu {
   position: relative;
 }
-header .header_2 nav .srv_dd_menu > a:hover ~ ul {
+header .header-2 nav .dropdown-menu > a:hover ~ ul {
   display: flex;
 }
-header .header_2 nav .srv_dd_menu > ul:hover {
+header .header-2 nav .dropdown-menu > ul:hover {
   display: flex;
 }
-header .header_2 nav .srv_dd_menu ul {
+header .header-2 nav .dropdown-menu ul {
   position: absolute;
   top: 1.1rem;
   right: -40px;
@@ -163,11 +163,11 @@ header .header_2 nav .srv_dd_menu ul {
   padding: 10px 40px 10px;
   animation: fadeIn_dd_menu 0.3s ease-in-out;
 }
-header .header_2 nav .srv_dd_menu ul li {
+header .header-2 nav .dropdown-menu ul li {
   display: flex;
   justify-content: flex-end;
 }
-header .header_2 nav .srv_dd_menu ul li a {
+header .header-2 nav .dropdown-menu ul li a {
   padding: 10px 10px 10px 20px;
   border-bottom: 1px solid #ffffff;
   transition: all 0.2s ease;
@@ -176,10 +176,10 @@ header .header_2 nav .srv_dd_menu ul li a {
   font-weight: 400;
   font-size: 0.9rem;
 }
-header .header_2 nav .srv_dd_menu ul li:hover > a {
+header .header-2 nav .dropdown-menu ul li:hover > a {
   padding: 10px 30px 10px 30px;
 }
-header .header_3 {
+header .header-3 {
   display: none;
   margin-top: auto;
   flex-direction: row;
@@ -187,7 +187,7 @@ header .header_3 {
   justify-content: space-between;
   padding: 10px 10px;
 }
-header .header_3 button {
+header .header-3 button {
   font-size: 0.9rem;
   font-family: "Molengo", sans-serif;
   cursor: pointer;
@@ -199,7 +199,7 @@ header .header_3 button {
   background-color: rgba(255, 255, 255, 0.03);
   transition: all 0.1s ease-in-out;
 }
-header .header_3 button:hover {
+header .header-3 button:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -210,35 +210,35 @@ header .header_3 button:hover {
   header.extended::before {
     background-position: right center;
   }
-  header.extended .header_3 {
+  header.extended .header-3 {
     padding: 30px 4%;
   }
-  header.extended .header_3 button {
+  header.extended .header-3 button {
     padding: 16px 26px;
     font-size: 1.3rem;
     border-radius: 14px;
   }
-  header .header_1 {
+  header .header-1 {
     position: relative;
     padding: 10px 4%;
     height: 50px;
   }
-  header .header_1 .business_name {
+  header .header-1 .business-name {
     font-size: 1.2rem;
   }
-  header .header_1 .drawer_btn {
+  header .header-1 .drawer-btn {
     display: none;
   }
-  header .header_1 .balance-cont {
+  header .header-1 .balance-cont {
     display: flex;
   }
-  header .header_2 {
+  header .header-2 {
     padding: 16px 4%;
   }
-  header .header_2 .brand_name {
+  header .header-2 .brand_name {
     font-size: 1.6rem;
   }
-  header .header_2 nav {
+  header .header-2 nav {
     display: flex;
   }
 }
@@ -246,7 +246,7 @@ header .header_3 button:hover {
   header.extended {
     height: 450px;
   }
-  header .header_1 {
+  header .header-1 {
     justify-content: center;
   }
 }/*# sourceMappingURL=header.css.map */

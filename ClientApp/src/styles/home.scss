@@ -2,7 +2,7 @@
 
 // CONTENT
 
-.appointment_contact_info {
+.appointment-contact-info {
     margin-top: 20px;
     padding: 0 10px;
     font-size: 0.8rem;
@@ -35,7 +35,7 @@
     }
 }
 
-.our_services-section {
+.our-services-section {
     margin-top: 16px;
     padding: 0 10px;
     display: flex;
@@ -44,7 +44,7 @@
     justify-content: space-between;
     gap: 14px 0;
 
-    .service_item {
+    .service-item {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -118,7 +118,9 @@
 }
 
 
-.about_us_article {
+.about-us-article {
+    margin: 0 auto;
+    width: 98%;
     margin-top: 20px;
     display: flex;
     flex-direction: column;
@@ -232,7 +234,7 @@
         }
     }
 
-    .gallery_showmore {
+    .gallery-showmore {
         width: 100%;
         padding: 10px 0;
         display: flex;
@@ -464,7 +466,7 @@
         font-size: 16px;
     }
 
-    .appointment_contact_info {
+    .appointment-contact-info {
         margin-top: 50px;
         font-size: 1.2rem;
     }
@@ -478,12 +480,12 @@
         }
     }
 
-    .our_services-section {
+    .our-services-section {
         margin-top: 25px;
         padding: 0 4%;
         gap: 24px 0;
 
-        .service_item {
+        .service-item {
             width: calc(33.3% - 30px);
             gap: 4px;
 
@@ -504,7 +506,7 @@
         }
     }
 
-    .about_us_article {
+    .about-us-article {
         margin-top: 50px;
         padding: 50px 4%;
         gap: 30px;
@@ -536,7 +538,7 @@
             width: 200px;
         }
 
-        .gallery_showmore {
+        .gallery-showmore {
 
             a {
                 padding: 12px 40px;
@@ -549,9 +551,9 @@
 
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
-    .our_services-section {
+    .our-services-section {
 
-        .service_item {
+        .service-item {
             width: calc(33.3% - 40px);
         }
     }

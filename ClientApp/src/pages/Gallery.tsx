@@ -47,7 +47,7 @@ export const ScaleUpImage: React.FC<{
     }
 
     return (
-        <div className={`image_scaleup ${scaleUpActive ? 'active' : ''}`} onClick={() => closeScaleUp()}>
+        <div className={`image-scaleup ${scaleUpActive ? 'active' : ''}`} onClick={() => closeScaleUp()}>
             <div className='sclup-close' onClick={() => closeScaleUp()}>
                 <XLg />
             </div>
@@ -71,7 +71,7 @@ const PAGE_GALLERY = () => {
         setScaleUpActive(true);
     }
 
-
+    const [dataLoading, setDataLoading] = useState("loading");
     const [galleryData, setGalleryData] = useState<GalleryImage[]>([]);
 
     useEffect(() => {
@@ -99,8 +99,12 @@ const PAGE_GALLERY = () => {
                     }));
                     setGalleryData(updated);
                     sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(updated));
+                    setDataLoading("success");
                 })
-                .catch((err) => console.error('Error fetching data:', err));
+                .catch((err) => {
+                    setDataLoading("fail");
+                    console.error('Error fetching data:', err);
+                });
         }
     }, []);
 
@@ -113,27 +117,29 @@ const PAGE_GALLERY = () => {
                 <div></div>
             </div>
             <div className='gallery-cont'>
-                {galleryData.length > 0 ? galleryData.map((item, index) => (
-                    <div key={index} className='gallery-item'>
-                        <div className="image-wrap">
-                            <img
-                                src={item.imageLink}
-                                alt={`Galeri fotoğrafı ${index}`}
-                                loading="lazy"
-                                onClick={() => handleScaleUp(item.imageLink)}
-                                onError={() => {
-                                    setGalleryData((prevList) => prevList.filter((_, i) => i !== index));
-                                }}
-                            />
+                {dataLoading === "success" && galleryData.length > 0 ?
+                    galleryData.map((item, index) => (
+                        <div key={index} className='gallery-item'>
+                            <div className="image-wrap">
+                                <img
+                                    src={item.imageLink}
+                                    alt={`Galeri fotoğrafı ${index}`}
+                                    loading="lazy"
+                                    onClick={() => handleScaleUp(item.imageLink)}
+                                    onError={() => {
+                                        setGalleryData((prevList) => prevList.filter((_, i) => i !== index));
+                                    }}
+                                />
+                            </div>
+                            <div className='gallery-item-details'>
+                                {item.title && <p>{item.title}</p>}
+                                <span>Tarih - {item.uploadDate}</span>
+                            </div>
                         </div>
-                        <div className='gallery_item_details'>
-                            {item.title && <p>{item.title}</p>}
-                            <span>Tarih - {item.uploadDate}</span>
-                        </div>
-                    </div>
-                )) : <>
-                    <h1>Galeride fotoğraf bulunamadı.</h1>
-                </>}
+                    )) : dataLoading === "loading" ?
+                        <h1>Yükleniyor...</h1> :
+                        <h1>Galeride fotoğraf bulunamadı.</h1>
+                }
             </div>
         </Template>
     )
