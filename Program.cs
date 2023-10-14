@@ -21,15 +21,12 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddDbContext<sitelerguzellikdbContext>();
 
-builder.Services.AddCors(options =>
+builder.Services.AddCors(o => o.AddPolicy("AllowHarzemSalon", _builder =>
     {
-        options.AddPolicy("AllowHarzemSalon", _builder =>
-        {
-            _builder.WithOrigins(builder.Configuration["HarzemSalon:AllowedCors"]!)
-                .AllowAnyHeader()
-                .AllowAnyMethod();
-        });
-    });
+        _builder.WithOrigins(builder.Configuration["HarzemSalon:AllowedCors"]!)
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    }));
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -84,7 +81,7 @@ if (!app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
-app.UseCors("AllowHarzemSalon");
+app.UseCors("AllowHarzemSalon"); // After routing
 app.UseRateLimiter(); // After routing
 app.UseAuthentication();
 app.UseAuthorization();

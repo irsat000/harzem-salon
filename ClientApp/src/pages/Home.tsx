@@ -147,11 +147,11 @@ const PAGE_HOME = () => {
         cateCode: string;
     }> = ({ cateCode }) => {
         return (serviceList &&
-            <ul>
-                {serviceList.find(c => c.cateCode === cateCode)!.ourServices.map((service, index) => (
-                    <li key={index}>- {service}</li>
-                ))}
-            </ul>
+            <span>{
+                serviceList.find(c => c.cateCode === cateCode)!.ourServices.map((service, index) => (
+                    index === 0 ? `${service}` : `, ${service}`
+                ))
+            }</span>
         )
     }
 
@@ -192,7 +192,7 @@ const PAGE_HOME = () => {
             <ScaleUpImage imageUrl={sclupImage} setSclupImage={setSclupImage} scaleUpActive={scaleUpActive} setScaleUpActive={setScaleUpActive} />
             <MiniGallery miniGalleryData={miniGalleryData} miniGallery={miniGallery} miniGalleryActive={miniGalleryActive} setMiniGalleryActive={setMiniGalleryActive} />
             <p className='appointment-contact-info'>
-                Randevu için arayınız - <span>0 (543) 819 20 19</span>
+                Randevu için arayınız - <span>0 (224) 368 22 53</span>
             </p>
             <div className='section-header' ref={ourservicesSection}>
                 <div></div>
@@ -204,8 +204,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/sac.webp')} loading="lazy" alt='Saç hizmetleri' />
                         <h4>Saç</h4>
+                        <p>
+                            Salonumuzda saç hizmetleri konusunda uzmanız. Saçınızı istediğiniz şekilde tasarlamak için profesyonel ekibimiz her zaman hizmetinizde.
+                        </p>
                         <ListOurServices cateCode='sac' />
-                        <span>05438192019</span>
                         <MiniGalleryButton cateCode='sac' />
                     </div>
                 </FadeInElement>
@@ -213,8 +215,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/tirnak.webp')} loading="lazy" alt='Tırnak hizmetleri' />
                         <h4>Tırnak</h4>
+                        <p>
+                            Tırnak bakımında öne çıkan hizmetlerimiz arasında manikür, protez tırnak ve kalıcı oje bulunuyor.
+                        </p>
                         <ListOurServices cateCode='tirnak' />
-                        <span>05393597313</span>
                         <MiniGalleryButton cateCode='tirnak' />
                     </div>
                 </FadeInElement>
@@ -222,8 +226,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/makyaj.webp')} loading="lazy" alt='Makyaj hizmetleri' />
                         <h4>Makyaj</h4>
+                        <p>
+                            Kalıcı makyajdan günlük makyaja, BB Glow uygulamasına kadar geniş bir yelpazede hizmet sunuyoruz.
+                        </p>
                         <ListOurServices cateCode='makyaj' />
-                        <span>05393597313</span>
                         <MiniGalleryButton cateCode='makyaj' />
                     </div>
                 </FadeInElement>
@@ -231,8 +237,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/kirpik.webp')} loading="lazy" alt='Kirpik hizmetleri' />
                         <h4>Kirpik</h4>
+                        <p>
+                            Kirpikleriniz için ipek kirpik uygulamalarımız ve kirpik kaldırma hizmetlerimizle gözlerinizi ön plana çıkarıyoruz.
+                        </p>
                         <ListOurServices cateCode='kirpik' />
-                        <span>05393597313</span>
                         <MiniGalleryButton cateCode='kirpik' />
                     </div>
                 </FadeInElement>
@@ -240,8 +248,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/dudak.webp')} loading="lazy" alt='Dudak hizmetleri' />
                         <h4>Dudak</h4>
+                        <p>
+                            Dudak dolgusu ihtiyaçlarınızı iğnesiz bir şekilde karşılıyoruz. Dudaklarınıza daha dolgun ve çekici bir görünüm kazandırmak için uzmanlarımız sizinle.
+                        </p>
                         <ListOurServices cateCode='dudak' />
-                        <span>05393597313</span>
                         <MiniGalleryButton cateCode='dudak' />
                     </div>
                 </FadeInElement>
@@ -249,8 +259,10 @@ const PAGE_HOME = () => {
                     <div className='service-item'>
                         <img src={require('../assets/images/services/epilasyon.webp')} loading="lazy" alt='Epilasyon ve Depilasyon hizmetleri' />
                         <h4>Epilasyon & Depilasyon</h4>
+                        <p>
+                            Vücut tüylerinden kalıcı olarak kurtulmak istiyorsanız, hizmetlerimizle size yardımcı olabiliriz.
+                        </p>
                         <ListOurServices cateCode='epilasyon_depilasyon' />
-                        <span><span>05393597313</span>-<span>05438192019</span></span>
                         <MiniGalleryButton cateCode='epilasyon_depilasyon' />
                     </div>
                 </FadeInElement>
@@ -264,7 +276,7 @@ const PAGE_HOME = () => {
                     </p>
                 </article>
             </FadeInElement>
-            
+
             <TestimonialCarousel />
             {homeGalleryData && <>
                 <div className='section-header' ref={gallerySection}>

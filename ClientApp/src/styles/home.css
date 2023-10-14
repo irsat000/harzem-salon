@@ -58,32 +58,26 @@
   font-weight: 400;
   font-size: 1.4rem;
 }
-.our-services-section .service-item ul {
-  flex-grow: 1;
-  margin-top: 2px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  gap: 2px;
-}
-.our-services-section .service-item ul li {
-  padding: 0 8px;
-  font-size: 1.1rem;
-  font-family: "Philosopher", sans-serif;
+.our-services-section .service-item p {
+  display: none;
+  text-indent: 14px;
+  font-size: 1rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 300;
+  margin-bottom: 8px;
 }
 .our-services-section .service-item span {
-  margin-top: 6px;
-  padding: 0 8px;
-  font-size: 0.9rem;
-  font-family: "Gowun Batang", serif;
-  display: inline-block;
+  margin-top: auto;
+  font-size: 1.1rem;
+  font-family: "Philosopher", sans-serif;
+  margin-bottom: 8px;
 }
 .our-services-section .service-item button.unavailable {
   cursor: default;
   opacity: 0.5;
 }
 .our-services-section .service-item button {
-  margin-top: 6px;
+  margin-top: 8px;
   outline: transparent;
   padding: 4px 16px;
   font-size: 0.8rem;
@@ -427,9 +421,6 @@
     font-size: 1.7rem;
     padding-left: 8px;
   }
-  .our-services-section .service-item span {
-    font-size: 1.1rem;
-  }
   .our-services-section .service-item button {
     padding: 8px 28px;
     font-size: 1.1rem;
@@ -467,5 +458,8 @@
 @media (min-width: 992px) {
   .our-services-section .service-item {
     width: calc(33.3% - 40px);
+  }
+  .our-services-section .service-item p {
+    display: block;
   }
 }/*# sourceMappingURL=home.css.map */

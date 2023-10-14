@@ -1,4 +1,4 @@
-using harzem_salon.Model;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.Extensions.FileProviders;
@@ -7,6 +7,7 @@ namespace harzem_salon.Controllers;
 
 [ApiController]
 [Route("")]
+[EnableCors("AllowHarzemSalon")]
 public class ImageController : ControllerBase
 {
     private readonly IFileProvider _fileProvider;

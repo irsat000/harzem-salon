@@ -10,12 +10,14 @@ using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
+using Microsoft.AspNetCore.Cors;
 
 namespace harzem_salon.Controllers;
 
 [ApiController]
 [Route("cms")]
 [EnableRateLimiting("fixed_default")]
+[EnableCors("AllowHarzemSalon")]
 public class CMSController : ControllerBase
 {
     private readonly ILogger<CMSController> _logger;

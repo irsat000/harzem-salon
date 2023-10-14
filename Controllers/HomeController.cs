@@ -1,4 +1,5 @@
 ﻿using harzem_salon.Entities;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ namespace harzem_salon.Controllers;
 [ApiController]
 [Route("api/content")]
 [EnableRateLimiting("fixed_default")]
+[EnableCors("AllowHarzemSalon")]
 public class HomeController : ControllerBase
 {
     private readonly ILogger<HomeController> _logger;

@@ -17,10 +17,6 @@ const Footer: React.FC<{
                             <span>0 (224) 368 22 53 - İşyeri Telefonu</span>
                         </div>
                         <div className='contact-item'>
-                            <div className='contact-icon'><Telephone /></div>
-                            <span>0 (543) 819 20 19 - Songül Akdeniz</span>
-                        </div>
-                        <div className='contact-item'>
                             <div className='contact-icon'><House /></div>
                             <span>Siteler Mahallesi, Kanuni Caddesi, Yuvacık Sitesi, Daire No: 78/A, 16330 Yıldırım/Bursa</span>
                         </div>
