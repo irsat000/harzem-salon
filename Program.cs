@@ -21,9 +21,13 @@ builder.Services.AddControllersWithViews()
 
 builder.Services.AddDbContext<sitelerguzellikdbContext>();
 
+string allowedCors = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == "Production"
+    ? "https://sitelerguzellik.com"
+    : "*";
+
 builder.Services.AddCors(o => o.AddPolicy("AllowHarzemSalon", _builder =>
     {
-        _builder.WithOrigins(builder.Configuration["HarzemSalon:AllowedCors"]!)
+        _builder.WithOrigins(allowedCors)
             .AllowAnyHeader()
             .AllowAnyMethod();
     }));
