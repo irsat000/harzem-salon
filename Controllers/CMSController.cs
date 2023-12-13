@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.RateLimiting;
 using Microsoft.AspNetCore.Cors;
+using ImageMagick;
 
 namespace harzem_salon.Controllers;
 
@@ -429,15 +430,17 @@ public class CMSController : ControllerBase
             string folder = category == "mini_gallery" ? "mini_gallery" : "gallery";
 
             // Generate a unique file name to prevent overwriting existing files
-            var uniqueFileName = $"{Guid.NewGuid()}_{file.FileName}";
+            // - Also change extension to webp
+            var uniqueFileName = Path.ChangeExtension($"{Guid.NewGuid()}_{file.FileName}", "webp");
 
             // Define the directory path
             var uploadPath = Path.Combine(rootPath, "images", folder, uniqueFileName);
 
-            // Save the file to the server
-            using (var stream = new FileStream(uploadPath, FileMode.Create))
+            // Remove metadata, reformat to webp and save to path
+            using (var image = new MagickImage(file.OpenReadStream()))
             {
-                await file.CopyToAsync(stream);
+                image.Strip(); // Remove metadata
+                image.Write(uploadPath, MagickFormat.WebP); // Reformat to webp
             }
 
             return uniqueFileName;

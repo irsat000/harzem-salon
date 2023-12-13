@@ -73,10 +73,10 @@
         }
 
         span {
-            margin-top: auto;
-            font-size: 1.1rem;
-            font-family: "Philosopher", sans-serif;
+            font-family: "Bhavuka", sans-serif;
+            font-size: 1.2rem;
             margin-bottom: 8px;
+            margin-top: auto;
         }
 
         button.unavailable {
@@ -96,6 +96,7 @@
             color: #ffffff;
             cursor: pointer;
             user-select: none;
+            margin-top: auto;
         }
 
         button:not(.unavailable):hover {

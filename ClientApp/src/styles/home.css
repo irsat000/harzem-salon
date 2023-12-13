@@ -67,10 +67,10 @@
   margin-bottom: 8px;
 }
 .our-services-section .service-item span {
-  margin-top: auto;
-  font-size: 1.1rem;
-  font-family: "Philosopher", sans-serif;
+  font-family: "Bhavuka", sans-serif;
+  font-size: 1.2rem;
   margin-bottom: 8px;
+  margin-top: auto;
 }
 .our-services-section .service-item button.unavailable {
   cursor: default;
@@ -90,6 +90,7 @@
   -webkit-user-select: none;
      -moz-user-select: none;
           user-select: none;
+  margin-top: auto;
 }
 .our-services-section .service-item button:not(.unavailable):hover {
   border: 2px solid #b430a0;
