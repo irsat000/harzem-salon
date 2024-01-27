@@ -286,7 +286,7 @@ public class CMSController : ControllerBase
         try
         {
             // Will return the name of the created file or null
-            string? createdName = await CreateImage(file, "mini_gallery");
+            string? createdName = CreateImage(file, "mini_gallery");
             if (createdName == null)
             {
                 return BadRequest("Error when uploading image.");
@@ -316,7 +316,7 @@ public class CMSController : ControllerBase
         try
         {
             // Will return the name of the created file or null
-            string? createdName = await CreateImage(model.file, "gallery");
+            string? createdName = CreateImage(model.file, "gallery");
             if (createdName == null)
             {
                 return BadRequest("Error when uploading image.");
@@ -408,7 +408,7 @@ public class CMSController : ControllerBase
         }
     }
 
-    private async Task<string?> CreateImage(IFormFile file, string category)
+    private string? CreateImage(IFormFile file, string category)
     {
         try
         {
