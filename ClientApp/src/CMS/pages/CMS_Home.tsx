@@ -7,14 +7,13 @@ const CMS_HOME = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        // will send to login if the user doesn't have any login credentials, otherwise musteriler
+        // Will send to testimonials, if not logged in, then template will send to login
         navigate('/panel/yorumlar');
-
     }, [navigate])
-    
+
     return (
         <CMS_TEMPLATE panelTitle=''>
-
+            <></>
         </CMS_TEMPLATE>
     )
 }

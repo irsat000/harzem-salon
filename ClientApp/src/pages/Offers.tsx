@@ -13,10 +13,10 @@ const PAGE_OFFERS = () => {
     const [discountCombinationsData, setDiscountCombinationsData] = useState<string[] | null>(null);
 
     useEffect(() => {
-        const cachedDiscountCombinationsData = JSON.parse(localStorage.getItem(`cachedDiscountCombinationsData`) || 'null');
+        const cachedDiscountCombinationsData = JSON.parse(sessionStorage.getItem(`cachedDiscountCombinationsData`) || 'null');
 
-        if (cachedDiscountCombinationsData && new Date() < new Date(cachedDiscountCombinationsData.expire)) {
-            setDiscountCombinationsData(cachedDiscountCombinationsData.discountCombinations);
+        if (cachedDiscountCombinationsData) {
+            setDiscountCombinationsData(cachedDiscountCombinationsData);
         } else {
             fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
                 .then((res) => {
@@ -30,16 +30,9 @@ const PAGE_OFFERS = () => {
                     }
                 })
                 .then((data) => {
-                    // Create expiration date
-                    const expirationDate = new Date();
-                    expirationDate.setDate(expirationDate.getDate() + 2);
-
                     // Assign data and cache it
                     setDiscountCombinationsData(data.discountCombinations);
-                    localStorage.setItem(`cachedDiscountCombinationsData`, JSON.stringify({
-                        discountCombinations: data.discountCombinations,
-                        expire: expirationDate
-                    }));
+                    sessionStorage.setItem(`cachedDiscountCombinationsData`, JSON.stringify(data.discountCombinations));
                 })
                 .catch((err) => console.error('Error fetching data:', err));
         }
@@ -61,7 +54,7 @@ const PAGE_OFFERS = () => {
                 </div>
                 <div className='offer-seperator'></div>
                 */}
-                {discountCombinationsData &&
+                {discountCombinationsData && discountCombinationsData.length ?
                     <div className='offer-item'>
                         <div className='offer-header'>
                             <h1>Kombinasyon Tarifeleri</h1>
@@ -74,6 +67,12 @@ const PAGE_OFFERS = () => {
                             <ul>
                                 {discountCombinationsData.map((comb, index) => (<li key={index}>{comb}</li>))}
                             </ul>
+                        </div>
+                    </div>
+                    :
+                    <div className='offer-item'>
+                        <div className='offer-header'>
+                            <h1>Henüz kampanyamız yok.</h1>
                         </div>
                     </div>
                 }

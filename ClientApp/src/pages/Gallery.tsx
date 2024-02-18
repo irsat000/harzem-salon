@@ -74,37 +74,43 @@ const PAGE_GALLERY = () => {
     const [dataLoading, setDataLoading] = useState("loading");
     const [galleryData, setGalleryData] = useState<GalleryImage[]>([]);
 
+    console.log(dataLoading);
     useEffect(() => {
-        const cachedGalleryData = sessionStorage.getItem(`cachedGalleryData`);
+        try {
+            const cachedGalleryData = sessionStorage.getItem(`cachedGalleryData`);
 
-        if (cachedGalleryData) {
-            setGalleryData(JSON.parse(cachedGalleryData));
-        } else {
-            fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
-                .then((res) => {
-                    switch (res.status) {
-                        case 404:
-                            return Promise.reject(`Gallery is empty!`);
-                        case 200:
-                            return res.json();
-                        default:
-                            return Promise.reject(`HTTP error! status: ${res.status}`);
-                    }
-                })
-                .then(async (data) => {
-                    const updated = data.gallery.map((img: GalleryImage) => ({
-                        ...img,
-                        imageLink: apiLink + '/i/gallery/' + img.imageLink,
-                        uploadDate: new Date(img.uploadDate).toLocaleDateString()
-                    }));
-                    setGalleryData(updated);
-                    sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(updated));
-                    setDataLoading("success");
-                })
-                .catch((err) => {
-                    setDataLoading("fail");
-                    console.error('Error fetching data:', err);
-                });
+            if (cachedGalleryData) {
+                setGalleryData(JSON.parse(cachedGalleryData));
+                setDataLoading("success");
+            } else {
+                fetch(`${apiLink}/api/content/gallery`, defaultFetchGet())
+                    .then((res) => {
+                        switch (res.status) {
+                            case 404:
+                                return Promise.reject(`Gallery is empty!`);
+                            case 200:
+                                return res.json();
+                            default:
+                                return Promise.reject(`HTTP error! status: ${res.status}`);
+                        }
+                    })
+                    .then(async (data) => {
+                        const updated = data.gallery.map((img: GalleryImage) => ({
+                            ...img,
+                            imageLink: apiLink + '/i/gallery/' + img.imageLink,
+                            uploadDate: new Date(img.uploadDate).toLocaleDateString()
+                        }));
+                        setGalleryData(updated);
+                        sessionStorage.setItem(`cachedGalleryData`, JSON.stringify(updated));
+                        setDataLoading("success");
+                    })
+                    .catch((err) => {
+                        setDataLoading("fail");
+                        console.error('Error fetching data:', err);
+                    });
+            }
+        } catch (error) {
+            setDataLoading("fail");
         }
     }, []);
 

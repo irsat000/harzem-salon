@@ -12,7 +12,7 @@ const CMS_OFFERS = () => {
     const [combinationsData, setCombinationsData] = useState<string[]>([]);
 
     useEffect(() => {
-         fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
+        fetch(`${apiLink}/api/content/discount_combinations`, defaultFetchGet())
             .then((res) => {
                 switch (res.status) {
                     case 404:
@@ -62,13 +62,8 @@ const CMS_OFFERS = () => {
     const [saveAllStatus, setSaveAllStatus] = useState(0);
     // Update database
     const handleSaveAll = () => {
-        if (combinationsData.length < 1) {
-            alert("Liste boş!");
-            return;
-        }
-
         setSaveAllStatus(1);
-         fetch(`${apiLink}/cms/update-discount_combinations`, {
+        fetch(`${apiLink}/cms/update-discount_combinations`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json; charset=utf-8',
@@ -122,9 +117,9 @@ const CMS_OFFERS = () => {
                             </div>
                         ))}
                     </div>
-                    <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
                 </> : <h3>Hiç bir kombinasyon kampanyası yok!</h3>
                 }
+                <SaveAll saveAllStatus={saveAllStatus} handleSaveAll={handleSaveAll} />
             </div>
         </CMS_TEMPLATE>
     )
